@@ -12,5 +12,15 @@ properties:
         type: string
         description: default max execution time for a rule
 
+  msisensor_pro:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'msisensor_pro' rule
+      time:
+        type: string
+        description: max execution time for the 'msisensor_pro' rule
+
   required:
     - default_resources

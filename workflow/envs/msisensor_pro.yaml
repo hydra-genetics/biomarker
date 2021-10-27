@@ -3,3 +3,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
+  - msisensor-pro=1.1.a
