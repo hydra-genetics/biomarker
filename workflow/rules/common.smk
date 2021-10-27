@@ -46,6 +46,7 @@ wildcard_constraints:
 
 
 def compile_output_list(wildcards):
-    return [
+    outfiles = [
         "biomarker/msisensor_pro/%s_%s" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)
     ]
+    return outfile
