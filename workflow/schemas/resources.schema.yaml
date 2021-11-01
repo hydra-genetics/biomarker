@@ -22,5 +22,15 @@ properties:
         type: string
         description: max execution time for the 'msisensor_pro' rule
 
+  tmb:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'tmb' rule
+      time:
+        type: string
+        description: max execution time for the 'tmb' rule
+
   required:
     - default_resources
