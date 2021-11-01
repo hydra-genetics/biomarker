@@ -46,6 +46,6 @@ wildcard_constraints:
 
 
 def compile_output_list(wildcards):
-    return [
-        "biomarker/msisensor_pro/%s_%s" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)
-    ]
+    of = ["biomarker/msisensor_pro/%s_%s" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
+    of.append(["biomarker/tmb/%s_%s.TMB.txt" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)])
+    return(of)
