@@ -6,16 +6,21 @@ __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.uu.se"
 __license__ = "GPL-3"
 
+def get_run(units, wildcards):
+    runs = set([u.run for u in get_units(units, wildcards)])
+    if len(runs) > 1:
+        raise ValueError("Sample type combination from different sequence runs")
+    return runs.pop()
 
 rule tmb:
     input:
-        vcf="snv_indels/ensemble_vcf/{sample}_{type}.ensembled.annotated.vcf.gz",
+        vcf="snv_indels/ensemble_vcf/{sample}_{type}.ensembled.annotated.vcf",
         artifacts=config["reference"]["twist_dna_st_artifacts"],
         background_panel=config["reference"]["twist_dna_st_background_panel"],
-        background_run="annotation/calculate_background/background_run.tsv",
+        background_run=lambda wildcards: "annotation/calculate_background/%s_run_background.tsv" % get_run(units, wildcards),
         gvcf="snv_indels/mutect2_gvcf/{sample}_{type}.merged.gvcf.gz",
     output:
-        tmb="biomarker/tmb/{sample}_{type}.TMB.txt",
+        tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
     log:
         "biomarker/tmb/{sample}_{type}.log",
     benchmark:
@@ -28,4 +33,4 @@ rule tmb:
     message:
         "{rule}: Calculate TMB in tmb/{rule}/{wildcards.sample}_{wildcards.type}"
     script:
-        "../../../scripts/python/tmb.py"
+        "../scripts/tmb.py"
