@@ -6,11 +6,6 @@ __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.uu.se"
 __license__ = "GPL-3"
 
-def get_run(units, wildcards):
-    runs = set([u.run for u in get_units(units, wildcards)])
-    if len(runs) > 1:
-        raise ValueError("Sample type combination from different sequence runs")
-    return runs.pop()
 
 rule tmb:
     input:

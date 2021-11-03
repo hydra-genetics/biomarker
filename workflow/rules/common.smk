@@ -45,6 +45,13 @@ wildcard_constraints:
     unit="N|T|R",
 
 
+def get_run(units, wildcards):
+    runs = set([u.run for u in get_units(units, wildcards)])
+    if len(runs) > 1:
+        raise ValueError("Sample type combination from different sequence runs")
+    return runs.pop()
+
+
 def compile_output_list(wildcards):
     of = ["biomarker/msisensor_pro/%s_%s" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
     of.append(["biomarker/tmb/%s_%s.TMB.txt" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)])
