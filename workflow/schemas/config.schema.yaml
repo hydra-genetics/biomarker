@@ -12,6 +12,15 @@ properties:
   default_container:
     type: string
     description: name or path to a default docker/singularity container
+  reference:
+    type: object
+    properties:
+      twist_dna_st_artifacts:
+        type: string
+        description: artifact file for twist dna st
+      twist_dna_st_background_panel:
+        type: string
+        description: backgound noise file for twist dna st
   required:
     - samples
     - units
@@ -35,3 +44,13 @@ properties:
         description: path to panel of normals
     required:
       - PoN
+
+  tmb:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for tmb
+      container:
+        type: string
+        description: name or path to docker/singularity container

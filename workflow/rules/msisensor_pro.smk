@@ -32,6 +32,6 @@ rule msisensor_pro:
     conda:
         "../envs/msisensor_pro.yaml"
     message:
-        "{rule}: Caluclate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}"
+        "{rule}: Calculate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}"
     shell:
-        "(msisensor-pro pro {params.extra} -d {input.PoN} -t {input.bam} -o {params.out_prefix}) > {log}"
+        "(msisensor-pro pro {params.extra} -d {input.PoN} -t {input.bam} -o {params.out_prefix}) &> {log}"
