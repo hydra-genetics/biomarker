@@ -26,7 +26,10 @@ rule msisensor_pro:
         repeat(
             "biomarker/msisensor_pro/{sample}_{type}.benchmark.tsv", config.get("msisensor_pro", {}).get("benchmark_repeats", 1)
         )
-    threads: config.get("msisensor_pro", config["default_resources"]).get("threads", config["default_resources"]["threads"])
+    threads: config.get("msisensor_pro", {}).get("threads", config["default_resources"]["threads"])
+    resources:
+        threads=config.get("msisensor_pro", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("msisensor_pro", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("msisensor_pro", {}).get("container", config["default_container"])
     conda:

@@ -20,7 +20,10 @@ rule tmb:
         "biomarker/tmb/{sample}_{type}.log",
     benchmark:
         repeat("biomarker/tmb/{sample}_{type}.benchmark.tsv", config.get("tmb", {}).get("benchmark_repeats", 1))
-    threads: config.get("tmb", config["default_resources"]).get("threads", config["default_resources"]["threads"])
+    threads: config.get("tmb", {}).get("threads", config["default_resources"]["threads"])
+    resources:
+        threads=config.get("tmb", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("tmb", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("tmb", {}).get("container", config["default_container"])
     conda:
