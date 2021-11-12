@@ -5,8 +5,8 @@ units: "units.tsv"
 default_container: "docker://marrip/common:1.1.0"
 
 reference:
-  twist_dna_st_background_panel: "references/background_panel_small.tsv"
-  twist_dna_st_artifacts: "references/Vardict_artifact_positions_small.txt"
+  background: "references/background_panel_small.tsv"
+  vardict_artifacts: "references/Vardict_artifact_positions_small.txt"
 
 msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.1.a"
