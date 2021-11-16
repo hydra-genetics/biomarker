@@ -10,8 +10,8 @@ __license__ = "GPL-3"
 rule tmb:
     input:
         vcf="snv_indels/ensemble_vcf/{sample}_{type}.ensembled.annotated.vcf",
-        artifacts=config["reference"]["twist_dna_st_artifacts"],
-        background_panel=config["reference"]["twist_dna_st_background_panel"],
+        artifacts=config["reference"]["vardict_artifacts"],
+        background_panel=config["reference"]["background"],
         background_run=lambda wildcards: "annotation/calculate_background/%s_run_background.tsv" % get_run(units, wildcards),
         gvcf="snv_indels/mutect2_gvcf/{sample}_{type}.merged.gvcf.gz",
     output:
