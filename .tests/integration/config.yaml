@@ -9,8 +9,8 @@ reference:
   vardict_artifacts: "references/Vardict_artifact_positions_small.txt"
 
 msisensor_pro:
-  container: "docker://hydragenetics/msisensor_pro:1.1.a"
+  container: "docker://hydragenetics/msisensor_pro:1.2.0"
   PoN: "references/Msisensor_pro_reference.list_baseline"
 
 tmb:
-  container: "docker://gmsuppsala/somatic:develop"
+  container: "docker://python:3.9.7-slim"
