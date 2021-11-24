@@ -9,10 +9,11 @@ __license__ = "GPL-3"
 
 rule tmb:
     input:
-        vcf="snv_indels/ensemble_vcf/{sample}_{type}.ensembled.annotated.vcf",
-        artifacts=config["reference"]["vardict_artifacts"],
+        vcf="snv_indels/ensemble_vcf/{sample}_{type}.ensembled.vep_annotated.vcf",
+        artifacts=config["reference"]["artifacts"],
         background_panel=config["reference"]["background"],
-        background_run=lambda wildcards: "annotation/calculate_background/%s_run_background.tsv" % get_run(units, wildcards),
+        background_run=lambda wildcards: "annotation/calculate_seqrun_background/%s_seqrun_background.tsv"
+        % get_run(units, wildcards),
         gvcf="snv_indels/mutect2_gvcf/{sample}_{type}.merged.gvcf.gz",
     output:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),

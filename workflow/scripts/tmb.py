@@ -9,27 +9,22 @@ output_tmb = open(snakemake.output.tmb, "w")
 
 FFPE_SNV_artifacts = {}
 header = True
-vardict_index = 10000
 for line in artifacts:
-    lline = line.strip().split("\t")
+    columns = line.strip().split("\t")
     if header:
-        i = 0
-        for column in lline:
-            if column == "vardict":
-                vardict_index = i
-            i += 1
         header = False
         continue
-    chrom = lline[0]
-    pos = lline[1]
+    chrom = columns[0]
+    pos = columns[1]
     key = chrom + "_" + pos
-    type = lline[2]
+    type = columns[2]
     if type != "SNV":
         continue
-    if vardict_index == 10000:
-        continue
-    vardict_observations = int(lline[vardict_index])
-    FFPE_SNV_artifacts[key] = vardict_observations
+    max_observations = 0
+    for nr_variant in columns[3:]:
+        if int(nr_variant) > max_observations:
+            observations = int(nr_variant)
+    FFPE_SNV_artifacts[key] = max_observations
 
 
 '''Background'''
@@ -94,11 +89,8 @@ for line in vcf:
         i += 1
     AF = float(INFO_list[AF_index][3:])
     Callers = INFO_list[Caller_index]
-    if Callers.find("vardict") == -1:
-        continue
-    if Callers.find("mutect2") == -1:
-        continue
-    if Callers.find("freebayes") == -1:
+    nr_Callers = len(Callers.split(","))
+    if nr_Callers < 2:
         continue
     VEP_INFO = INFO.split("CSQ=")[1]
     Variant_type = VEP_INFO.split("|")[1].split("&")
