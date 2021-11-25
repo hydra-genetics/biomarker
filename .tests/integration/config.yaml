@@ -13,7 +13,7 @@ msisensor_pro:
   PoN: "references/Msisensor_pro_reference.list_baseline"
 
 tmb:
-  container: "docker://gmsuppsala/somatic:develop"
+  container: "docker://python:3.9.7-slim"
 
 hrd:
   container: "docker://hydragenetics/common:0.0.1"
