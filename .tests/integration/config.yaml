@@ -2,7 +2,7 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://marrip/common:1.1.0"
+default_container: "docker://hydragenetics/common:0.0.1"
 
 reference:
   background: "references/background_panel_small.tsv"
@@ -14,3 +14,6 @@ msisensor_pro:
 
 tmb:
   container: "docker://gmsuppsala/somatic:develop"
+
+hrd:
+  container: "docker://hydragenetics/common:0.0.1"

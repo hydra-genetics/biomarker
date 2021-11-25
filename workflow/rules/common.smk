@@ -57,4 +57,11 @@ def compile_output_list(wildcards):
     of.append(
         ["biomarker/tmb/%s_%s.TMB.txt" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
     )
+    of.append(
+        [
+            "biomarker/hrd/%s_%s.hrd_score.txt" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
+    )
     return of
