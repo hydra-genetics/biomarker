@@ -9,7 +9,7 @@ reference:
   artifacts: "references/artifact_positions_chr1.txt"
 
 msisensor_pro:
-  container: "docker://hydragenetics/msisensor_pro:1.1.a"
+  container: "docker://hydragenetics/msisensor_pro:1.2.0"
   PoN: "references/Msisensor_pro_reference.list_baseline"
 
 tmb:
