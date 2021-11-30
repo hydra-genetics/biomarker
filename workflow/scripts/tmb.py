@@ -23,7 +23,7 @@ for line in artifacts:
     max_observations = 0
     for nr_variant in columns[3:]:
         if int(nr_variant) > max_observations:
-            observations = int(nr_variant)
+            max_observations = int(nr_variant)
     FFPE_SNV_artifacts[key] = max_observations
 
 
