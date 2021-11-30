@@ -133,8 +133,8 @@ for line in vcf:
             Observations = FFPE_SNV_artifacts[key]
     else:
         continue
-    if Observations == 0:
-        print(filter, DP, VD, AF, GnomAD, db1000G, INFO.find("Complex"), Variant_type)
+    if Observations <= 1 and "missense_variant" in Variant_type:
+        print(filter, DP, VD, AF, GnomAD, db1000G, INFO.find("Complex"))
 
     # TMB
     if (filter.find("PASS") != -1 and DP > 200 and VD > 10 and AF >= 0.02 and AF <= 0.45 and
