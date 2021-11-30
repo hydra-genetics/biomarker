@@ -54,3 +54,13 @@ properties:
       container:
         type: string
         description: name or path to docker/singularity container
+
+  hrd:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for hrd
+      container:
+        type: string
+        description: name or path to docker/singularity container

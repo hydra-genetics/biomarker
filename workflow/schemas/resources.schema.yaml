@@ -11,6 +11,15 @@ properties:
       time:
         type: string
         description: default max execution time for a rule
+      mem_mb:
+        type: integer
+        description: default memory used for a rule
+      mem_per_cpu:
+        type: integer
+        description: default memory used per cpu for a rule
+      partition:
+        type: string
+        description: default partition to use on the cluster for a rule
 
   msisensor_pro:
     type: object
@@ -21,6 +30,15 @@ properties:
       time:
         type: string
         description: max execution time for the 'msisensor_pro' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'msisensor_pro'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'msisensor_pro'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'msisensor_pro'
 
   tmb:
     type: object
@@ -31,6 +49,34 @@ properties:
       time:
         type: string
         description: max execution time for the 'tmb' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'tmb'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'tmb'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'tmb'
+
+  hrd:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'hrd' rule
+      time:
+        type: string
+        description: max execution time for the 'hrd' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'hrd'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'hrd'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'hrd'
 
   required:
     - default_resources
