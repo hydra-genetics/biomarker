@@ -54,6 +54,9 @@ properties:
       container:
         type: string
         description: name or path to docker/singularity container
+      filter_nr_observations:
+        type: integer
+        description: Filter all variants that has been observed before >= X times in artifact file
 
   hrd:
     type: object

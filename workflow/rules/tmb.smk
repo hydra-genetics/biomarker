@@ -17,6 +17,8 @@ rule tmb:
         gvcf="snv_indels/mutect2_gvcf/{sample}_{type}.merged.gvcf.gz",
     output:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
+    params:
+        filter_nr_observations=config.get("tmb", {}).get("filter_nr_observations", 1),
     log:
         "biomarker/tmb/{sample}_{type}.log",
     benchmark:
