@@ -5,6 +5,7 @@ background_panel_filename = snakemake.input.background_panel
 background_run = open(snakemake.input.background_run)
 gvcf = snakemake.input.gvcf
 output_tmb = open(snakemake.output.tmb, "w")
+filter_nr_observations = snakemake.params.filter_nr_observations
 
 
 FFPE_SNV_artifacts = {}
@@ -136,7 +137,7 @@ for line in vcf:
 
     # TMB
     if (filter.find("PASS") != -1 and DP > 200 and VD > 10 and AF >= 0.02 and AF <= 0.45 and
-            GnomAD <= 0.0001 and db1000G <= 0.0001 and Observations <= 1 and INFO.find("Complex") == -1):
+            GnomAD <= 0.0001 and db1000G <= 0.0001 and Observations < filter_nr_observations and INFO.find("Complex") == -1):
         if len(ref) == 1 and len(alt) == 1:
             panel_median = 1000
             panel_sd = 1000
