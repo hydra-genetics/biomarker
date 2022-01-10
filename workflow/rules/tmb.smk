@@ -18,6 +18,15 @@ rule tmb:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
     params:
         filter_nr_observations=config.get("tmb", {}).get("filter_nr_observations", 1),
+        DP_limit=config.get("tmb", {}).get("DP_limit", 200),
+        VD_limit=config.get("tmb", {}).get("VD_limit", 10),
+        AF_lower_limit=config.get("tmb", {}).get("AF_lower_limit", 0.02),
+        AF_upper_limit=config.get("tmb", {}).get("AF_upper_limit", 0.45),
+        GnomAD_limit=config.get("tmb", {}).get("GnomAD_limit", 0.0001),
+        db1000G_limit=config.get("tmb", {}).get("db1000G_limit", 0.0001),
+        Background_sd_limit=config.get("tmb", {}).get("Background_sd_limit", 5),
+        nsSNV_TMB_correction=config.get("tmb", {}).get("nsSNV_TMB_correction", 0.625),
+        nsSNV_sSNV_TMB_correction=config.get("tmb", {}).get("nsSNV_sSNV_TMB_correction", 0.625),
     log:
         "biomarker/tmb/{sample}_{type}.log",
     benchmark:
