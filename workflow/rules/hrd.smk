@@ -9,7 +9,7 @@ __license__ = "GPL-3"
 
 rule hrd:
     input:
-        segment="cnv_sv/cnvkit_call_loh/{sample}_{type}.loh.cns",
+        segment="cnv_sv/cnvkit_call/{sample}_{type}.loh.cns",
     output:
         hrd=temp("biomarker/hrd/{sample}_{type}.hrd_score.txt"),
     log:
