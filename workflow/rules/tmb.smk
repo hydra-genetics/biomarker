@@ -13,7 +13,7 @@ rule tmb:
         artifacts=config["reference"]["artifacts"],
         background_panel=config["reference"]["background"],
         background_run=lambda wildcards: "annotation/calculate_seqrun_background/%s_seqrun_background.tsv"
-        % get_run(units, wildcards),
+        % get_flowcell(units, wildcards),
     output:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
     params:
