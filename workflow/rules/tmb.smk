@@ -9,7 +9,7 @@ __license__ = "GPL-3"
 
 rule tmb:
     input:
-        vcf="filtering/add_multi_snv_in_codon/{sample}_{type}.codon_snvs.sorted.vcf.gz",
+        vcf="annotation/background_annotation/{sample}_{type}.background_annotation.vcf.gz",
         artifacts=config["reference"]["artifacts"],
         background_panel=config["reference"]["background"],
         background_run=lambda wildcards: "annotation/calculate_seqrun_background/%s_seqrun_background.tsv"
