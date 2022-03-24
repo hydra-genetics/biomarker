@@ -98,18 +98,18 @@ with gzip.open(vcf, 'rt') as vcf_infile:
         alt = lline[4]
         filter = lline[6]
         INFO = lline[7]
-        if INFO[:3] == "AA=":
-            continue
         INFO_list = INFO.split(";")
         AF_index = 0
         Caller_index = 0
-        i = 0
+        i = -1
         for info in INFO_list:
             if info[:3] == "AF=":
                 AF_index = i
             if info[:8] == "CALLERS=":
                 Caller_index = i
             i += 1
+        if AF_index == -1:
+            continue
         AF = float(INFO_list[AF_index][3:])
         Callers = INFO_list[Caller_index]
         nr_Callers = len(Callers.split(","))
