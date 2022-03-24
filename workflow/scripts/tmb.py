@@ -99,9 +99,9 @@ with gzip.open(vcf, 'rt') as vcf_infile:
         filter = lline[6]
         INFO = lline[7]
         INFO_list = INFO.split(";")
-        AF_index = 0
+        AF_index = -1
         Caller_index = 0
-        i = -1
+        i = 0
         for info in INFO_list:
             if info[:3] == "AF=":
                 AF_index = i
