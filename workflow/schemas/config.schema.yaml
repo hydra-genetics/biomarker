@@ -57,31 +57,31 @@ properties:
       filter_nr_observations:
         type: integer
         description: Filter all variants that has been observed before >= X times in artifact file
-      DP_limit:
+      dp_limit:
         type: integer
         description: Filter all variants with depth < X
-      VD_limit:
+      vd_limit:
         type: integer
         description: Filter all variants with variants reads < X
-      AF_lower_limit:
+      af_lower_limit:
         type: float
         description: Filter all variants with MAF < X
-      AF_upper_limit:
+      af_upper_limit:
         type: float
         description: Filter all variants with MAF > X
-      GnomAD_limit:
+      gnomad_limit:
         type: float
         description: Filter all variants with found in GnomAD witn MAF > X
-      db1000G_limit:
+      db1000g_limit:
         type: float
         description: Filter all variants with found in 1000 Genomes witn MAF > X
-      Background_sd_limit:
+      background_sd_limit:
         type: integer
         description: Filter all variants with background levels < X standard deviation away
-      nsSNV_TMB_correction:
+      nssnv_tmb_correction:
         type: float
         description: Design dependent correction factor to get TMB representative for the entire genome
-      nsSNV_sSNV_TMB_correction:
+      nssnv_ssnv_tmb_correction:
         type: float
         description: Design dependent correction factor to get TMB representative for the entire genome
 
