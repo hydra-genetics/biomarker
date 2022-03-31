@@ -7,15 +7,15 @@ background_panel_filename = snakemake.input.background_panel
 background_run = open(snakemake.input.background_run)
 output_tmb = open(snakemake.output.tmb, "w")
 filter_nr_observations = snakemake.params.filter_nr_observations
-DP_limit = snakemake.params.DP_limit
-VD_limit = snakemake.params.VD_limit
-AF_lower_limit = snakemake.params.AF_lower_limit
-AF_upper_limit = snakemake.params.AF_upper_limit
-GnomAD_limit = snakemake.params.GnomAD_limit
-db1000G_limit = snakemake.params.db1000G_limit
-Background_sd_limit = snakemake.params.Background_sd_limit
-nsSNV_TMB_correction = snakemake.params.nsSNV_TMB_correction
-nsSNV_sSNV_TMB_correction = snakemake.params.nsSNV_sSNV_TMB_correction
+dp_limit = snakemake.params.dp_limit
+ad_limit = snakemake.params.vd_limit
+af_lower_limit = snakemake.params.af_lower_limit
+af_upper_limit = snakemake.params.af_upper_limit
+gnomad_limit = snakemake.params.gnomad_limit
+db1000g_limit = snakemake.params.db1000g_limit
+background_sd_limit = snakemake.params.background_sd_limit
+nssnv_tmb_correction = snakemake.params.nssnv_tmb_correction
+nssnv_ssnv_tmb_correction = snakemake.params.nssnv_ssnv_tmb_correction
 
 
 FFPE_SNV_artifacts = {}
@@ -157,8 +157,8 @@ with gzip.open(vcf, 'rt') as vcf_infile:
             continue
 
         # TMB
-        if (DP > DP_limit and VD > VD_limit and AF >= AF_lower_limit and AF <= AF_upper_limit and
-                GnomAD <= GnomAD_limit and db1000G <= db1000G_limit and
+        if (DP > dp_limit and VD > ad_limit and AF >= af_lower_limit and AF <= af_upper_limit and
+                GnomAD <= gnomad_limit and db1000G <= db1000g_limit and
                 Observations < filter_nr_observations and INFO.find("Complex") == -1):
             if len(ref) == 1 and len(alt) == 1:
                 panel_median = 1000
@@ -173,7 +173,7 @@ with gzip.open(vcf, 'rt') as vcf_infile:
                     run_median = gvcf_run_dict[key2]
                 if panel_sd > 0.0:
                     pos_sd = (AF - panel_median) / panel_sd
-                if pos_sd > Background_sd_limit:
+                if pos_sd > background_sd_limit:
                     if ("missense_variant" in Variant_type or
                             "stop_gained" in Variant_type or
                             "stop_lost" in Variant_type):
@@ -183,8 +183,8 @@ with gzip.open(vcf, 'rt') as vcf_infile:
                         nr_sSNV_TMB += 1
                         TMB_sSNV.append([line, panel_median, panel_sd, run_median, AF, pos_sd])
 
-nsTMB = nr_nsSNV_TMB * nsSNV_TMB_correction
-total_TMB = (nr_sSNV_TMB + nr_nsSNV_TMB) * nsSNV_sSNV_TMB_correction
+nsTMB = nr_nsSNV_TMB * nssnv_tmb_correction
+total_TMB = (nr_sSNV_TMB + nr_nsSNV_TMB) * nssnv_ssnv_tmb_correction
 output_tmb.write("nsSNV TMB:\t" + str(nsTMB) + "\n")
 output_tmb.write("nsSNV variants:\t" + str(nr_nsSNV_TMB) + "\n")
 output_tmb.write("TMB:\t" + str(total_TMB) + "\n")
