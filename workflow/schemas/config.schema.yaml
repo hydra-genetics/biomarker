@@ -64,25 +64,25 @@ properties:
         type: integer
         description: Filter all variants with variants reads < X
       af_lower_limit:
-        type: float
+        type: number
         description: Filter all variants with MAF < X
       af_upper_limit:
-        type: float
+        type: number
         description: Filter all variants with MAF > X
       gnomad_limit:
-        type: float
+        type: number
         description: Filter all variants with found in GnomAD witn MAF > X
       db1000g_limit:
-        type: float
+        type: number
         description: Filter all variants with found in 1000 Genomes witn MAF > X
       background_sd_limit:
         type: integer
         description: Filter all variants with background levels < X standard deviation away
       nssnv_tmb_correction:
-        type: float
+        type: number
         description: Design dependent correction factor to get TMB representative for the entire genome
       nssnv_ssnv_tmb_correction:
-        type: float
+        type: number
         description: Design dependent correction factor to get TMB representative for the entire genome
 
   hrd:
