@@ -42,7 +42,7 @@ rule optitype:
         "{rule}: Determine HLA-type in biomarker/{rule}/{wildcards.sample}_{wildcards.type}/{wildcards.sample}_{wildcards.type}"
     shell:
         "(python /usr/local/bin/OptiType/OptiTypePipeline.py "
-        "-i {input.fastq1} {intput.fastq2} "
+        "-i {input.fastq1} {input.fastq2} "
         "{params.sample_type} "
         "--enumerate {params.enumerate} "
         "-p {params.out_prefix} "

@@ -73,8 +73,6 @@ properties:
       enumeration:
         type: integer
         description: number of output HLA-types, 1 equals output only the best
-    required:
-      - PoN
 
   tmb:
     type: object
