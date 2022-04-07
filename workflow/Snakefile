@@ -8,9 +8,11 @@ __license__ = "GPL-3"
 
 
 include: "rules/common.smk"
-include: "rules/msisensor_pro.smk"
-include: "rules/tmb.smk"
 include: "rules/hrd.smk"
+include: "rules/msisensor_pro.smk"
+include: "rules/optitype.smk"
+include: "rules/tmb.smk"
+
 
 
 report: "report/workflow.rst"

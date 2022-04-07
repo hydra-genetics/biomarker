@@ -2,11 +2,17 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://hydragenetics/common:0.1.0"
+default_container: "docker://hydragenetics/common:0.1.1"
 
 reference:
   background: "references/background_panel_small.tsv"
   artifacts: "references/artifact_positions_chr1.txt"
+
+hrd:
+  container: "docker://hydragenetics/common:0.1.1"
+
+optitype:
+  container: "docker://hydragenetics/optitype:1.3.5"
 
 msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
@@ -14,6 +20,3 @@ msisensor_pro:
 
 tmb:
   container: "docker://python:3.9.7-slim"
-
-hrd:
-  container: "docker://hydragenetics/common:0.1.0"

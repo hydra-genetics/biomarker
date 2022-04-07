@@ -63,5 +63,11 @@ def compile_output_list(wildcards):
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
         ]
+    of.append(
+        [
+            "biomarker/optitype/%s_%s/%s_%s_result.tsv" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
     )
     return of
