@@ -14,7 +14,6 @@ include: "rules/optitype.smk"
 include: "rules/tmb.smk"
 
 
-
 report: "report/workflow.rst"
 
 
