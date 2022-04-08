@@ -13,13 +13,15 @@ rule optitype:
         fastq2="prealignment/merged/{sample}_{type}_fastq2.fastq.gz",
     output:
         coverage_plot=temp("biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_coverage_plot.pdf"),
-        hla_type=temp("biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv"),
-        out_dir=temp(directory("biomarker/optitype/{sample}_{type}/")),
+        #hla_type=temp("biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv"),
+        hla_type="biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv",
+        #out_dir=temp(directory("biomarker/optitype/{sample}_{type}/")),
     params:
         extra=config.get("optitype", {}).get("extra", ""),
         out_prefix="{sample}_{type}_hla_type",
         sample_type=config.get("optitype", {}).get("sample_type", "-d"),
         enumeration=config.get("optitype", {}).get("enumeration", "4"),
+        out_dir=directory("biomarker/optitype/{sample}_{type}/"),
     log:
         "biomarker/optitype/{sample}_{type}/{sample}_{type}_result.tsv.log",
     benchmark:
@@ -41,9 +43,10 @@ rule optitype:
     message:
         "{rule}: Determine HLA-type in biomarker/{rule}/{wildcards.sample}_{wildcards.type}/{wildcards.sample}_{wildcards.type}"
     shell:
-        "(python /usr/local/bin/OptiType/OptiTypePipeline.py "
+        #"(ls /usr/local/bin/) &> {log}"
+        "(python /usr/local/bin/OptiTypePipeline.py "
         "-i {input.fastq1} {input.fastq2} "
         "{params.sample_type} "
-        "--enumerate {params.enumerate} "
+        "--enumerate {params.enumeration} "
         "-p {params.out_prefix} "
         "-o {params.out_dir}) &> {log}"

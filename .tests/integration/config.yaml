@@ -13,6 +13,8 @@ hrd:
 
 optitype:
   container: "docker://hydragenetics/optitype:1.3.5"
+  sample_type: "-d"
+  enumeration: 2
 
 msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
