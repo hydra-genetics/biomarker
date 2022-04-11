@@ -21,6 +21,25 @@ properties:
         type: string
         description: default partition to use on the cluster for a rule
 
+  hrd:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'hrd' rule
+      time:
+        type: string
+        description: max execution time for the 'hrd' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'hrd'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'hrd'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'hrd'
+
   msisensor_pro:
     type: object
     properties:
@@ -40,6 +59,25 @@ properties:
         type: string
         description: partition to use on the cluster for 'msisensor_pro'
 
+  optitype:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'optitype' rule
+      time:
+        type: string
+        description: max execution time for the 'optitype' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'optitype'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'optitype'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'optitype'
+
   tmb:
     type: object
     properties:
@@ -58,25 +96,6 @@ properties:
       partition:
         type: string
         description: partition to use on the cluster for 'tmb'
-
-  hrd:
-    type: object
-    properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'hrd' rule
-      time:
-        type: string
-        description: max execution time for the 'hrd' rule
-      mem_mb:
-        type: integer
-        description: memory used for 'hrd'
-      mem_per_cpu:
-        type: integer
-        description: memory used per cpu for 'hrd'
-      partition:
-        type: string
-        description: partition to use on the cluster for 'hrd'
 
   required:
     - default_resources

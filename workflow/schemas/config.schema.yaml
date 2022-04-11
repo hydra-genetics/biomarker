@@ -27,6 +27,16 @@ properties:
     - resources
     - default_container
 
+  hrd:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for hrd
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
   msisensor_pro:
     type: object
     properties:
@@ -44,6 +54,25 @@ properties:
         description: path to panel of normals
     required:
       - PoN
+
+  optitype:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for optitype
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded to optitype
+      sample_type:
+        type: string
+        description: -d for dna and -r for rna
+      enumeration:
+        type: integer
+        description: number of output HLA-types, 1 equals output only the best
 
   tmb:
     type: object
@@ -84,13 +113,3 @@ properties:
       nssnv_ssnv_tmb_correction:
         type: number
         description: Design dependent correction factor to get TMB representative for the entire genome
-
-  hrd:
-    type: object
-    properties:
-      benchmark_repeats:
-        type: integer
-        description: set number of times benchmark should be repeated for hrd
-      container:
-        type: string
-        description: name or path to docker/singularity container
