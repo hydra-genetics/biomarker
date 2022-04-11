@@ -2,17 +2,15 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://hydragenetics/common:0.1.1"
+default_container: "docker://hydragenetics/common:0.1.2"
 
 reference:
   background: "references/background_panel_small.tsv"
   artifacts: "references/artifact_positions_chr1.txt"
 
-hrd:
-  container: "docker://hydragenetics/common:0.1.1"
-
 optitype:
-  container: "docker://hydragenetics/optitype:1.3.5"
+  #container: "docker://hydragenetics/optitype:1.3.5"
+  container: "docker://fred2/optitype"
   sample_type: "-d"
   enumeration: 2
 
