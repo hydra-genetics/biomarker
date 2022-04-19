@@ -32,9 +32,12 @@ for line in artifacts:
     if type != "SNV":
         continue
     max_observations = 0
-    for nr_variant in columns[3:]:
-        if int(nr_variant) > max_observations:
-            max_observations = int(nr_variant)
+    i = 0
+    for observation in lline[3:]:
+        if i % 3 == 0:
+            if int(observation) > max_observations:
+                max_observations = int(observation)
+        i += 1
     FFPE_SNV_artifacts[key] = max_observations
 
 
