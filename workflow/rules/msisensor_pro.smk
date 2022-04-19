@@ -9,8 +9,8 @@ __license__ = "GPL-3"
 
 rule msisensor_pro:
     input:
-        bam="alignment/merge_bam/{sample}_{type}.bam",
-        bai="alignment/merge_bam/{sample}_{type}.bam.bai",
+        bam="alignment/samtools_merge_bam/{sample}_{type}.bam",
+        bai="alignment/samtools_merge_bam/{sample}_{type}.bam.bai",
         PoN=config["msisensor_pro"]["PoN"],
     output:
         msi_score=temp("biomarker/msisensor_pro/{sample}_{type}"),
