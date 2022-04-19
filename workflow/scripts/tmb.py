@@ -33,7 +33,7 @@ for line in artifacts:
         continue
     max_observations = 0
     i = 0
-    for observation in lline[3:]:
+    for observation in columns[3:]:
         if i % 3 == 0:
             if int(observation) > max_observations:
                 max_observations = int(observation)
