@@ -6,3 +6,4 @@ describe_jupyter_notebook.txt
 biomarker
 .cashe
 .config
+venv

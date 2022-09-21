@@ -1,6 +1,3 @@
-# vim: syntax=python tabstop=4 expandtab
-# coding: utf-8
-
 __author__ = "Jonas Almlöf"
 __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.uu.se"
@@ -21,10 +18,10 @@ rule optitype:
         sample_type=config.get("optitype", {}).get("sample_type", "-d"),
         enumeration=config.get("optitype", {}).get("enumeration", "4"),
     log:
-        "biomarker/optitype/{sample}_{type}/{sample}_{type}_result.tsv.log",
+        "biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv.log",
     benchmark:
         repeat(
-            "biomarker/optitype/{sample}_{type}/{sample}_{type}_result.tsv.benchmark.tsv",
+            "biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv.benchmark.tsv",
             config.get("optitype", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("optitype", {}).get("threads", config["default_resources"]["threads"])
@@ -39,7 +36,7 @@ rule optitype:
     conda:
         "../envs/optitype.yaml"
     message:
-        "{rule}: Determine HLA-type in {output.hla_type}"
+        "{rule}: determine HLA-type in {output.hla_type}"
     shell:
         "(OptiTypePipeline.py "
         "-i {input.fastq1} {input.fastq2} "

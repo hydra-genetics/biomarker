@@ -1,6 +1,3 @@
-# vim: syntax=python tabstop=4 expandtab
-# coding: utf-8
-
 __author__ = "Jonas Almlöf"
 __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.uu.se"
@@ -28,16 +25,16 @@ rule msisensor_pro:
         )
     threads: config.get("msisensor_pro", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        threads=config.get("msisensor_pro", {}).get("threads", config["default_resources"]["threads"]),
-        time=config.get("msisensor_pro", {}).get("time", config["default_resources"]["time"]),
         mem_mb=config.get("msisensor_pro", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("msisensor_pro", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("msisensor_pro", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("msisensor_pro", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("msisensor_pro", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("msisensor_pro", {}).get("container", config["default_container"])
     conda:
         "../envs/msisensor_pro.yaml"
     message:
-        "{rule}: Calculate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}"
+        "{rule}: calculate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}"
     shell:
         "(msisensor-pro pro {params.extra} -d {input.PoN} -t {input.bam} -o {params.out_prefix}) &> {log}"

@@ -5,78 +5,72 @@ properties:
   default_resources:
     type: object
     properties:
+      mem_mb:
+        type: integer
+        description: default memory in MB used for a rule
+      mem_per_cpu:
+        type: integer
+        description: default memory in MB used per cpu for a rule
+      partition:
+        type: string
+        description: default partition to use on the cluster for a rule
       threads:
         type: integer
         description: default number of threads that will be used by a rule
       time:
         type: string
         description: default max execution time for a rule
-      mem_mb:
-        type: integer
-        description: default memory used for a rule
-      mem_per_cpu:
-        type: integer
-        description: default memory used per cpu for a rule
-      partition:
-        type: string
-        description: default partition to use on the cluster for a rule
 
   hrd:
     type: object
     properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'hrd' rule
-      time:
-        type: string
-        description: max execution time for the 'hrd' rule
       mem_mb:
         type: integer
-        description: memory used for 'hrd'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'hrd'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'hrd'
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   msisensor_pro:
     type: object
     properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'msisensor_pro' rule
-      time:
-        type: string
-        description: max execution time for the 'msisensor_pro' rule
       mem_mb:
         type: integer
-        description: memory used for 'msisensor_pro'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'msisensor_pro'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'msisensor_pro'
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   optitype:
     type: object
     properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'optitype' rule
-      time:
-        type: string
-        description: max execution time for the 'optitype' rule
       mem_mb:
         type: integer
-        description: memory used for 'optitype'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'optitype'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'optitype'
+        description: partition to use on cluster
 
   scarhrd:
     type: object
@@ -100,12 +94,6 @@ properties:
   tmb:
     type: object
     properties:
-      threads:
-        type: integer
-        description: number of threads to be available
-      time:
-        type: string
-        description: max execution time
       mem_mb:
         type: integer
         description: memory used
@@ -114,7 +102,13 @@ properties:
         description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   required:
     - default_resources

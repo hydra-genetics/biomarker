@@ -1,6 +1,3 @@
-# vim: syntax=python tabstop=4 expandtab
-# coding: utf-8
-
 __author__ = "Jonas Almlöf"
 __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.uu.se"
@@ -28,9 +25,9 @@ rule tmb:
         nssnv_tmb_correction=config.get("tmb", {}).get("nssnv_tmb_correction", 0.78),
         nssnv_ssnv_tmb_correction=config.get("tmb", {}).get("nssnv_ssnv_tmb_correction", 0.57),
     log:
-        "biomarker/tmb/{sample}_{type}.log",
+        "biomarker/tmb/{sample}_{type}.TMB.txt.log",
     benchmark:
-        repeat("biomarker/tmb/{sample}_{type}.benchmark.tsv", config.get("tmb", {}).get("benchmark_repeats", 1))
+        repeat("biomarker/tmb/{sample}_{type}.TMB.txt.benchmark.tsv", config.get("tmb", {}).get("benchmark_repeats", 1))
     threads: config.get("tmb", {}).get("threads", config["default_resources"]["threads"])
     resources:
         threads=config.get("tmb", {}).get("threads", config["default_resources"]["threads"]),
@@ -43,6 +40,6 @@ rule tmb:
     conda:
         "../envs/tmb.yaml"
     message:
-        "{rule}: Calculate TMB in tmb/{rule}/{wildcards.sample}_{wildcards.type}"
+        "{rule}: calculate TMB in tmb/{rule}/{wildcards.sample}_{wildcards.type}"
     script:
         "../scripts/tmb.py"
