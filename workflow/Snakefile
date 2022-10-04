@@ -11,6 +11,7 @@ include: "rules/common.smk"
 include: "rules/hrd.smk"
 include: "rules/msisensor_pro.smk"
 include: "rules/optitype.smk"
+include: "rules/scarhrd.smk"
 include: "rules/tmb.smk"
 
 

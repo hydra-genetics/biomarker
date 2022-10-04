@@ -78,6 +78,25 @@ properties:
         type: string
         description: partition to use on the cluster for 'optitype'
 
+  scarhrd:
+    type: object
+    properties:
+      threads:
+        type: integer
+        description: number of threads that will be used by the 'scarhrd' rule
+      time:
+        type: string
+        description: max execution time for the 'scarhrd' rule
+      mem_mb:
+        type: integer
+        description: memory used for 'scarhrd'
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for 'scarhrd'
+      partition:
+        type: string
+        description: partition to use on the cluster for 'scarhrd'
+
   tmb:
     type: object
     properties:

@@ -74,6 +74,22 @@ properties:
         type: integer
         description: number of output HLA-types, 1 equals output only the best
 
+  scarhrd:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for tmb
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      reference_name:
+        type: string
+        description: references name (grch37, grch38)
+      seqz:
+        type: bool
+        description: If sequeze file is produced by Sequenza or not (False, True)
+
   tmb:
     type: object
     properties:
