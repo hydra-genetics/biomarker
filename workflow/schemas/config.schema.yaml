@@ -87,8 +87,8 @@ properties:
         type: string
         description: references name (grch37, grch38)
       seqz:
-        type: bool
-        description: If sequeze file is produced by Sequenza or not (False, True)
+        type: boolean
+        description: If sequeze file is produced by Sequenza or not (FALSE, TRUE)
 
   tmb:
     type: object

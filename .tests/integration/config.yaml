@@ -18,5 +18,10 @@ msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
   PoN: "references/Msisensor_pro_reference.list_baseline"
 
+scarhrd:
+  container: "docker://hydragenetics/scarhrd:20200825"
+  reference_name: "grch37"
+  seqz: FALSE
+
 tmb:
   container: "docker://python:3.9.7-slim"

@@ -11,7 +11,7 @@ rule scarhrd:
         hrd=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt"),
     params:
         reference_name=config.get("scarhrd", {}).get("reference_name", "grch37"),
-        seqz=config.get("scarhrd", {}).get("seqz", "False"),
+        seqz=config.get("scarhrd", {}).get("seqz", "FALSE"),
     log:
         "biomarker/scarhrd/{sample}_{type}.log",
     benchmark:
