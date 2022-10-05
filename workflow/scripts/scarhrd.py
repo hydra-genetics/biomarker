@@ -16,7 +16,7 @@ subprocess.run(cmd, shell=True)
 
 
 sample_name = seg.split("/")[-1].split(".scarhrd")[0]
-R_output_name = outputdir  + "/" + sample_name + "_HRDresults.txt"
+R_output_name = outputdir + "/" + sample_name + "_HRDresults.txt"
 R_input = open(R_output_name)
 
 output.write("HRD-score\tHRD\tTelomeric_AI\tLST\n")
