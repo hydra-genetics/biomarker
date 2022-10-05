@@ -27,6 +27,16 @@ properties:
     - resources
     - default_container
 
+  cnvkit2scarhrd:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for cnvkit2scarhrd
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
   hrd:
     type: object
     properties:
