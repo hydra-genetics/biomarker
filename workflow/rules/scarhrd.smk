@@ -26,7 +26,7 @@ rule cnvkit2scarhrd:
     container:
         config.get("cnvkit2hrd", {}).get("container", config["default_container"])
     conda:
-        "../envs/cnvkit2hrd.yaml"
+        "../envs/scarhrd.yaml"
     message:
         "{rule}: Convert cnvkit segmentation files to scarhrd input: {output.seg}"
     script:
@@ -38,6 +38,7 @@ rule scarhrd:
         seg="cnv_sv/cnvkit2hrd/{sample}_{type}.scarhrd.cns",
     output:
         hrd=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt"),
+        hrd_temp=temp("biomarker/scarhrd/{sample}_{type}_HRDresults.txt"),
     params:
         reference_name=config.get("scarhrd", {}).get("reference_name", "grch37"),
         seqz=config.get("scarhrd", {}).get("seqz", "FALSE"),

@@ -6,7 +6,7 @@ scrahrdseg = open(snakemake.output.seg, "w")
 
 scrahrdseg.write("SampleID\tChromosome\tStart_position\tEnd_position\ttotal_cn\tA_cn\tB_cn\tploidy\n")
 
-sample_name = cnvkitseg_filename.split("/")[-1].split(".")[0]
+sample_name = cnvkitseg_filename.split("/")[-1].split(".loh")[0]
 
 header = True
 header_dict = {}
@@ -21,8 +21,8 @@ for line in cnvkitseg:
         continue
     chrom = columns[header_dict["chromosome"]]
     start_pos = columns[header_dict["start"]]
-    ens_pos = columns[header_dict["end"]]
-    total_cn = columns[header_dict["cn"]]
+    end_pos = columns[header_dict["end"]]
+    total_cn = int(columns[header_dict["cn"]])
     A_cn = columns[header_dict["cn1"]]
     B_cn = columns[header_dict["cn2"]]
     ploidy = "NA"
@@ -32,4 +32,4 @@ for line in cnvkitseg:
     if A_cn == "" or B_cn == "":
         A_cn = total_cn - 1
         B_cn = 1
-    scrahrdseg.write(f"{sample}\t{chrom}\t{start_pos}\t{end_pos}\t{total_cn}\t{A_cn}\t{B_cn}\t{ploidy}\n")
+    scrahrdseg.write(f"{sample_name}\t{chrom}\t{start_pos}\t{end_pos}\t{total_cn}\t{A_cn}\t{B_cn}\t{ploidy}\n")
