@@ -10,7 +10,7 @@ outputdir = os.path.dirname(output_name_fixed)
 output = open(output_name_fixed, "w")
 
 
-cmd = f"Rscript -e 'scarHRD::scar_score(\"{seg}\", reference=\"{reference_name}\", seqz=FALSE, outputdir=\"{outputdir}\")'"
+cmd = f"Rscript -e 'scarHRD::scar_score(\"{seg}\", reference=\"{reference_name}\", seqz=\"{seqz}\", outputdir=\"{outputdir}\")'"
 print(cmd)
 subprocess.run(cmd, shell=True)
 
