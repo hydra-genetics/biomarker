@@ -6,7 +6,7 @@ scarhrdseg = open(snakemake.output.seg, "w")
 
 scarhrdseg.write("SampleID\tChromosome\tStart_position\tEnd_position\ttotal_cn\tA_cn\tB_cn\tploidy\n")
 
-sample_name = gatk_cnv_seg_filename.split("/")[-1].split(".loh")[0]
+sample_name = gatk_cnv_seg_filename.split("/")[-1].split(".vcf")[0]
 
 header = True
 for line in gatk_cnv_seg:
