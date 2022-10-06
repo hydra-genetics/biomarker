@@ -37,6 +37,16 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
+  gatk_cnv2scarhrd:
+    type: object
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated for gatk_cnv2scarhrd
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
   hrd:
     type: object
     properties:
