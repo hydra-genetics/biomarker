@@ -1,10 +1,10 @@
 
 gatk_cnv_seg_filename = snakemake.input.seg
 gatk_cnv_seg = open(gatk_cnv_seg_filename)
-scrahrdseg = open(snakemake.output.seg, "w")
+scarhrdseg = open(snakemake.output.seg, "w")
 
 
-scrahrdseg.write("SampleID\tChromosome\tStart_position\tEnd_position\ttotal_cn\tA_cn\tB_cn\tploidy\n")
+scarhrdseg.write("SampleID\tChromosome\tStart_position\tEnd_position\ttotal_cn\tA_cn\tB_cn\tploidy\n")
 
 sample_name = gatk_cnv_seg_filename.split("/")[-1].split(".loh")[0]
 
@@ -34,4 +34,4 @@ for line in gatk_cnv_seg:
     if A_cn == "" or B_cn == "":
         A_cn = total_cn - 1
         B_cn = 1
-    scrahrdseg.write(f"{sample_name}\t{chrom}\t{start_pos}\t{end_pos}\t{total_cn}\t{A_cn}\t{B_cn}\t{ploidy}\n")
+    scarhrdseg.write(f"{sample_name}\t{chrom}\t{start_pos}\t{end_pos}\t{total_cn}\t{A_cn}\t{B_cn}\t{ploidy}\n")

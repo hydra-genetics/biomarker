@@ -42,7 +42,6 @@ print(cmd)
 subprocess.run(cmd, shell=True)
 
 
-sample_name = seg_gatk_cnv.split("/")[-1].split(".scarhrd")[0]
 R_output_name = outputdir_gatk_cnv + "/" + sample_name + "_HRDresults.txt"
 R_input = open(R_output_name)
 
