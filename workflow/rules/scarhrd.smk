@@ -28,7 +28,7 @@ rule cnvkit2scarhrd:
     conda:
         "../envs/scarhrd.yaml"
     message:
-        "{rule}: Convert cnvkit segmentation files to scarhrd input: {output.seg}"
+        "{rule}: convert cnvkit segmentation files to scarhrd input: {output.seg}"
     script:
         "../scripts/cnvkit2scarhrd.py"
 
@@ -51,16 +51,17 @@ rule scarhrd:
         )
     threads: config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        threads=config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"]),
-        time=config.get("scarhrd", {}).get("time", config["default_resources"]["time"]),
         mem_mb=config.get("scarhrd", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("scarhrd", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("scarhrd", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("scarhrd", {}).get("time", config["default_resources"]["time"]),
+
     container:
         config.get("scarhrd", {}).get("container", config["default_container"])
     conda:
         "../envs/scarhrd.yaml"
     message:
-        "{rule}: Calculate hrd in {output.hrd_cnvkit}"
+        "{rule}: calculate hrd in {output.hrd_cnvkit}"
     script:
         "../scripts/scarhrd.py"
