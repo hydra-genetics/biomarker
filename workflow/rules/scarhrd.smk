@@ -56,7 +56,6 @@ rule scarhrd:
         partition=config.get("scarhrd", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("scarhrd", {}).get("time", config["default_resources"]["time"]),
-
     container:
         config.get("scarhrd", {}).get("container", config["default_container"])
     conda:
