@@ -73,13 +73,6 @@ def compile_output_list(wildcards):
     )
     of.append(
         [
-            "biomarker/scarhrd/%s_%s.scarhrd_gatk_cnv_score.txt" % (sample, t)
-            for sample in get_samples(samples)
-            for t in get_unit_types(units, sample)
-        ]
-    )
-    of.append(
-        [
             "biomarker/optitype/%s_%s/%s_%s_hla_type_result.tsv" % (sample, t, sample, t)
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
