@@ -21,7 +21,7 @@ msisensor_pro:
 scarhrd:
   container: "docker://hydragenetics/scarhrd:20200825"
   reference_name: "grch37"
-  seqz: FALSE
+  seqz: False
 
 tmb:
   container: "docker://python:3.9.7-slim"

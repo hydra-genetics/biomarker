@@ -22,10 +22,10 @@ properties:
         type: string
         description: background noise file for twist dna st
 
-required:
-  - samples
-  - units
-  - default_container
+  required:
+    - samples
+    - units
+    - default_container
 
   samples:
     type: string
@@ -115,7 +115,7 @@ required:
         description: references name (grch37, grch38)
       seqz:
         type: boolean
-        description: If sequeze file is produced by Sequenza or not (FALSE, TRUE)
+        description: If sequeze file is produced by Sequenza or not (False, True)
 
   tmb:
     type: object

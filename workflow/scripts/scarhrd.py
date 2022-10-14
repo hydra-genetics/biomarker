@@ -9,6 +9,11 @@ output_name_fixed_cnvkit = snakemake.output.hrd_cnvkit
 outputdir_cnvkit = os.path.dirname(output_name_fixed_cnvkit)
 output_cnvkit = open(output_name_fixed_cnvkit, "w")
 
+if seqz:
+    seqz = "TRUE"
+else:
+    seqz = "FALSE"
+
 # scarHRD on cnvkit
 cmd = f"Rscript -e 'scarHRD::scar_score(\"{seg_cnvkit}\", reference=\"{reference_name}\", seqz=\"{seqz}\", \
     outputdir=\"{outputdir_cnvkit}\")'"
