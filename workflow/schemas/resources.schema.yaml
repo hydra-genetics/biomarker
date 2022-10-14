@@ -83,38 +83,38 @@ properties:
     properties:
       threads:
         type: integer
-        description: number of threads that will be used by the 'scarhrd' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for the 'scarhrd' rule
+        description: max execution time
       mem_mb:
         type: integer
-        description: memory used for 'scarhrd'
+        description: memory used
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'scarhrd'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'scarhrd'
+        description: partition to use on the cluster
 
   tmb:
     type: object
     properties:
       threads:
         type: integer
-        description: number of threads that will be used by the 'tmb' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for the 'tmb' rule
+        description: max execution time
       mem_mb:
         type: integer
-        description: memory used for 'tmb'
+        description: memory used
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'tmb'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'tmb'
+        description: partition to use on the cluster
 
   required:
     - default_resources
