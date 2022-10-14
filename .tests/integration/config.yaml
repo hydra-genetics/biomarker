@@ -2,7 +2,7 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://hydragenetics/common:0.1.2"
+default_container: "docker://hydragenetics/common:0.1.8"
 
 reference:
   background: "references/background_panel_small.tsv"
@@ -17,6 +17,11 @@ optitype:
 msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
   PoN: "references/Msisensor_pro_reference.list_baseline"
+
+scarhrd:
+  container: "docker://hydragenetics/scarhrd:20200825"
+  reference_name: "grch37"
+  seqz: False
 
 tmb:
   container: "docker://python:3.9.7-slim"

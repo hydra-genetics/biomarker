@@ -20,35 +20,60 @@ properties:
         description: artifact file for twist dna st
       twist_dna_st_background_panel:
         type: string
-        description: backgound noise file for twist dna st
+        description: background noise file for twist dna st
+
   required:
     - samples
     - units
-    - resources
     - default_container
 
-  hrd:
+  samples:
+    type: string
+    description: path to samples.tsv file
+
+  units:
+    type: string
+    description: path to units.tsv file
+
+  default_container:
+    type: string
+    description: name or path to a default docker/singularity container
+
+  cnvkit2scarhrd:
     type: object
+    description: parameters for cnvkit2scarhrd
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for hrd
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  hrd:
+    type: object
+    description: parameters for hrd
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
         description: name or path to docker/singularity container
 
   msisensor_pro:
     type: object
+    description: parameters for msisensor_pro
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for msisensor_pro
+        description: set number of times benchmark should be repeated
       container:
         type: string
         description: name or path to docker/singularity container
       extra:
         type: string
-        description: parameters that should be forwarded to msisensor_pro
+        description: parameters that should be forwarded
       PoN:
         type: string
         description: path to panel of normals
@@ -57,16 +82,17 @@ properties:
 
   optitype:
     type: object
+    description: parameters for optitype
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for optitype
+        description: set number of times benchmark should be repeated
       container:
         type: string
         description: name or path to docker/singularity container
       extra:
         type: string
-        description: parameters that should be forwarded to optitype
+        description: parameters that should be forwarded
       sample_type:
         type: string
         description: -d for dna and -r for rna
@@ -74,12 +100,30 @@ properties:
         type: integer
         description: number of output HLA-types, 1 equals output only the best
 
-  tmb:
+  scarhrd:
     type: object
+    description: parameters for scarhrd
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for tmb
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      reference_name:
+        type: string
+        description: references name (grch37, grch38)
+      seqz:
+        type: boolean
+        description: If sequeze file is produced by Sequenza or not (False, True)
+
+  tmb:
+    type: object
+    description: parameters for tmb
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
         description: name or path to docker/singularity container

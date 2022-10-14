@@ -15,7 +15,7 @@ rule hrd:
     log:
         "biomarker/hrd/{sample}_{type}.log",
     benchmark:
-        repeat("biomarker/hrd/{sample}_{type}.benchmark.tsv", config.get("tmb", {}).get("benchmark_repeats", 1))
+        repeat("biomarker/hrd/{sample}_{type}.benchmark.tsv", config.get("hrd", {}).get("benchmark_repeats", 1))
     threads: config.get("hrd", {}).get("threads", config["default_resources"]["threads"])
     resources:
         threads=config.get("hrd", {}).get("threads", config["default_resources"]["threads"]),
