@@ -8,7 +8,7 @@ rule cnvkit2scarhrd:
     input:
         seg="cnv_sv/cnvkit_call/{sample}_{type}.loh.cns",
     output:
-        seg=temp("cnv_sv/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns"),
+        seg=temp("biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns"),
     log:
         "biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns.log",
     benchmark:
@@ -35,7 +35,7 @@ rule cnvkit2scarhrd:
 
 rule scarhrd:
     input:
-        seg_cnvkit="cnv_sv/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns",
+        seg_cnvkit="biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns",
     output:
         hrd_cnvkit=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt"),
         hrd_temp=temp("biomarker/scarhrd/{sample}_{type}_HRDresults.txt"),
