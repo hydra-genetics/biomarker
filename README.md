@@ -2,7 +2,7 @@
 
 # :snake: hydra-genetics/biomarker
 
-#### Snakemake module containing processing steps used to generate different kind of biomarkers
+Snakemake module containing processing steps used to generate different kind of biomarkers
 
 ![Lint](https://github.com/hydra-genetics/biomarker/actions/workflows/lint.yaml/badge.svg?branch=develop)
 ![Snakefmt](https://github.com/hydra-genetics/biomarker/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
