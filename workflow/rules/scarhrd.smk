@@ -37,16 +37,16 @@ rule scarhrd:
     input:
         seg_cnvkit="biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns",
     output:
-        hrd_cnvkit=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt"),
-        hrd_temp=temp("biomarker/scarhrd/{sample}_{type}_HRDresults.txt"),
+        hrd="biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt",
+        hrd_dir=directory("biomarker/scarhrd/{sample}_{type}/"),
     params:
         reference_name=config.get("scarhrd", {}).get("reference_name", "grch37"),
         seqz=config.get("scarhrd", {}).get("seqz", False),
     log:
-        "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.log",
+        "biomarker/scarhrd/{sample}_{type}_HRDresults.txt.log",
     benchmark:
         repeat(
-            "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.benchmark.tsv",
+            "biomarker/scarhrd/{sample}_{type}_HRDresults.txt.benchmark.tsv",
             config.get("scarhrd", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"])
@@ -61,6 +61,39 @@ rule scarhrd:
     conda:
         "../envs/scarhrd.yaml"
     message:
-        "{rule}: calculate hrd in {output.hrd_cnvkit}"
+        "{rule}: calculate hrd on {input.seg_cnvkit}"
+    shell:
+        "(Rscript -e 'scarHRD::scar_score( "
+        '"{input.seg_cnvkit}", '
+        'reference="{params.reference_name}", '
+        'seqz="{params.seqz}", '
+        'outputdir="{output.hrd_dir}")\') &> {log}'
+
+
+rule fix_scarhrd_output:
+    input:
+        hrd="biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt",
+    output:
+        hrd="biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt",
+    log:
+        "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.log",
+    benchmark:
+        repeat(
+            "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.benchmark.tsv",
+            config.get("fix_scarhrd_output", {}).get("benchmark_repeats", 1),
+        )
+    threads: config.get("fix_scarhrd_output", {}).get("threads", config["default_resources"]["threads"])
+    resources:
+        mem_mb=config.get("fix_scarhrd_output", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
+        mem_per_cpu=config.get("fix_scarhrd_output", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
+        partition=config.get("fix_scarhrd_output", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("fix_scarhrd_output", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("fix_scarhrd_output", {}).get("time", config["default_resources"]["time"]),
+    container:
+        config.get("fix_scarhrd_output", {}).get("container", config["default_container"])
+    conda:
+        "../envs/scarhrd.yaml"
+    message:
+        "{rule}: fix scarhrd output into {output.hrd}"
     script:
-        "../scripts/scarhrd.py"
+        "../scripts/fix_scarhrd_output.py"

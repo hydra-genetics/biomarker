@@ -22,7 +22,7 @@ class TestUnitUtils(unittest.TestCase):
                     "{}\t{}\t{}\t{}".format(columns[4], columns[5], columns[6], columns[7]),
                 )
             except AssertionError as e:
-                print("Failed mosdepth coverage annotation of: " + str(variant))
+                print("Failed cnvkit 2 scarhrd conversion of: " + str(variant))
                 raise e
 
     def test_cnvkit2scarhrd(self):
@@ -39,15 +39,15 @@ class TestUnitUtils(unittest.TestCase):
         header = True
         result = []
         for line in result_file:
+            print(line)
             if header:
                 header = False
                 continue
             result.append(line)
 
         test_table = {
-            "HD832.HES45_T\tchr1\t150500": '0\t0\t0\tNA', # deletion
-            "HD832.HES45_T\tchr1\t935853": '3\t2\t1\tNA', # duplication without cn1
+            "HD832.HES45_T\tchr1\t150500": '0\t0\t0\tNA',  # deletion
+            "HD832.HES45_T\tchr1\t935853": '3\t2\t1\tNA',  # duplication without cn1
         }
-        #print(result)
 
         self._test_cnvkit2scarhrd(test_table, result)

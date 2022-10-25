@@ -20,9 +20,39 @@ properties:
       time:
         type: string
         description: default max execution time for a rule
+    required:
+      - mem_mb
+      - mem_per_cpu
+      - partition
+      - threads
+      - time
 
-  hrd:
+  required:
+    - default_resources
+
+  cnvkit2scarhrd:
     type: object
+    description: resource definitions for cnvkit2scarhrd
+    properties:
+      mem_mb:
+        type: integer
+        description: memory in MB used per cpu
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fix_scarhrd_output:
+    type: object
+    description: resource definitions for fix_scarhrd_output
     properties:
       mem_mb:
         type: integer
@@ -42,6 +72,7 @@ properties:
 
   msisensor_pro:
     type: object
+    description: resource definitions for msisensor_pro
     properties:
       mem_mb:
         type: integer
@@ -61,6 +92,7 @@ properties:
 
   optitype:
     type: object
+    description: resource definitions for optitype
     properties:
       mem_mb:
         type: integer
@@ -71,28 +103,36 @@ properties:
       partition:
         type: string
         description: partition to use on cluster
-
-  scarhrd:
-    type: object
-    properties:
       threads:
         type: integer
         description: number of threads to be available
       time:
         type: string
         description: max execution time
+
+  scarhrd:
+    type: object
+    description: resource definitions for scarhrd
+    properties:
       mem_mb:
         type: integer
-        description: memory used
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
         description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   tmb:
     type: object
+    description: resource definitions for tmb
     properties:
       mem_mb:
         type: integer

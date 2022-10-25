@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
     cnvkit_2_scarhrd(
         snakemake.input.seg,
-        open(snakemake.output.seg, "w")
+        open(snakemake.output.seg, "w"),
     )

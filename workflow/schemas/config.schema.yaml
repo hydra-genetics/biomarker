@@ -50,9 +50,9 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
-  hrd:
+  fix_scarhrd_output:
     type: object
-    description: parameters for hrd
+    description: parameters for fix_scarhrd_output
     properties:
       benchmark_repeats:
         type: integer

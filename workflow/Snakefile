@@ -5,7 +5,6 @@ __license__ = "GPL-3"
 
 
 include: "rules/common.smk"
-include: "rules/hrd.smk"
 include: "rules/msisensor_pro.smk"
 include: "rules/optitype.smk"
 include: "rules/scarhrd.smk"
