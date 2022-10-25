@@ -37,9 +37,9 @@ rule scarhrd:
     input:
         seg_cnvkit="biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns",
     output:
-        hrd="biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt",
-        hrd_dir=directory("biomarker/scarhrd/{sample}_{type}/"),
+        hrd=temp("biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt"),
     params:
+        hrd_dir=directory("biomarker/scarhrd/{sample}_{type}/"),
         reference_name=config.get("scarhrd", {}).get("reference_name", "grch37"),
         seqz=config.get("scarhrd", {}).get("seqz", False),
     log:
@@ -62,19 +62,20 @@ rule scarhrd:
         "../envs/scarhrd.yaml"
     message:
         "{rule}: calculate hrd on {input.seg_cnvkit}"
+    # TODO: Add wrapper in order to remove output directory
     shell:
         "(Rscript -e 'scarHRD::scar_score( "
         '"{input.seg_cnvkit}", '
         'reference="{params.reference_name}", '
         'seqz="{params.seqz}", '
-        'outputdir="{output.hrd_dir}")\') &> {log}'
+        'outputdir="{params.hrd_dir}")\') &> {log}'
 
 
 rule fix_scarhrd_output:
     input:
         hrd="biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt",
     output:
-        hrd="biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt",
+        hrd=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt"),
     log:
         "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.log",
     benchmark:

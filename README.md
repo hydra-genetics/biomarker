@@ -16,7 +16,7 @@
 
 The module consists of rules used to generate biomarkers. Currenlty available biomarkers are:
 * --HLA-typing-- (still under development)
-* HRD (homologous recombination deficiency) (experimental)
+* HRD (homologous recombination deficiency) (experimental, does not work using conda)
 * TMB (tumor mutational burden)
 * Msi (microsatellite instability)
 
