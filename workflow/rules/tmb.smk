@@ -7,8 +7,8 @@ __license__ = "GPL-3"
 rule tmb:
     input:
         vcf="annotation/background_annotation/{sample}_{type}.background_annotation.vcf.gz",
-        artifacts=config["reference"]["artifacts"],
-        background_panel=config["reference"]["background"],
+        artifacts=config.get("reference", {}).get("artifacts", ""),
+        background_panel=config.get("reference", {}).get("background", ""),
         background_run=lambda wildcards: "annotation/calculate_seqrun_background/%s_seqrun_background.tsv"
         % get_flowcell(units, wildcards),
     output:
@@ -30,11 +30,11 @@ rule tmb:
         repeat("biomarker/tmb/{sample}_{type}.TMB.txt.benchmark.tsv", config.get("tmb", {}).get("benchmark_repeats", 1))
     threads: config.get("tmb", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        threads=config.get("tmb", {}).get("threads", config["default_resources"]["threads"]),
-        time=config.get("tmb", {}).get("time", config["default_resources"]["time"]),
         mem_mb=config.get("tmb", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("tmb", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("tmb", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("tmb", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("tmb", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("tmb", {}).get("container", config["default_container"])
     conda:

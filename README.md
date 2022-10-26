@@ -14,7 +14,7 @@ Snakemake module containing processing steps used to generate different kind of 
 
 The module consists of rules used to generate biomarkers. Currenlty available biomarkers are:
 * ~~HLA-typing~~ (still under development)
-* HRD (homologous recombination deficiency) (experimental, does not work using conda)
+* HRD (homologous recombination deficiency) (experimental, for conda environment see [disclaimer](https://github.com/hydra-genetics/biomarker/blob/make-release/README.md#Disclaimer))
 * TMB (tumor mutational burden)
 * Msi (microsatellite instability)
 
@@ -64,6 +64,7 @@ A panel of normal created by running MsiSensor-pro on a number of normal samples
 ## TMB
 
 A panel specific artifact list and position specific background noise levels. Can be created with the help of the [hydragenetics/references](https://github.com/hydra-genetics/references) module.
+
 
 ## :white_check_mark: Testing
 
@@ -126,7 +127,6 @@ The following output files should be targeted via another rule:
 
 | File | Description |
 |---|---|
-| `biomarker/hrd/{sample}_{type}.hrd_score.txt` | calculated HRD score (old method) |
 | `biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
 | `biomarker/msisensor_pro/{sample}_{type}` | msi score |
 | `biomarker/tmb/{sample}_{type}.TMB.txt` | tmb score and variants used |
@@ -137,3 +137,7 @@ The following output files should be targeted via another rule:
 ### Biomarker
 
 ![rule_graph](images/biomarker.svg)
+
+### Disclaimer
+
+Running the HRD calculations using scarHRD with conda is only possible if scarHRD and its dependencies are installed locally on the compute cluster.

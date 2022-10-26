@@ -11,9 +11,6 @@ include: "rules/scarhrd.smk"
 include: "rules/tmb.smk"
 
 
-report: "report/workflow.rst"
-
-
 rule all:
     input:
         unpack(compile_output_list),
