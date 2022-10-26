@@ -28,6 +28,18 @@ jobs:
         run: |
           conda config --set channel_priority strict
           conda install -c conda-forge mamba=0.15.3
+          conda install -c conda-forge r-base=4.2.1
+          conda install -c conda-forge r-biocmanager=1.30.19
+          conda install -c conda-forge r-devtools=2.4.5
+      - name: Install R library copynumber
+        run: |
+           Rscript -e 'BiocManager::install("copynumber")' -e 'if (!library(copynumber, logical.return=T)) quit(status=10)'
+      - name: Install R library scarHRD
+        env:
+           GITHUB_PAT: ${{ secrets.PAT_TOOKEN }}
+        run: |
+           
+           Rscript -e 'devtools::install_github("sztup/scarHRD")' -e 'if (!library(scarHRD, logical.return=T)) quit(status=10)'
       - name: Install requirements.txt
         run: |
           pip install -r requirements.txt
