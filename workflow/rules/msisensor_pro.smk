@@ -8,7 +8,7 @@ rule msisensor_pro:
     input:
         bam="alignment/samtools_merge_bam/{sample}_{type}.bam",
         bai="alignment/samtools_merge_bam/{sample}_{type}.bam.bai",
-        PoN=config["msisensor_pro"]["PoN"],
+        PoN=config.get("msisensor_pro", {}).get("PoN", ""),
     output:
         msi_score=temp("biomarker/msisensor_pro/{sample}_{type}"),
         msi_all=temp("biomarker/msisensor_pro/{sample}_{type}_all"),
