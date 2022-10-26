@@ -1,6 +1,3 @@
-# vim: syntax=python tabstop=4 expandtab
-# coding: utf-8
-
 __author__ = "Jonas Almlöf"
 __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.se"
@@ -8,14 +5,10 @@ __license__ = "GPL-3"
 
 
 include: "rules/common.smk"
-include: "rules/hrd.smk"
 include: "rules/msisensor_pro.smk"
 include: "rules/optitype.smk"
 include: "rules/scarhrd.smk"
 include: "rules/tmb.smk"
-
-
-report: "report/workflow.rst"
 
 
 rule all:

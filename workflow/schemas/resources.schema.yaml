@@ -5,107 +5,135 @@ properties:
   default_resources:
     type: object
     properties:
+      mem_mb:
+        type: integer
+        description: default memory in MB used for a rule
+      mem_per_cpu:
+        type: integer
+        description: default memory in MB used per cpu for a rule
+      partition:
+        type: string
+        description: default partition to use on the cluster for a rule
       threads:
         type: integer
         description: default number of threads that will be used by a rule
       time:
         type: string
         description: default max execution time for a rule
+    required:
+      - mem_mb
+      - mem_per_cpu
+      - partition
+      - threads
+      - time
+
+  required:
+    - default_resources
+
+  cnvkit2scarhrd:
+    type: object
+    description: resource definitions for cnvkit2scarhrd
+    properties:
       mem_mb:
         type: integer
-        description: default memory used for a rule
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: default memory used per cpu for a rule
+        description: memory used per cpu
       partition:
         type: string
-        description: default partition to use on the cluster for a rule
-
-  hrd:
-    type: object
-    properties:
+        description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads that will be used by the 'hrd' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for the 'hrd' rule
+        description: max execution time
+
+  fix_scarhrd_output:
+    type: object
+    description: resource definitions for fix_scarhrd_output
+    properties:
       mem_mb:
         type: integer
-        description: memory used for 'hrd'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'hrd'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'hrd'
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   msisensor_pro:
     type: object
+    description: resource definitions for msisensor_pro
     properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'msisensor_pro' rule
-      time:
-        type: string
-        description: max execution time for the 'msisensor_pro' rule
       mem_mb:
         type: integer
-        description: memory used for 'msisensor_pro'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'msisensor_pro'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'msisensor_pro'
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   optitype:
     type: object
+    description: resource definitions for optitype
     properties:
-      threads:
-        type: integer
-        description: number of threads that will be used by the 'optitype' rule
-      time:
-        type: string
-        description: max execution time for the 'optitype' rule
       mem_mb:
         type: integer
-        description: memory used for 'optitype'
+        description: memory in MB used per cpu
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for 'optitype'
+        description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster for 'optitype'
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   scarhrd:
     type: object
+    description: resource definitions for scarhrd
     properties:
+      mem_mb:
+        type: integer
+        description: memory in MB used per cpu
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
       threads:
         type: integer
         description: number of threads to be available
       time:
         type: string
         description: max execution time
-      mem_mb:
-        type: integer
-        description: memory used
-      mem_per_cpu:
-        type: integer
-        description: memory used per cpu
-      partition:
-        type: string
-        description: partition to use on the cluster
 
   tmb:
     type: object
+    description: resource definitions for tmb
     properties:
-      threads:
-        type: integer
-        description: number of threads to be available
-      time:
-        type: string
-        description: max execution time
       mem_mb:
         type: integer
         description: memory used
@@ -114,7 +142,13 @@ properties:
         description: memory used per cpu
       partition:
         type: string
-        description: partition to use on the cluster
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
 
   required:
     - default_resources

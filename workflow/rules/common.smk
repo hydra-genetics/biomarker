@@ -1,6 +1,3 @@
-# vim: syntax=python tabstop=4 expandtab
-# coding: utf-8
-
 __author__ = "Jonas Almlöf"
 __copyright__ = "Copyright 2021, Jonas Almlöf"
 __email__ = "jonas.almlof@scilifelab.se"
@@ -59,21 +56,7 @@ def compile_output_list(wildcards):
     )
     of.append(
         [
-            "biomarker/hrd/%s_%s.hrd_score.txt" % (sample, t)
-            for sample in get_samples(samples)
-            for t in get_unit_types(units, sample)
-        ]
-    )
-    of.append(
-        [
             "biomarker/scarhrd/%s_%s.scarhrd_cnvkit_score.txt" % (sample, t)
-            for sample in get_samples(samples)
-            for t in get_unit_types(units, sample)
-        ]
-    )
-    of.append(
-        [
-            "biomarker/optitype/%s_%s/%s_%s_hla_type_result.tsv" % (sample, t, sample, t)
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
         ]

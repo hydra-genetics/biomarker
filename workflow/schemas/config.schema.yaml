@@ -23,9 +23,18 @@ properties:
         description: background noise file for twist dna st
 
   required:
+    - default_container
+    - resources
     - samples
     - units
-    - default_container
+
+  default_container:
+    type: string
+    description: name or path to a default docker/singularity container
+
+  resources:
+    type: string
+    description: Path to resources.yaml file
 
   samples:
     type: string
@@ -34,10 +43,6 @@ properties:
   units:
     type: string
     description: path to units.tsv file
-
-  default_container:
-    type: string
-    description: name or path to a default docker/singularity container
 
   cnvkit2scarhrd:
     type: object
@@ -50,9 +55,9 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
-  hrd:
+  fix_scarhrd_output:
     type: object
-    description: parameters for hrd
+    description: parameters for fix_scarhrd_output
     properties:
       benchmark_repeats:
         type: integer
