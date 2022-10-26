@@ -1,7 +1,5 @@
 # <img src="https://github.com/hydra-genetics/biomarker/blob/develop/images/hydragenetics.png" width=40 /> hydra-genetics/biomarker
 
-# :snake: hydra-genetics/biomarker
-
 Snakemake module containing processing steps used to generate different kind of biomarkers
 
 ![Lint](https://github.com/hydra-genetics/biomarker/actions/workflows/lint.yaml/badge.svg?branch=develop)
