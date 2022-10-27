@@ -1,8 +1,8 @@
 ---
 
- resources: "resources.yaml"
- samples: "samples.tsv"
- units: "units.tsv"
+resources: "resources.yaml"
+samples: "samples.tsv"
+units: "units.tsv"
 
- tools:
-   common: "docker://hydra/common:1.1.0"
+tools:
+  common: "docker://hydragenetics/common:0.1.9"

@@ -12,8 +12,153 @@ properties:
   default_container:
     type: string
     description: name or path to a default docker/singularity container
+  reference:
+    type: object
+    properties:
+      twist_dna_st_artifacts:
+        type: string
+        description: artifact file for twist dna st
+      twist_dna_st_background_panel:
+        type: string
+        description: background noise file for twist dna st
+
   required:
+    - default_container
+    - resources
     - samples
     - units
-    - resources
-    - default_container
+
+  default_container:
+    type: string
+    description: name or path to a default docker/singularity container
+
+  resources:
+    type: string
+    description: Path to resources.yaml file
+
+  samples:
+    type: string
+    description: path to samples.tsv file
+
+  units:
+    type: string
+    description: path to units.tsv file
+
+  cnvkit2scarhrd:
+    type: object
+    description: parameters for cnvkit2scarhrd
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fix_scarhrd_output:
+    type: object
+    description: parameters for fix_scarhrd_output
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  msisensor_pro:
+    type: object
+    description: parameters for msisensor_pro
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+      PoN:
+        type: string
+        description: path to panel of normals
+    required:
+      - PoN
+
+  optitype:
+    type: object
+    description: parameters for optitype
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+      sample_type:
+        type: string
+        description: -d for dna and -r for rna
+      enumeration:
+        type: integer
+        description: number of output HLA-types, 1 equals output only the best
+
+  scarhrd:
+    type: object
+    description: parameters for scarhrd
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      reference_name:
+        type: string
+        description: references name (grch37, grch38)
+      seqz:
+        type: boolean
+        description: If sequeze file is produced by Sequenza or not (False, True)
+
+  tmb:
+    type: object
+    description: parameters for tmb
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      filter_nr_observations:
+        type: integer
+        description: Filter all variants that has been observed before >= X times in artifact file
+      dp_limit:
+        type: integer
+        description: Filter all variants with depth < X
+      vd_limit:
+        type: integer
+        description: Filter all variants with variants reads < X
+      af_lower_limit:
+        type: number
+        description: Filter all variants with MAF < X
+      af_upper_limit:
+        type: number
+        description: Filter all variants with MAF > X
+      gnomad_limit:
+        type: number
+        description: Filter all variants with found in GnomAD witn MAF > X
+      db1000g_limit:
+        type: number
+        description: Filter all variants with found in 1000 Genomes witn MAF > X
+      background_sd_limit:
+        type: integer
+        description: Filter all variants with background levels < X standard deviation away
+      nssnv_tmb_correction:
+        type: number
+        description: Design dependent correction factor to get TMB representative for the entire genome
+      nssnv_ssnv_tmb_correction:
+        type: number
+        description: Design dependent correction factor to get TMB representative for the entire genome

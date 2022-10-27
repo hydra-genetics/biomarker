@@ -2,4 +2,26 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://marrip/common:1.1.0"
+default_container: "docker://hydragenetics/common:0.1.9"
+
+reference:
+  background: "references/background_panel_small.tsv"
+  artifacts: "references/artifact_positions_chr1.txt"
+
+optitype:
+  #container: "docker://hydragenetics/optitype:1.3.5"
+  container: "docker://fred2/optitype"
+  sample_type: "-d"
+  enumeration: 2
+
+msisensor_pro:
+  container: "docker://hydragenetics/msisensor_pro:1.2.0"
+  PoN: "references/Msisensor_pro_reference.list_baseline"
+
+scarhrd:
+  container: "docker://hydragenetics/scarhrd:20200825"
+  reference_name: "grch37"
+  seqz: False
+
+tmb:
+  container: "docker://python:3.9.7-slim"
