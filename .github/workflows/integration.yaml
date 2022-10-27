@@ -38,7 +38,6 @@ jobs:
         env:
            GITHUB_PAT: ${{ secrets.PAT_TOOKEN }}
         run: |
-           
            Rscript -e 'devtools::install_github("sztup/scarHRD")' -e 'if (!library(scarHRD, logical.return=T)) quit(status=10)'
       - name: Install requirements.txt
         run: |
