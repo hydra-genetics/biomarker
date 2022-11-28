@@ -39,7 +39,6 @@ class TestUnitUtils(unittest.TestCase):
 
         out_tmb = open(os.path.join(self.tempdir, "HD832.HES45_T.TMB.txt"), "w")
 
-        # Run scarHDR
         tmb(
             self.vcf, self.artifacts, self.background_panel, out_tmb,
             self.filter_nr_observations, self.dp_limit, self.vd_limit, self.af_lower_limit,
