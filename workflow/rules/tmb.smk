@@ -9,8 +9,6 @@ rule tmb:
         vcf="annotation/background_annotation/{sample}_{type}.background_annotation.vcf.gz",
         artifacts=config.get("reference", {}).get("artifacts", ""),
         background_panel=config.get("reference", {}).get("background", ""),
-        background_run=lambda wildcards: "annotation/calculate_seqrun_background/%s_seqrun_background.tsv"
-        % get_flowcell(units, wildcards),
     output:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
     params:
