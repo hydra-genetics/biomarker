@@ -9,7 +9,6 @@ class TestUnitUtils(unittest.TestCase):
         self.vcf = ".tests/unit/HD832.HES45_T.background_annotation.vcf.gz"
         self.artifacts = open(".tests/unit/artifact_panel_chr1.tsv")
         self.background_panel = ".tests/unit/background_panel_HES45.tsv"
-        self.background_run = open(".tests/unit/background_panel_HES45.tsv")
         self.filter_nr_observations = 1
         self.dp_limit = 200
         self.vd_limit = 10
@@ -42,7 +41,7 @@ class TestUnitUtils(unittest.TestCase):
 
         # Run scarHDR
         tmb(
-            self.vcf, self.artifacts, self.background_panel, self.background_run, out_tmb,
+            self.vcf, self.artifacts, self.background_panel, out_tmb,
             self.filter_nr_observations, self.dp_limit, self.vd_limit, self.af_lower_limit,
             self.af_upper_limit, self.gnomad_limit, self.db1000g_limit, self.background_sd_limit,
             self.nssnv_tmb_correction, self.nssnv_ssnv_tmb_correction,
