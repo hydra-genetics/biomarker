@@ -56,7 +56,7 @@ def compile_output_list(wildcards):
     )
     of.append(
         [
-            "biomarker/scarhrd/%s_%s.scarhrd_cnvkit_score.txt" % (sample, t)
+            "biomarker/scarhrd/%s_%s.pathology.scarhrd_cnvkit_score.txt" % (sample, t)
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
         ]
