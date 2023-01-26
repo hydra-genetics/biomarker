@@ -39,6 +39,15 @@ jobs:
           conda install -c conda-forge r-base=4.2.1
           conda install -c conda-forge r-biocmanager=1.30.19
           conda install -c conda-forge r-devtools=2.4.5
+      - name: Install requirements.txt
+        run: |
+          pip install -r requirements.txt
+      - name: Install requirements.test.txt
+        run: |
+          pip install -r requirements.test.txt
+      - name: Add conda to system path
+        run: |
+          echo $CONDA/bin >> $GITHUB_PATH
       - name: Install R library copynumber
         run: |
            Rscript -e 'BiocManager::install("copynumber")' -e 'if (!library(copynumber, logical.return=T)) quit(status=10)'
@@ -47,12 +56,6 @@ jobs:
            GITHUB_PAT: ${{ secrets.PAT_TOOKEN }}
         run: |
            Rscript -e 'devtools::install_github("sztup/scarHRD")' -e 'if (!library(scarHRD, logical.return=T)) quit(status=10)'
-      - name: Install requirements.txt
-        run: |
-          pip install -r requirements.txt
-      - name: Install requirements.test.txt
-        run: |
-          pip install -r requirements.test.txt
       - name: Integration test - small dataset
         working-directory: .tests/integration
         run: |
@@ -83,6 +86,9 @@ jobs:
       - name: Install requirements.test.txt
         run: |
           pip install -r requirements.test.txt
+      - name: Add conda to system path
+        run: |
+          echo $CONDA/bin >> $GITHUB_PATH
       - name: Integration test - small dataset
         working-directory: .tests/integration
         run: |
