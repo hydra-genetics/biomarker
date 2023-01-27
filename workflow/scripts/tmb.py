@@ -3,7 +3,7 @@ import gzip
 
 
 def tmb(
-    vcf, artifacts, background_panel_filename, background_run, output_tmb, filter_nr_observations, dp_limit, ad_limit,
+    vcf, artifacts, background_panel_filename, output_tmb, filter_nr_observations, dp_limit, ad_limit,
     af_lower_limit, af_upper_limit, gnomad_limit, db1000g_limit, background_sd_limit, nssnv_tmb_correction,
     nssnv_ssnv_tmb_correction
 ):
@@ -32,7 +32,6 @@ def tmb(
 
     '''Background'''
     gvcf_panel_dict = {}
-    gvcf_run_dict = {}
     if background_panel_filename != "":
         background_panel = open(background_panel_filename)
         next(background_panel)
@@ -44,14 +43,6 @@ def tmb(
             median = float(columns[2])
             sd = float(columns[3])
             gvcf_panel_dict[key] = [median, sd]
-    next(background_run)
-    for line in background_run:
-        columns = line.strip().split()
-        chrom = columns[0]
-        pos = columns[1]
-        key = chrom + "_" + pos
-        median = float(columns[2])
-        gvcf_run_dict[key] = median
 
     nr_nsSNV_TMB = 0
     nr_sSNV_TMB = 0
@@ -154,14 +145,11 @@ def tmb(
                 if len(ref) == 1 and len(alt) == 1:
                     panel_median = 1000
                     panel_sd = 1000
-                    run_median = 1000
                     pos_sd = 1000
                     key2 = key[3:]
                     if key2 in gvcf_panel_dict:
                         panel_median = gvcf_panel_dict[key2][0]
                         panel_sd = gvcf_panel_dict[key2][1]
-                    if key2 in gvcf_run_dict:
-                        run_median = gvcf_run_dict[key2]
                     if panel_sd > 0.0:
                         pos_sd = (AF - panel_median) / panel_sd
                     if pos_sd > background_sd_limit:
@@ -169,10 +157,10 @@ def tmb(
                                 "stop_gained" in Variant_type or
                                 "stop_lost" in Variant_type):
                             nr_nsSNV_TMB += 1
-                            TMB_nsSNV.append([line, panel_median, panel_sd, run_median, AF, pos_sd])
+                            TMB_nsSNV.append([line, panel_median, panel_sd, AF, pos_sd])
                         elif "synonymous_variant" in Variant_type:
                             nr_sSNV_TMB += 1
-                            TMB_sSNV.append([line, panel_median, panel_sd, run_median, AF, pos_sd])
+                            TMB_sSNV.append([line, panel_median, panel_sd, AF, pos_sd])
 
     nsTMB = nr_nsSNV_TMB * nssnv_tmb_correction
     total_TMB = (nr_sSNV_TMB + nr_nsSNV_TMB) * nssnv_ssnv_tmb_correction
@@ -182,13 +170,13 @@ def tmb(
     output_tmb.write("SNV in coding regions:\t" + str(nr_sSNV_TMB + nr_nsSNV_TMB) + "\nList of variants:\n")
     for TMB in TMB_nsSNV:
         output_tmb.write(
-            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" + "{:.4f}".format(TMB[3]) +
-            "\t" + "{:.4f}".format(TMB[4]) + "\t" + "{:.2f}".format(TMB[5]) + "\n"
+            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
+            "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
         )
     for TMB in TMB_sSNV:
         output_tmb.write(
-            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" + "{:.4f}".format(TMB[3]) +
-            "\t" + "{:.4f}".format(TMB[4]) + "\t" + "{:.2f}".format(TMB[5]) + "\n"
+            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
+            "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
         )
 
 
@@ -199,7 +187,6 @@ if __name__ == "__main__":
         snakemake.input.vcf,
         open(snakemake.input.artifacts),
         snakemake.input.background_panel,
-        open(snakemake.input.background_run),
         open(snakemake.output.tmb, "w"),
         snakemake.params.filter_nr_observations,
         snakemake.params.dp_limit,

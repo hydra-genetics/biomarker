@@ -6,14 +6,14 @@ __license__ = "GPL-3"
 
 rule cnvkit2scarhrd:
     input:
-        seg="cnv_sv/cnvkit_call/{sample}_{type}.loh.cns",
+        seg="cnv_sv/cnvkit_call/{sample}_{type}.{tc_method}.loh.cns",
     output:
-        seg=temp("biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns"),
+        seg=temp("biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns"),
     log:
-        "biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns.log",
+        "biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns.log",
     benchmark:
         repeat(
-            "biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns.benchmark.tsv",
+            "biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns.benchmark.tsv",
             config.get("cnvkit2scarhrd", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("cnvkit2scarhrd", {}).get("threads", config["default_resources"]["threads"])
@@ -35,18 +35,18 @@ rule cnvkit2scarhrd:
 
 rule scarhrd:
     input:
-        seg_cnvkit="biomarker/cnvkit2scarhrd/{sample}_{type}.scarhrd.cns",
+        seg_cnvkit="biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns",
     output:
-        hrd=temp("biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt"),
+        hrd=temp("biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt"),
     params:
-        hrd_dir=directory("biomarker/scarhrd/{sample}_{type}/"),
+        hrd_dir=directory("biomarker/scarhrd/{sample}_{type}.{tc_method}/"),
         reference_name=config.get("scarhrd", {}).get("reference_name", "grch37"),
         seqz=config.get("scarhrd", {}).get("seqz", False),
     log:
-        "biomarker/scarhrd/{sample}_{type}_HRDresults.txt.log",
+        "biomarker/scarhrd/{sample}_{type}.{tc_method}_HRDresults.txt.log",
     benchmark:
         repeat(
-            "biomarker/scarhrd/{sample}_{type}_HRDresults.txt.benchmark.tsv",
+            "biomarker/scarhrd/{sample}_{type}.{tc_method}_HRDresults.txt.benchmark.tsv",
             config.get("scarhrd", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("scarhrd", {}).get("threads", config["default_resources"]["threads"])
@@ -73,14 +73,14 @@ rule scarhrd:
 
 rule fix_scarhrd_output:
     input:
-        hrd="biomarker/scarhrd/{sample}_{type}/{sample}_{type}_HRDresults.txt",
+        hrd="biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt",
     output:
-        hrd=temp("biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt"),
+        hrd=temp("biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt"),
     log:
-        "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.log",
+        "biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_score.txt.log",
     benchmark:
         repeat(
-            "biomarker/scarhrd/{sample}_{type}.scarhrd_score.txt.benchmark.tsv",
+            "biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_score.txt.benchmark.tsv",
             config.get("fix_scarhrd_output", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("fix_scarhrd_output", {}).get("threads", config["default_resources"]["threads"])
