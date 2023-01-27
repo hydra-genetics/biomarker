@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.1.0...v0.2.0) (2023-01-27)
+
+
+### Features
+
+* added support for different purity cacluclations ([d8a138b](https://www.github.com/hydra-genetics/biomarker/commit/d8a138b1a945d8abd5ac6a332fa6f3b83b5874e3))
+* run TMB without background runs calcualtions ([10feaeb](https://www.github.com/hydra-genetics/biomarker/commit/10feaeb0ec573d4b77ed22789ac3d638821f55fa))
+* **script:** remove background run ([79387d1](https://www.github.com/hydra-genetics/biomarker/commit/79387d114faa5194f9815443a50fbfea396fc6ed))
+
+
+### Bug Fixes
+
+* updated test ([85e2f02](https://www.github.com/hydra-genetics/biomarker/commit/85e2f02b5670ed4a06a36a405c00fcd1b1d5f8c8))
+
 ## 0.1.0 (2022-10-27)
 
 
