@@ -3,46 +3,10 @@ import gzip
 
 
 def tmb(
-    vcf, artifacts, background_panel_filename, output_tmb, filter_nr_observations, dp_limit, ad_limit,
-    af_lower_limit, af_upper_limit, gnomad_limit, db1000g_limit, background_sd_limit, nssnv_tmb_correction,
-    nssnv_ssnv_tmb_correction
+    vcf, output_tmb, dp_limit, ad_limit, af_lower_limit, af_upper_limit,
+    af_germline_lower_limit, af_germline_upper_limit, gnomad_limit, db1000g_limit,
+    nr_avg_germline_snvs, nssnv_tmb_correction
 ):
-
-    FFPE_SNV_artifacts = {}
-    header = True
-    for line in artifacts:
-        columns = line.strip().split("\t")
-        if header:
-            header = False
-            continue
-        chrom = columns[0]
-        pos = columns[1]
-        key = chrom + "_" + pos
-        type = columns[2]
-        if type != "SNV":
-            continue
-        max_observations = 0
-        i = 0
-        for observation in columns[3:]:
-            if i % 3 == 0:
-                if int(observation) > max_observations:
-                    max_observations = int(observation)
-            i += 1
-        FFPE_SNV_artifacts[key] = max_observations
-
-    '''Background'''
-    gvcf_panel_dict = {}
-    if background_panel_filename != "":
-        background_panel = open(background_panel_filename)
-        next(background_panel)
-        for line in background_panel:
-            columns = line.strip().split()
-            chrom = columns[0]
-            pos = columns[1]
-            key = chrom + "_" + pos
-            median = float(columns[2])
-            sd = float(columns[3])
-            gvcf_panel_dict[key] = [median, sd]
 
     nr_nsSNV_TMB = 0
     nr_sSNV_TMB = 0
@@ -50,7 +14,6 @@ def tmb(
     prev_pos = ""
     prev_chrom = ""
     TMB_nsSNV = []
-    TMB_sSNV = []
     vep_dict = {}
     with gzip.open(vcf, 'rt') as vcf_infile:
         file_content = vcf_infile.read().split("\n")
@@ -130,54 +93,29 @@ def tmb(
                 VD = int(DATA[VD_index])
             DP = int(DATA[DP_index])
 
-            # Artifact observations
-            Observations = 0
-            if len(ref) == 1 and len(alt) == 1:
-                if key in FFPE_SNV_artifacts:
-                    Observations = FFPE_SNV_artifacts[key]
-            else:
+            # Only SNVs
+            if not (len(ref) == 1 and len(alt) == 1):
                 continue
 
             # TMB
             if (DP > dp_limit and VD > ad_limit and AF >= af_lower_limit and AF <= af_upper_limit and
+                    (AF <= af_germline_lower_limit or AF >= af_germline_upper_limit) and
                     GnomAD <= gnomad_limit and db1000G <= db1000g_limit and
-                    Observations < filter_nr_observations and INFO.find("Complex") == -1):
-                if len(ref) == 1 and len(alt) == 1:
-                    panel_median = 1000
-                    panel_sd = 1000
-                    pos_sd = 1000
-                    key2 = key[3:]
-                    if key2 in gvcf_panel_dict:
-                        panel_median = gvcf_panel_dict[key2][0]
-                        panel_sd = gvcf_panel_dict[key2][1]
-                    if panel_sd > 0.0:
-                        pos_sd = (AF - panel_median) / panel_sd
-                    if pos_sd > background_sd_limit:
-                        if ("missense_variant" in Variant_type or
-                                "stop_gained" in Variant_type or
-                                "stop_lost" in Variant_type):
-                            nr_nsSNV_TMB += 1
-                            TMB_nsSNV.append([line, panel_median, panel_sd, AF, pos_sd])
-                        elif "synonymous_variant" in Variant_type:
-                            nr_sSNV_TMB += 1
-                            TMB_sSNV.append([line, panel_median, panel_sd, AF, pos_sd])
+                    INFO.find("Complex") == -1):
+                if ("missense_variant" in Variant_type or
+                        "stop_gained" in Variant_type or
+                        "stop_lost" in Variant_type):
+                    nr_nsSNV_TMB += 1
+                    TMB_nsSNV.append(line)
 
-    nsTMB = nr_nsSNV_TMB * nssnv_tmb_correction
-    total_TMB = (nr_sSNV_TMB + nr_nsSNV_TMB) * nssnv_ssnv_tmb_correction
-    output_tmb.write("nsSNV TMB:\t" + str(nsTMB) + "\n")
-    output_tmb.write("nsSNV variants:\t" + str(nr_nsSNV_TMB) + "\n")
-    output_tmb.write("TMB:\t" + str(total_TMB) + "\n")
-    output_tmb.write("SNV in coding regions:\t" + str(nr_sSNV_TMB + nr_nsSNV_TMB) + "\nList of variants:\n")
+    nsTMB = (nr_nsSNV_TMB - nr_avg_germline_snvs) * nssnv_tmb_correction
+    if nsTMB < 0:
+        nsTMB = 0
+    output_tmb.write("TMB:\t" + str(nsTMB) + "\n")
+    output_tmb.write("Number of variants:\t" + str(nr_nsSNV_TMB) + "\n")
+    output_tmb.write("List of variants:\n")
     for TMB in TMB_nsSNV:
-        output_tmb.write(
-            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
-            "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
-        )
-    for TMB in TMB_sSNV:
-        output_tmb.write(
-            TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
-            "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
-        )
+        output_tmb.write(TMB)
 
 
 if __name__ == "__main__":
@@ -185,17 +123,15 @@ if __name__ == "__main__":
 
     tmb(
         snakemake.input.vcf,
-        open(snakemake.input.artifacts),
-        snakemake.input.background_panel,
         open(snakemake.output.tmb, "w"),
-        snakemake.params.filter_nr_observations,
         snakemake.params.dp_limit,
         snakemake.params.vd_limit,
         snakemake.params.af_lower_limit,
         snakemake.params.af_upper_limit,
+        snakemake.params.af_germline_lower_limit,
+        snakemake.params.af_germline_upper_limit,
         snakemake.params.gnomad_limit,
         snakemake.params.db1000g_limit,
-        snakemake.params.background_sd_limit,
+        snakemake.params.nr_avg_germline_snvs,
         snakemake.params.nssnv_tmb_correction,
-        snakemake.params.nssnv_ssnv_tmb_correction,
     )
