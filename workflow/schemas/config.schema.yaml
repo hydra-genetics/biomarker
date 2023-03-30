@@ -132,33 +132,45 @@ properties:
       container:
         type: string
         description: name or path to docker/singularity container
-      filter_nr_observations:
-        type: integer
-        description: Filter all variants that has been observed before >= X times in artifact file
-      dp_limit:
-        type: integer
-        description: Filter all variants with depth < X
-      vd_limit:
-        type: integer
-        description: Filter all variants with variants reads < X
       af_lower_limit:
         type: number
-        description: Filter all variants with MAF < X
+        description: Filter all variants with MAF < af_lower_limit
       af_upper_limit:
         type: number
-        description: Filter all variants with MAF > X
-      gnomad_limit:
+        description: Filter all variants with MAF > af_upper_limit
+      af_germline_lower_limit:
         type: number
-        description: Filter all variants with found in GnomAD witn MAF > X
-      db1000g_limit:
+        description: Filter all variants with af_germline_lower_limit > MAF < af_germline_upper_limit
+      af_germline_upper_limit:
         type: number
-        description: Filter all variants with found in 1000 Genomes witn MAF > X
+        description: Filter all variants with af_germline_lower_limit > MAF < af_germline_upper_limit
+      artifacts:
+        type: string
+        description: File with artifact info created by the reference module. Set to empty string to skip.
+      background_panel:
+        type: string
+        description: File with background noise info created by the reference module. Set to empty string to skip.
       background_sd_limit:
         type: integer
-        description: Filter all variants with background levels < X standard deviation away
+        description: Filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is used.
+      db1000g_limit:
+        type: number
+        description: Filter all variants with found in 1000 Genomes witn MAF > db1000g_limit
+      dp_limit:
+        type: integer
+        description: Filter all variants with depth < dp_limit
+      filter_nr_observations:
+        type: integer
+        description: Filter all variants that has been observed before >= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is used.
+      gnomad_limit:
+        type: number
+        description: Filter all variants with found in GnomAD witn MAF > gnomad_limit
+      nr_avg_germline_snvs:
+        type: number
+        description: Design dependent TMB correction term dependent on the average number of variants found in normal samples
       nssnv_tmb_correction:
         type: number
-        description: Design dependent correction factor to get TMB representative for the entire genome
-      nssnv_ssnv_tmb_correction:
-        type: number
-        description: Design dependent correction factor to get TMB representative for the entire genome
+        description: Design dependent TMB correction factor dependent on design size or correlation to commercial panels like TSO500
+      vd_limit:
+        type: integer
+        description: Filter all variants with variants reads < vd_limit
