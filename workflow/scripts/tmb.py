@@ -181,8 +181,8 @@ if __name__ == "__main__":
 
     tmb(
         snakemake.input.vcf,
-        snakemake.input.artifacts,
-        snakemake.input.background_panel,
+        snakemake.params.artifacts,
+        snakemake.params.background_panel,
         open(snakemake.output.tmb, "w"),
         snakemake.params.filter_nr_observations,
         snakemake.params.dp_limit,
