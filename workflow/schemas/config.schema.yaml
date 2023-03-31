@@ -161,7 +161,7 @@ properties:
         description: Filter all variants with depth < dp_limit
       filter_nr_observations:
         type: integer
-        description: Filter all variants that has been observed before >= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is used.
+        description: Filter all variants that has been observed before >= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is not used.
       gnomad_limit:
         type: number
         description: Filter all variants with found in GnomAD witn MAF > gnomad_limit
