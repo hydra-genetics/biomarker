@@ -149,7 +149,7 @@ properties:
         description: File with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
       background_panel:
         type: string
-        description: File with background noise info created by the reference module. Set to empty string to skip.
+        description: File with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
       background_sd_limit:
         type: integer
         description: Filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is used.
