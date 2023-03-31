@@ -152,7 +152,7 @@ properties:
         description: File with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
       background_sd_limit:
         type: integer
-        description: Filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is used.
+        description: Filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is not used.
       db1000g_limit:
         type: number
         description: Filter all variants with found in 1000 Genomes witn MAF > db1000g_limit
