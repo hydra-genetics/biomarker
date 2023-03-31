@@ -10,8 +10,8 @@ rule tmb:
     output:
         tmb=temp("biomarker/tmb/{sample}_{type}.TMB.txt"),
     params:
-        af_germline_lower_limit=config.get("tmb", {}).get("af_lower_limit", 0.47),
-        af_germline_upper_limit=config.get("tmb", {}).get("af_upper_limit", 0.53),
+        af_germline_lower_limit=config.get("tmb", {}).get("af_germline_lower_limit", 0.47),
+        af_germline_upper_limit=config.get("tmb", {}).get("af_germline_upper_limit", 0.53),
         af_lower_limit=config.get("tmb", {}).get("af_lower_limit", 0.05),
         af_upper_limit=config.get("tmb", {}).get("af_upper_limit", 0.95),
         artifacts=config.get("tmb", {}).get("artifacts", ""),
