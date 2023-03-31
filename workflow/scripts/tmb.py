@@ -143,6 +143,7 @@ def tmb(
 
             # TMB
             if (DP > dp_limit and VD > ad_limit and AF >= af_lower_limit and AF <= af_upper_limit and
+                    (AF < af_germline_lower_limit or AF > af_germline_upper_limit) and
                     GnomAD <= gnomad_limit and db1000G <= db1000g_limit and
                     Observations < filter_nr_observations and INFO.find("Complex") == -1):
                 panel_median = 1000
