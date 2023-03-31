@@ -146,7 +146,7 @@ properties:
         description: Filter all variants with af_germline_lower_limit > MAF < af_germline_upper_limit
       artifacts:
         type: string
-        description: File with artifact info created by the reference module. Set to empty string to skip.
+        description: File with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
       background_panel:
         type: string
         description: File with background noise info created by the reference module. Set to empty string to skip.
