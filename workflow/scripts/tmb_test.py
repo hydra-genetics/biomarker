@@ -7,18 +7,20 @@ import gzip
 class TestUnitUtils(unittest.TestCase):
     def setUp(self):
         self.vcf = ".tests/unit/HD832.HES45_T.background_annotation.vcf.gz"
-        self.artifacts = open(".tests/unit/artifact_panel_chr1.tsv")
-        self.background_panel = ".tests/unit/background_panel_HES45.tsv"
+        self.artifacts = ""
+        self.background_panel = ""
         self.filter_nr_observations = 1
         self.dp_limit = 200
-        self.vd_limit = 10
+        self.vd_limit = 20
         self.af_lower_limit = 0.05
-        self.af_upper_limit = 0.45
+        self.af_upper_limit = 0.95
+        self.af_germline_lower_limit = 0.47
+        self.af_germline_upper_limit = 0.53
         self.gnomad_limit = 0.0001
         self.db1000g_limit = 0.0001
         self.background_sd_limit = 5
-        self.nssnv_tmb_correction = 0.78
-        self.nssnv_ssnv_tmb_correction = 0.57
+        self.nr_avg_germline_snvs = 2.0
+        self.nssnv_tmb_correction = 0.84
 
         self.tempdir = tempfile.mkdtemp()
 
@@ -40,10 +42,9 @@ class TestUnitUtils(unittest.TestCase):
         out_tmb = open(os.path.join(self.tempdir, "HD832.HES45_T.TMB.txt"), "w")
 
         tmb(
-            self.vcf, self.artifacts, self.background_panel, out_tmb,
-            self.filter_nr_observations, self.dp_limit, self.vd_limit, self.af_lower_limit,
-            self.af_upper_limit, self.gnomad_limit, self.db1000g_limit, self.background_sd_limit,
-            self.nssnv_tmb_correction, self.nssnv_ssnv_tmb_correction,
+            self.vcf, self.artifacts, self.background_panel, out_tmb, self.filter_nr_observations, self.dp_limit,
+            self.vd_limit, self.af_lower_limit, self.af_upper_limit, self.af_germline_lower_limit, self.af_germline_upper_limit,
+            self.gnomad_limit, self.db1000g_limit, self.background_sd_limit, self.nr_avg_germline_snvs, self.nssnv_tmb_correction,
         )
         out_tmb.close()
 
@@ -55,14 +56,12 @@ class TestUnitUtils(unittest.TestCase):
         for line in result_file:
             result.append(line)
             i += 1
-            if i == 4:
+            if i == 2:
                 break
 
         test_table = {
-            "nsSNV TMB:": "0.78",
-            "nsSNV variants:": "1",
-            "TMB:": "0.57",
-            "SNV in coding regions:": "1",
+            "TMB:": "0.84",
+            "Number of variants:": "3",
         }
 
         self._test_tmb(test_table, result)
