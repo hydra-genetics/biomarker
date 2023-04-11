@@ -35,7 +35,7 @@ jobs:
         run: |
           conda install -c conda-forge r-base=4.2.2
           conda install -c conda-forge r-biocmanager=1.30.19
-          conda install -c conda-forge r-devtools=2.4.5
+          conda install -c conda-forge r-devtools
       - name: Install requirements.txt
         run: |
           pip install -r requirements.txt
