@@ -63,7 +63,7 @@ A panel of normal created by running MsiSensor-pro on a number of normal samples
 
 ## TMB
 
-A panel specific artifact list and position specific background noise levels. Can be created with the help of the [hydragenetics/references](https://github.com/hydra-genetics/references) module.
+Optional: A panel specific artifact list as well as a position specific background noise level panel. Can be created with the help of the [hydragenetics/references](https://github.com/hydra-genetics/references) module.
 
 
 ## :white_check_mark: Testing
