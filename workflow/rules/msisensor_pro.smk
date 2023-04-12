@@ -32,8 +32,6 @@ rule msisensor_pro:
         time=config.get("msisensor_pro", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("msisensor_pro", {}).get("container", config["default_container"])
-    conda:
-        "../envs/msisensor_pro.yaml"
     message:
         "{rule}: calculate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}"
     shell:
