@@ -1,0 +1,91 @@
+from hydra_genetics.utils.resources import load_resources
+
+import re
+
+
+rule all:
+    input:
+        "biomarker/scarhrd/HD832.HES45_T.pathology.scarhrd_cnvkit_score.txt",
+        "biomarker/msisensor_pro/HD832.HES45_T",
+        "biomarker/tmb/HD832.HES45_T.TMB.txt",
+
+
+configfile: "config.yaml"
+
+
+config = load_resources(config, config["resources"])
+
+
+def extract_module_version_from_readme(modulename):
+    search_string = modulename + ":(.+)\n$"
+    with open("../../README.md", "r") as reader:
+        for line in reader:
+            result = re.search(search_string, line)
+            if result:
+                return result[1]
+
+
+module prealignment:
+    snakefile:
+        github(
+            "hydra-genetics/prealignment",
+            path="workflow/Snakefile",
+            tag=extract_module_version_from_readme("prealignment"),
+        )
+    config:
+        config
+
+
+use rule * from prealignment as prealignment_*
+
+
+module alignment:
+    snakefile:
+        github(
+            "hydra-genetics/alignment",
+            path="workflow/Snakefile",
+            tag=extract_module_version_from_readme("alignment"),
+        )
+    config:
+        config
+
+
+use rule * from alignment as alignment_*
+
+
+module annotation:
+    snakefile:
+        github(
+            "hydra-genetics/annotation",
+            path="workflow/Snakefile",
+            tag=extract_module_version_from_readme("annotation"),
+        )
+    config:
+        config
+
+
+use rule * from annotation as annotation_*
+
+
+module cnv_sv:
+    snakefile:
+        github(
+            "hydra-genetics/cnv_sv",
+            path="workflow/Snakefile",
+            tag=extract_module_version_from_readme("cnv_sv"),
+        )
+    config:
+        config
+
+
+use rule * from cnv_sv as cnv_sv_*
+
+
+module biomarker:
+    snakefile:
+        "../../workflow/Snakefile"
+    config:
+        config
+
+
+use rule * from biomarker as biomarker_*

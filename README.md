@@ -63,7 +63,7 @@ A panel of normal created by running MsiSensor-pro on a number of normal samples
 
 ## TMB
 
-A panel specific artifact list and position specific background noise levels. Can be created with the help of the [hydragenetics/references](https://github.com/hydra-genetics/references) module.
+Optional: A panel specific artifact list as well as a position specific background noise level panel. Can be created with the help of the [hydragenetics/references](https://github.com/hydra-genetics/references) module.
 
 
 ## :white_check_mark: Testing
@@ -99,10 +99,10 @@ use rule * from biomarker as biomarker_*
 ### Compatibility
 
 Latest:
- - alignment:v0.2.0
- - annotation:v0.1.0
- - cnv_sv:v0.1.0
- - prealignment:v0.4.0
+ - alignment:v0.3.1
+ - annotation:v0.3.0
+ - cnv_sv:v0.3.0
+ - prealignment:v1.0.0
 
 See [COMPATIBLITY.md](../master/COMPATIBLITY.md) file for a complete list of module compatibility.
 
@@ -127,7 +127,7 @@ The following output files should be targeted via another rule:
 
 | File | Description |
 |---|---|
-| `biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
+| `biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
 | `biomarker/msisensor_pro/{sample}_{type}` | msi score |
 | `biomarker/tmb/{sample}_{type}.TMB.txt` | tmb score and variants used |
 
@@ -137,7 +137,3 @@ The following output files should be targeted via another rule:
 ### Biomarker
 
 ![rule_graph](images/biomarker.svg)
-
-### Disclaimer
-
-Running the HRD calculations using scarHRD with conda is only possible if scarHRD and its dependencies are installed locally on the compute cluster.
