@@ -25,8 +25,6 @@ rule cnvkit2scarhrd:
         time=config.get("cnvkit2scarhrd", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("cnvkit2scarhrd", {}).get("container", config["default_container"])
-    conda:
-        "../envs/scarhrd.yaml"
     message:
         "{rule}: convert cnvkit segmentation files to scarhrd input: {output.seg}"
     script:
@@ -58,8 +56,6 @@ rule scarhrd:
         time=config.get("scarhrd", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("scarhrd", {}).get("container", config["default_container"])
-    conda:
-        "../envs/scarhrd.yaml"
     message:
         "{rule}: calculate hrd on {input.seg_cnvkit}"
     # TODO: Add wrapper in order to remove output directory
@@ -92,8 +88,6 @@ rule fix_scarhrd_output:
         time=config.get("fix_scarhrd_output", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("fix_scarhrd_output", {}).get("container", config["default_container"])
-    conda:
-        "../envs/scarhrd.yaml"
     message:
         "{rule}: fix scarhrd output into {output.hrd}"
     script:

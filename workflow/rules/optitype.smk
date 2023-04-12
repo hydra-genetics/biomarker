@@ -33,8 +33,6 @@ rule optitype:
         time=config.get("optitype", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("optitype", {}).get("container", config["default_container"])
-    conda:
-        "../envs/optitype.yaml"
     message:
         "{rule}: determine HLA-type in {output.hla_type}"
     shell:

@@ -137,7 +137,3 @@ The following output files should be targeted via another rule:
 ### Biomarker
 
 ![rule_graph](images/biomarker.svg)
-
-### Disclaimer
-
-Running the HRD calculations using scarHRD with conda is only possible if scarHRD and its dependencies are installed locally on the compute cluster.

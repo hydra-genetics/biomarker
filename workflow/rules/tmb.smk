@@ -37,8 +37,6 @@ rule tmb:
         time=config.get("tmb", {}).get("time", config["default_resources"]["time"]),
     container:
         config.get("tmb", {}).get("container", config["default_container"])
-    conda:
-        "../envs/tmb.yaml"
     message:
         "{rule}: calculate TMB in tmb/{rule}/{wildcards.sample}_{wildcards.type}"
     script:
