@@ -1,0 +1,2 @@
+sample	type	machine	platform	flowcell	lane	barcode	fastq1	fastq2	adapter
+HD832.HES45	T	NDX550407_RUO	NextSeq	HKTG2BGXG	L001	ACGGAACA+ACGAGAAC	../integration/prealignment/merged/HD832.HES45_T_fastq1.fastq.gz	../integration/prealignment/merged/HD832.HES45_T_fastq2.fastq.gz	ACGT,ACGT

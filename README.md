@@ -127,7 +127,7 @@ The following output files should be targeted via another rule:
 
 | File | Description |
 |---|---|
-| `biomarker/scarhrd/{sample}_{type}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
+| `biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
 | `biomarker/msisensor_pro/{sample}_{type}` | msi score |
 | `biomarker/tmb/{sample}_{type}.TMB.txt` | tmb score and variants used |
 
