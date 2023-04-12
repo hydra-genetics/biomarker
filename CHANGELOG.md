@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.2.0...v0.3.0) (2023-04-12)
+
+
+### Features
+
+* add working compatibility test ([ff774c7](https://www.github.com/hydra-genetics/biomarker/commit/ff774c7621f03e5d370285c9423070db466c25c5))
+* added more config options for tmb ([00f231c](https://www.github.com/hydra-genetics/biomarker/commit/00f231cbd9d368eb36bb10708aba5d9fcf8e1da1))
+* remove conda support and testing ([440a30e](https://www.github.com/hydra-genetics/biomarker/commit/440a30ea208b3ab1db4ba68014142b314c2408bc))
+
+
+### Bug Fixes
+
+* added missing germline filtering ([605b18f](https://www.github.com/hydra-genetics/biomarker/commit/605b18f387549865c1f6acfd1e96ad832745c037))
+* config parameter name ([a1ddf5d](https://www.github.com/hydra-genetics/biomarker/commit/a1ddf5da55b527894df9c8916f3131030a44306d))
+* make artifact and background configurable in rule ([1f5e818](https://www.github.com/hydra-genetics/biomarker/commit/1f5e818bcf23bbebe7be40a9e7aaa6042525f38f))
+* **script:** input moved to params in tmb ([6eb92c1](https://www.github.com/hydra-genetics/biomarker/commit/6eb92c1f9dadc44a3e52af2da65e4359444bf371))
+
+
+### Documentation
+
+* update compatibility ([208d14b](https://www.github.com/hydra-genetics/biomarker/commit/208d14bcc74ef71c6ab0500ae22e01506199c847))
+* update readme ([8dd13ba](https://www.github.com/hydra-genetics/biomarker/commit/8dd13bac56ed63e8fff6c0107c9d3241b3b2012d))
+* Update workflow/schemas/config.schema.yaml ([83e82a3](https://www.github.com/hydra-genetics/biomarker/commit/83e82a3e787a4fba9102e290f13244d8e7e81000))
+* Update workflow/schemas/config.schema.yaml ([09e7ad6](https://www.github.com/hydra-genetics/biomarker/commit/09e7ad6a962370558dfc80d115a991f34c45e3bb))
+* Update workflow/schemas/config.schema.yaml ([6464c75](https://www.github.com/hydra-genetics/biomarker/commit/6464c75cff642cbd5c9795cd54ca1a5f4e7098fa))
+
 ## [0.2.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.1.0...v0.2.0) (2023-01-27)
 
 
