@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.1](https://www.github.com/hydra-genetics/biomarker/compare/v0.3.0...v0.3.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* added newline between variants ([214d073](https://www.github.com/hydra-genetics/biomarker/commit/214d0736ef6a36759e22574500dc509c918841c0))
+
 ## [0.3.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.2.0...v0.3.0) (2023-04-12)
 
 
