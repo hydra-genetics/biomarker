@@ -169,10 +169,10 @@ def tmb(
     output_tmb.write("Number of variants:\t" + str(nr_nsSNV_TMB) + "\n")
     for TMB in TMB_nsSNV:
         if background_panel_filename == "":
-            output_tmb.write(TMB[0])
+            output_tmb.write(TMB[0] + "\n")
         else:
             output_tmb.write(
-                TMB[0].strip() + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
+                TMB[0] + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
                 "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
             )
 
