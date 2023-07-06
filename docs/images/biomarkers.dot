@@ -1,0 +1,23 @@
+digraph snakemake_dag {
+	rankdir="LR"
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+	0[label = "biomarker score", color = "0.0 0.0 0.0", style="dotted"];
+	1[label = "msisensor_pro", color = "0.19 0.6 0.85", style="rounded"];
+	2[label = "tmb", color = "0.10 0.6 0.85", style="rounded"];
+	3[label = "fix_scarhrd_output", color = "0.00 0.6 0.85", style="rounded"];
+	4[label = "scarhrd", color = "0.48 0.6 0.85", style="rounded"];
+	5[label = "cnvkit2scarhrd", color = "0.57 0.6 0.85", style="rounded"];
+	6[label = "vcf", color = "0.0 0.0 0.0", style="dotted"];
+	7[label = "bam", color = "0.0 0.0 0.0", style="dotted"];
+	8[label = "cnv segmentation", color = "0.0 0.0 0.0", style="dotted"];
+	2 -> 0
+	1 -> 0
+	3 -> 0
+	4 -> 3
+	5 -> 4
+	6 -> 2
+	7 -> 1
+	8 -> 5
+}            
