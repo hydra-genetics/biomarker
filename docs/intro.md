@@ -1,5 +1,9 @@
 # Hydra-genetics biomarker module
-The biomarker module consists of programs used for producing biomarker values. The biomarkers currently implemented are tumor mutational burden (TMB), micro satellite instability (MSI) score, and under development homologous recombination deﬁciency (HRD) score.
+The biomarker module consists of programs used for producing biomarker values. The biomarkers currently implemented are:
+
+ - TMB: tumor mutational burden
+ - MSI: micro satellite instability score
+  - **Under development**:  homologous recombination deﬁciency score
 
 
 ## Dag graph
