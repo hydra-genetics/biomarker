@@ -19,7 +19,7 @@ Script that modifies the cnvkit segmentation file so that it can be used by scar
 
 #### Resources settings (`resources.yaml`)
 
-### RESOURCESSCHEMA__cnvkit2scarhrd#
+#RESOURCESSCHEMA__cnvkit2scarhrd#
 
 ---
 
