@@ -2,13 +2,15 @@ $schema: "http://json-schema.org/draft-04/schema#"
 description: snakemake configuration file
 type: object
 properties:
-  samples:
-    type: string
-  units:
-    type: string
   resources:
     type: string
     description: Path to resources.yaml file
+  samples:
+    type: string
+    description: path to samples.tsv file
+  units:
+    type: string
+    description: path to units.tsv file
   default_container:
     type: string
     description: name or path to a default docker/singularity container
@@ -27,22 +29,6 @@ properties:
     - resources
     - samples
     - units
-
-  default_container:
-    type: string
-    description: name or path to a default docker/singularity container
-
-  resources:
-    type: string
-    description: Path to resources.yaml file
-
-  samples:
-    type: string
-    description: path to samples.tsv file
-
-  units:
-    type: string
-    description: path to units.tsv file
 
   cnvkit2scarhrd:
     type: object

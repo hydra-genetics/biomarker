@@ -1,0 +1,113 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+description: snakemake rule input and output files description file
+type: object
+properties:
+  cnvkit2scarhrd:
+    type: object
+    description: input and output parameters for cnvkit2scarhrd
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          seg:
+            type: string
+            description: Original cnvkit segmentation file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          seg:
+            type: string
+            description: Modified cnvkit segmentation file used by scarhrd
+
+  fix_scarhrd_output:
+    type: object
+    description: input and output parameters for fix_scarhrd_output
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          hrd:
+            type: string
+            description: Original scarhrd output file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          hrd:
+            type: string
+            description: Modified scarhrd output file with corrected column order
+
+  msisensor_pro:
+    type: object
+    description: input and output parameters for msisensor_pro
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: Bam file
+          bai:
+            type: string
+            description: Bam index file
+          PoN:
+            type: string
+            description: Path to panel of normal created by msisensor_pro based on MSI-negative samples
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          msi_score:
+            type: string
+            description: Text file with the MSI score in % sites with instability
+          msi_all:
+            type: string
+            description: All detected microsatelites
+          msi_dis:
+            type: string
+            description: Discarded microsatelites
+          msi_unstable:
+            type: string
+            description: All MSI sites
+
+  scarhrd:
+    type: object
+    description: input and output parameters for cnvkit2scarhrd
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          seg_cnvkit:
+            type: string
+            description: Modified cnvkit segmentation file from fix_scarhrd_output
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          hrd:
+            type: string
+            description: Text file reporting the HRD score
+
+  tmb:
+    type: object
+    description: input and output parameters for cnvkit2scarhrd
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          vcf:
+            type: string
+            description: Vep annotated vcf file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          tmb:
+            type: string
+            description: Text file with TMB score
