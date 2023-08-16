@@ -78,7 +78,7 @@ Calculates a HRD score by the sum of three different scores that counts the numb
 
 #### :left_right_arrow: input / output files
 
-### SNAKEMAKE_RULE_TABLE__scarhrd__scarhrd#
+#SNAKEMAKE_RULE_TABLE__scarhrd__scarhrd#
 
 ### :wrench: Configuration
 
