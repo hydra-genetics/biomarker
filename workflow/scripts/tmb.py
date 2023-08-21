@@ -3,8 +3,8 @@ import gzip
 
 
 def tmb(
-    vcf, artifacts_filename, background_panel_filename, output_tmb, filter_nr_observations, dp_limit, ad_limit,
-    af_lower_limit, af_upper_limit, af_germline_lower_limit, af_germline_upper_limit, gnomad_limit, db1000g_limit,
+    vcf, artifacts_filename, background_panel_filename, output_tmb, filter_genes_filename, filter_nr_observations, dp_limit,
+    ad_limit, af_lower_limit, af_upper_limit, af_germline_lower_limit, af_germline_upper_limit, gnomad_limit, db1000g_limit,
     background_sd_limit, nr_avg_germline_snvs, nssnv_tmb_correction
 ):
 
@@ -47,6 +47,13 @@ def tmb(
             median = float(columns[2])
             sd = float(columns[3])
             gvcf_panel_dict[key] = [median, sd]
+
+    '''Filter genes'''
+    filter_gene_dict = {}
+    if filter_genes_filename != "":
+        filter_genes = open(filter_genes_filename)
+        for line in filter_genes:
+            filter_gene_dict[line.strip()] = ""
 
     nr_nsSNV_TMB = 0
     header = True
@@ -141,11 +148,14 @@ def tmb(
             if key in FFPE_SNV_artifacts:
                 Observations = FFPE_SNV_artifacts[key]
 
+            # Gene name
+            gene_name = VEP_INFO[vep_dict["SYMBOL"]]
+
             # TMB
             if (DP > dp_limit and VD > ad_limit and AF >= af_lower_limit and AF <= af_upper_limit and
                     (AF < af_germline_lower_limit or AF > af_germline_upper_limit) and
                     GnomAD <= gnomad_limit and db1000G <= db1000g_limit and
-                    Observations < filter_nr_observations and INFO.find("Complex") == -1):
+                    Observations < filter_nr_observations and INFO.find("Complex") == -1) and gene_name not in filter_gene_dict:
                 panel_median = 1000
                 panel_sd = 1000
                 pos_sd = 1000
@@ -185,6 +195,7 @@ if __name__ == "__main__":
         snakemake.params.artifacts,
         snakemake.params.background_panel,
         open(snakemake.output.tmb, "w"),
+        snakemake.params.filter_genes,
         snakemake.params.filter_nr_observations,
         snakemake.params.dp_limit,
         snakemake.params.vd_limit,
