@@ -1,3 +1,7 @@
+<p align="center">
+<a href="https://hydra-genetics-biomarker.readthedocs.io">https://hydra-genetics-biomarker.readthedocs.io</a>
+</p>
+
 # <img src="https://github.com/hydra-genetics/biomarker/blob/develop/images/hydragenetics.png" width=40 /> hydra-genetics/biomarker
 
 Snakemake module containing processing steps used to generate different kind of biomarkers
