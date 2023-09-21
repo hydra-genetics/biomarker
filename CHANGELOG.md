@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.3.1...v0.4.0) (2023-09-21)
+
+
+### Features
+
+* added tmb filtering option based on gene names ([74f5b17](https://www.github.com/hydra-genetics/biomarker/commit/74f5b176e8e45ec44d964b0e5a85a2ffe777ebe1))
+* Update snakemake version in requirements.txt ([ae54542](https://www.github.com/hydra-genetics/biomarker/commit/ae54542b5004d830c20075e5c5dd6dfad7ff13fb))
+* update snakemake version, allow range up to version 8 ([78d534b](https://www.github.com/hydra-genetics/biomarker/commit/78d534b32af81ae83f15acc803014fc2f97aeab2))
+
+
+### Bug Fixes
+
+* add missing file used by readthedocs ([2a10f91](https://www.github.com/hydra-genetics/biomarker/commit/2a10f912e9407ab5c96813707c879a7d4e97f084))
+
+
+### Documentation
+
+* biomarker readthedocs ([ff39d6f](https://www.github.com/hydra-genetics/biomarker/commit/ff39d6f5d609f797ceb5271bbc12aa8a8df7bb5f))
+* rtd update ([07dd4c7](https://www.github.com/hydra-genetics/biomarker/commit/07dd4c7c3df8365fe96fd4c30349465586a1c38b))
+* update rtd links ([dcb8aa8](https://www.github.com/hydra-genetics/biomarker/commit/dcb8aa811ebaba0cff539be8f1bf146c5fefd4a9))
+
 ### [0.3.1](https://www.github.com/hydra-genetics/biomarker/compare/v0.3.0...v0.3.1) (2023-04-26)
 
 
