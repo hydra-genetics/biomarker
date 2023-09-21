@@ -9,6 +9,7 @@ class TestUnitUtils(unittest.TestCase):
         self.vcf = ".tests/unit/HD832.HES45_T.background_annotation.vcf.gz"
         self.artifacts = ""
         self.background_panel = ""
+        self.filter_genes = ".tests/unit/tmb_filter_genes.txt"
         self.filter_nr_observations = 1
         self.dp_limit = 200
         self.vd_limit = 20
@@ -42,9 +43,10 @@ class TestUnitUtils(unittest.TestCase):
         out_tmb = open(os.path.join(self.tempdir, "HD832.HES45_T.TMB.txt"), "w")
 
         tmb(
-            self.vcf, self.artifacts, self.background_panel, out_tmb, self.filter_nr_observations, self.dp_limit,
-            self.vd_limit, self.af_lower_limit, self.af_upper_limit, self.af_germline_lower_limit, self.af_germline_upper_limit,
-            self.gnomad_limit, self.db1000g_limit, self.background_sd_limit, self.nr_avg_germline_snvs, self.nssnv_tmb_correction,
+            self.vcf, self.artifacts, self.background_panel, out_tmb, self.filter_genes, self.filter_nr_observations,
+            self.dp_limit, self.vd_limit, self.af_lower_limit, self.af_upper_limit, self.af_germline_lower_limit,
+            self.af_germline_upper_limit, self.gnomad_limit, self.db1000g_limit, self.background_sd_limit,
+            self.nr_avg_germline_snvs, self.nssnv_tmb_correction,
         )
         out_tmb.close()
 

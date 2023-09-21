@@ -19,6 +19,7 @@ rule tmb:
         background_sd_limit=config.get("tmb", {}).get("background_sd_limit", 5),
         db1000g_limit=config.get("tmb", {}).get("db1000g_limit", 0.0001),
         dp_limit=config.get("tmb", {}).get("dp_limit", 200),
+        filter_genes=config.get("tmb", {}).get("filter_genes", ""),
         filter_nr_observations=config.get("tmb", {}).get("filter_nr_observations", 1),
         gnomad_limit=config.get("tmb", {}).get("gnomad_limit", 0.0001),
         nr_avg_germline_snvs=config.get("tmb", {}).get("nr_avg_germline_snvs", 2.0),

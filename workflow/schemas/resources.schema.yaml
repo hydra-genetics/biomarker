@@ -150,5 +150,3 @@ properties:
         type: string
         description: max execution time
 
-  required:
-    - default_resources
