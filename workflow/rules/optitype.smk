@@ -16,6 +16,7 @@ rule optitype:
         extra=config.get("optitype", {}).get("extra", ""),
         sample_type=config.get("optitype", {}).get("sample_type", "-d"),
         enumeration=config.get("optitype", {}).get("enumeration", "4"),
+        prefix=config.get("optitype", {}).get("prefix", "{sample}_{type}"),
     log:
         "biomarker/optitype/{sample}_{type}/{sample}_{type}_hla_type_result.tsv.log",
     benchmark:
@@ -39,4 +40,6 @@ rule optitype:
         "-i {input.fastq1} {input.fastq2} "
         "{params.sample_type} "
         "--enumerate {params.enumeration} "
-        "-o {output.out_dir}) &> {log}"
+        "-o {output.out_dir} && "
+        "cp {output.out_dir}*/*.pdf {output.out_dir}{params.prefix}_hla_type_coverage_plot.pdf && "
+        "cp {output.out_dir}*/*.tsv {output.out_dir}{params.prefix}_hla_type_result.tsv) &> {log}"
