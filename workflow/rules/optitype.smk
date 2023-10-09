@@ -41,5 +41,5 @@ rule optitype:
         "{params.sample_type} "
         "--enumerate {params.enumeration} "
         "-o {output.out_dir} && "
-        "mv {output.out_dir}/*/*.pdf {output.out_dir}{params.prefix}_hla_type_coverage_plot.pdf && "
-        "mv {output.out_dir}/*/*.tsv {output.out_dir}{params.prefix}_hla_type_result.tsv) &> {log}"
+        "mv {output.out_dir}/*/*.pdf {output.out_dir}/{params.prefix}_hla_type_coverage_plot.pdf && "
+        "mv {output.out_dir}/*/*.tsv {output.out_dir}/{params.prefix}_hla_type_result.tsv) &> {log}"
