@@ -103,10 +103,10 @@ use rule * from biomarker as biomarker_*
 ### Compatibility
 
 Latest:
- - alignment:v0.3.1
- - annotation:v0.3.0
- - cnv_sv:v0.3.0
- - prealignment:v1.0.0
+ - alignment:v0.6.0
+ - annotation:v1.0.1
+ - cnv_sv:v0.4.1
+ - prealignment:v1.2.0
 
 See [COMPATIBLITY.md](../master/COMPATIBLITY.md) file for a complete list of module compatibility.
 
