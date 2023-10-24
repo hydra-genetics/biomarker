@@ -103,7 +103,7 @@ use rule * from biomarker as biomarker_*
 ### Compatibility
 
 Latest:
- - alignment:v0.6.0
+ - alignment:v0.5.1
  - annotation:v1.0.1
  - cnv_sv:v0.4.1
  - prealignment:v1.2.0
