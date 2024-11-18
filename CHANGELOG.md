@@ -1,5 +1,20 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/hydra-genetics/biomarker/compare/v0.4.0...v0.4.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* mv temp files to correctet folfer with correct prefix ([8a20b04](https://www.github.com/hydra-genetics/biomarker/commit/8a20b04189945abeaaa042eb7149c234d97e4c38))
+* mv temp files to correctet folfer with correct prefix ([6911ed2](https://www.github.com/hydra-genetics/biomarker/commit/6911ed28344e78a18d34c1e6d941b01a11b4ebce))
+* mv temp files to correctet folfer with correct prefix ([eecbaa3](https://www.github.com/hydra-genetics/biomarker/commit/eecbaa37e2849411d20a741024745e31481407b0))
+* rm prefix parameter ([5b2fccd](https://www.github.com/hydra-genetics/biomarker/commit/5b2fccd82e92fbb6f8c058b0a79a612cdca98afc))
+
+
+### Documentation
+
+* update mkdocs rule plugin version ([e3b145a](https://www.github.com/hydra-genetics/biomarker/commit/e3b145af042d49fd9cd66def455c8112556e8955))
+
 ## [0.4.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.3.1...v0.4.0) (2023-09-21)
 
 
