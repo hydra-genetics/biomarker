@@ -16,22 +16,22 @@ jobs:
     name: integration small data set singularity
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
-      - name: Setup Mambaforge
+      - name: Setup Miniforge
         uses: conda-incubator/setup-miniconda@v2
         with:
-            miniforge-variant: Mambaforge
+            miniforge-variant: Miniforge3
             miniforge-version: latest
             activate-environment: my-env
             use-mamba: true
       - name: Set strict channel and install singularity
         run: |
           conda config --set channel_priority strict
-          mamba install -c conda-forge -c bioconda singularity=3.8.6
+          mamba install -c conda-forge -c bioconda apptainer=1.3.2
       - name: Install requirements.txt
         run: |
           pip install -r requirements.txt
