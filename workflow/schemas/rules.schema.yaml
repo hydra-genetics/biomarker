@@ -56,7 +56,7 @@ properties:
             description: Bam index file
           PoN:
             type: string
-            description: Path to panel of normal created by msisensor_pro based on MSI-negative samples
+            description: Filtered panel of normal created by msisensor_pro based on MSI-negative samples
       output:
         type: object
         description: list of outputs
@@ -73,6 +73,25 @@ properties:
           msi_unstable:
             type: string
             description: All MSI sites
+
+  msisensor_pro_filter_sites:
+    type: object
+    description: input and output parameters for msisensor_pro_filter_sites
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          PoN:
+            type: string
+            description: Panel of normal created by msisensor_pro based on MSI-negative samples
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          PoN:
+            type: string
+            description: Filtered panel of normal, were the filtering is based on sites in the msi bedfile
 
   scarhrd:
     type: object
