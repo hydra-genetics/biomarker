@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.4.1...v0.5.0) (2024-11-27)
+
+
+### Features
+
+* **msisensor_pro:** added possibility to filter the msi sites ([4922866](https://www.github.com/hydra-genetics/biomarker/commit/4922866adcd1ef1b18978be95f00974bdb0be422))
+
+
+### Bug Fixes
+
+* Update config.yaml ([afefc44](https://www.github.com/hydra-genetics/biomarker/commit/afefc443f0c975fb44d82af792978533a7f54d26))
+
 ### [0.4.1](https://www.github.com/hydra-genetics/biomarker/compare/v0.4.0...v0.4.1) (2024-11-18)
 
 
