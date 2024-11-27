@@ -49,7 +49,10 @@ optitype:
 
 msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
+
+msisensor_pro_filter_sites:
   PoN: "reference/Msisensor_pro_reference.list_baseline"
+  msi_sites_bed: "references/SelectedMSIloci2019Sorted.bed"
 
 scarhrd:
   container: "docker://hydragenetics/scarhrd:20200825"
