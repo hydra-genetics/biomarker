@@ -69,6 +69,29 @@ Calculates the % of microsatelites detected that are instable which can be used 
 
 ---
 
+## [msisensor_pro_filter_sites](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/msisensor_pro_filter_sites.py)
+Script that takes the PoN for MSISensorPro and creates a new PoN with only msi sites found in the supplied bedfile. If bedfile is set to empty string no filtering is performed.
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__msisensor_pro__msisensor_pro_filter_sites#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__msisensor_pro__msisensor_pro_filter_sites#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__msisensor_pro_filter_sites#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__msisensor_pro_filter_sites#
+
+---
+
 ## [scarhrd](https://github.com/sztup/scarHRD)
 Calculates a HRD score by the sum of three different scores that counts the number of cnv events found. The program uses an external segmentation file from for example cnvkit.
 
@@ -112,5 +135,3 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 #### Resources settings (`resources.yaml`)
 
 #RESOURCESSCHEMA__tmb#
-
----
