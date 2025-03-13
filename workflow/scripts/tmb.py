@@ -2,11 +2,27 @@
 import gzip
 
 
+def read_bedfile(filter_regions_dict, in_bed):
+    for line in in_bed:
+        columns = line.strip().split("\t")
+        chrom = columns[0]
+        if chrom not in filter_regions_dict:
+            filter_regions_dict[chrom] = []
+        filter_regions_dict[chrom].append([int(columns[1]), int(columns[2])])
+    return filter_regions_dict
+
+
 def tmb(
-    vcf, artifacts_filename, background_panel_filename, output_tmb, filter_genes_filename, filter_nr_observations, dp_limit,
-    ad_limit, af_lower_limit, af_upper_limit, af_germline_lower_limit, af_germline_upper_limit, gnomad_limit, db1000g_limit,
-    background_sd_limit, nr_avg_germline_snvs, nssnv_tmb_correction
+    vcf, artifacts_filename, background_panel_filename, output_tmb, filter_genes_filename, filter_nr_observations,
+    filter_regions, dp_limit, ad_limit, af_lower_limit, af_upper_limit, af_germline_lower_limit,
+    af_germline_upper_limit, gnomad_limit, db1000g_limit, background_sd_limit, nr_avg_germline_snvs,
+    nssnv_tmb_correction, variant_type_list
 ):
+
+    '''Problematic regions'''
+    filter_regions_dict = {}
+    for filter_bed_file in filter_regions:
+        filter_regions_dict = read_bedfile(filter_regions_dict, open(filter_bed_file))
 
     FFPE_SNV_artifacts = {}
     if artifacts_filename == "":
@@ -55,11 +71,11 @@ def tmb(
         for line in filter_genes:
             filter_gene_dict[line.strip()] = ""
 
-    nr_nsSNV_TMB = 0
+    nr_SNV_TMB = 0
     header = True
     prev_pos = ""
     prev_chrom = ""
-    TMB_nsSNV = []
+    TMB_SNV = []
     vep_dict = {}
     with gzip.open(vcf, 'rt') as vcf_infile:
         file_content = vcf_infile.read().split("\n")
@@ -166,24 +182,34 @@ def tmb(
                 if panel_sd > 0.0:
                     pos_sd = (AF - panel_median) / panel_sd
                 if background_panel_filename == "" or pos_sd > background_sd_limit:
-                    if ("missense_variant" in Variant_type or
-                            "stop_gained" in Variant_type or
-                            "stop_lost" in Variant_type):
-                        nr_nsSNV_TMB += 1
-                        TMB_nsSNV.append([line, panel_median, panel_sd, AF, pos_sd])
+                    ok_variant_type = False
+                    for vt in Variant_type:
+                        if vt in variant_type_list:
+                            ok_variant_type = True
+                    print(Variant_type, ok_variant_type, variant_type_list)
+                    if ok_variant_type:
+                        filter_region = False
+                        if chrom in filter_regions_dict:
+                            for region in filter_regions_dict[chrom]:
+                                if int(pos) >= region[0] and int(pos) <= region[1]:
+                                    filter_region = True
+                                    break
+                        if not filter_region:
+                            nr_SNV_TMB += 1
+                            TMB_SNV.append([line, panel_median, panel_sd, AF, pos_sd])
 
-    nsTMB = (nr_nsSNV_TMB - nr_avg_germline_snvs) * nssnv_tmb_correction
-    if nsTMB < 0:
-        nsTMB = 0
-    output_tmb.write("TMB:\t" + str(nsTMB) + "\n")
-    output_tmb.write("Number of variants:\t" + str(nr_nsSNV_TMB) + "\n")
-    for TMB in TMB_nsSNV:
+    TMB = (nr_SNV_TMB - nr_avg_germline_snvs) * nssnv_tmb_correction
+    if TMB < 0:
+        TMB = 0
+    output_tmb.write("TMB:\t" + str(TMB) + "\n")
+    output_tmb.write("Number of variants:\t" + str(nr_SNV_TMB) + "\n")
+    for variant in TMB_SNV:
         if background_panel_filename == "":
-            output_tmb.write(TMB[0] + "\n")
+            output_tmb.write(variant[0] + "\n")
         else:
             output_tmb.write(
-                TMB[0] + "\t" + "{:.4f}".format(TMB[1]) + "\t" + "{:.4f}".format(TMB[2]) + "\t" +
-                "\t" + "{:.4f}".format(TMB[3]) + "\t" + "{:.2f}".format(TMB[4]) + "\n"
+                variant[0] + "\t" + "{:.4f}".format(variant[1]) + "\t" + "{:.4f}".format(variant[2]) + "\t" +
+                "\t" + "{:.4f}".format(variant[3]) + "\t" + "{:.2f}".format(variant[4]) + "\n"
             )
 
 
@@ -197,6 +223,7 @@ if __name__ == "__main__":
         open(snakemake.output.tmb, "w"),
         snakemake.params.filter_genes,
         snakemake.params.filter_nr_observations,
+        snakemake.params.filter_regions,
         snakemake.params.dp_limit,
         snakemake.params.vd_limit,
         snakemake.params.af_lower_limit,
@@ -208,4 +235,5 @@ if __name__ == "__main__":
         snakemake.params.background_sd_limit,
         snakemake.params.nr_avg_germline_snvs,
         snakemake.params.nssnv_tmb_correction,
+        snakemake.params.variant_type_list,
     )
