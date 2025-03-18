@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.5.0...v0.6.0) (2025-03-18)
+
+
+### Features
+
+* improved ctDNA tmb ([a48af38](https://www.github.com/hydra-genetics/biomarker/commit/a48af38e58ae13fec0d7fc5454e0cd09e0cc8667))
+
 ## [0.5.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.4.1...v0.5.0) (2024-11-27)
 
 
