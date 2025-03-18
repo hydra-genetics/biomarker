@@ -21,9 +21,11 @@ rule tmb:
         dp_limit=config.get("tmb", {}).get("dp_limit", 200),
         filter_genes=config.get("tmb", {}).get("filter_genes", ""),
         filter_nr_observations=config.get("tmb", {}).get("filter_nr_observations", 1),
+        filter_regions=config.get("tmb", {}).get("filter_regions", []),
         gnomad_limit=config.get("tmb", {}).get("gnomad_limit", 0.0001),
         nr_avg_germline_snvs=config.get("tmb", {}).get("nr_avg_germline_snvs", 2.0),
         nssnv_tmb_correction=config.get("tmb", {}).get("nssnv_tmb_correction", 0.84),
+        variant_type_list=config.get("tmb", {}).get("variant_type_list", ["missense_variant", "stop_gained", "stop_lost"]),
         vd_limit=config.get("tmb", {}).get("vd_limit", 20),
     log:
         "biomarker/tmb/{sample}_{type}.TMB.txt.log",

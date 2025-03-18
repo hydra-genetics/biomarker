@@ -160,6 +160,12 @@ properties:
       filter_nr_observations:
         type: integer
         description: filter all variants that has been observed before >= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is not used.
+      filter_regions:
+        type: array
+        description: list of bedfiles
+        items:
+          type: string
+          description: BED file with chromosomal regions that are used to filter out potential artifact variants
       gnomad_limit:
         type: number
         description: filter all variants with found in GnomAD witn MAF > gnomad_limit
@@ -169,6 +175,12 @@ properties:
       nssnv_tmb_correction:
         type: number
         description: design dependent TMB correction factor dependent on design size or correlation to commercial panels like TSO500
+      variant_type_list:
+        type: array
+        description: list of variant types
+        items:
+          type: string
+          description: Variant types that should be included in the in the TMB calculations ("missense_variant", "synonymous_variant", "stop_gained", "stop_lost")
       vd_limit:
         type: integer
         description: filter all variants with variants reads < vd_limit
