@@ -18,6 +18,8 @@ def cnvkit_2_scarhrd(cnvkitseg_filename, scrahrdseg):
             header = False
             continue
         chrom = columns[header_dict["chromosome"]]
+        if "chr" not in chrom:
+            chrom = f"chr{chrom}"
         start_pos = columns[header_dict["start"]]
         end_pos = columns[header_dict["end"]]
         total_cn = int(columns[header_dict["cn"]])
