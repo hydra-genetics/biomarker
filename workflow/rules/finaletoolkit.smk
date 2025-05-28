@@ -49,7 +49,7 @@ rule finaletoolkit_mds:
     benchmark:
         repeat(
             "biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt.benchmark.tsv",
-            config.get("finaletoolkit_mds", {}).get("benchmark_repeats", 1)
+            config.get("finaletoolkit_mds", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("finaletoolkit_mds", {}).get("threads", config["default_resources"]["threads"])
     resources:
@@ -65,4 +65,4 @@ rule finaletoolkit_mds:
     shell:
         "finaletoolkit mds "
         "{input.end_motifs} "
-        "> {output.mds} >& {log}"
+        "> {output.mds} 2> {log}"

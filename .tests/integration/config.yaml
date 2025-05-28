@@ -7,7 +7,7 @@ default_container: "docker://hydragenetics/common:3.0.0"
 reference:
   background: "references/background_panel_small.tsv"
   artifacts: "references/artifact_positions_chr1.txt"
-  fasta_2bit: "references/WASH7P_2.fasta.2bit"
+  fasta_2bit: "references/HES45.fa.2bit"
 
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
