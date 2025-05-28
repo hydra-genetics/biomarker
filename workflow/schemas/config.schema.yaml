@@ -55,6 +55,17 @@ properties:
         type: string
         description: parameters that should be forwarded
 
+  finaletoolkit_mds:
+    type: object
+    description: parameters for finaletoolkit_mds
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
   fix_scarhrd_output:
     type: object
     description: parameters for fix_scarhrd_output

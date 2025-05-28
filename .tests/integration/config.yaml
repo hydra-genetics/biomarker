@@ -12,6 +12,9 @@ reference:
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
 
+finaletoolkit_mds:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
 optitype:
   #container: "docker://hydragenetics/optitype:1.3.5"
   container: "docker://fred2/optitype:release-v1.3.1"
