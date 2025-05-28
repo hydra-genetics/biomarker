@@ -9,9 +9,8 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: python
-          package-name: hydra-genetics
-          default-branch: master
+          target-branch: master
