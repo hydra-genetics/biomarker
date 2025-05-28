@@ -61,4 +61,12 @@ def compile_output_list(wildcards):
             for t in get_unit_types(units, sample)
         ]
     )
-    return of
+    # Intergration testing does not work for small fastq files
+    # of.append(
+    #     [
+    #         "biomarker/finaletoolkit_end_motifs/%s_%s.end-motifs.tsv" % (sample, t)
+    #         for sample in get_samples(samples)
+    #         for t in get_unit_types(units, sample)
+    #     ]
+    # )
+    # return of

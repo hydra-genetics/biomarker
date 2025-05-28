@@ -41,6 +41,20 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
+  finaletoolkit_end_motifs:
+    type: object
+    description: parameters for finaletoolkit_end_motifs
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+
   fix_scarhrd_output:
     type: object
     description: parameters for fix_scarhrd_output
@@ -184,5 +198,4 @@ properties:
       vd_limit:
         type: integer
         description: filter all variants with variants reads < vd_limit
-
 

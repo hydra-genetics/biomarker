@@ -130,3 +130,29 @@ properties:
           tmb:
             type: string
             description: Text file with TMB score
+
+
+  finaletoolkit_end_motifs:
+    type: object
+    description: input and output parameters for finaletoolkit_end_motifs
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: Bam file
+          bai:
+            type: string
+            description: Bam index file
+          reference:
+            type: string
+            description: reference genome 2bit fasta file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          end_motifs:
+            type: string
+            description: End motif frequencies in plasma sample

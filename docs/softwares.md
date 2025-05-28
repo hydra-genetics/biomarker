@@ -23,6 +23,29 @@ Script that modifies the cnvkit segmentation file so that it can be used by scar
 
 ---
 
+## [finaletoolkit_end_motifs](https://github.com/epifluidlab/FinaleToolkit/wiki/End-Motifs)
+Use the finaletoolkit package to calculate end motif frequencies in plasma samples
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__finaletoolkit__finaletoolkit_end_motifs#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__finaletoolkit__finaletoolkit_end_motifs#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__finaletoolkit_end_motifs#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__finaletoolkit_end_motifs#
+
+---
+
 ## [fix_scarhrd_output](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/fix_scarhrd_output.py)
 Script that modifies the scarhrd output for improved readability of the resulting score.
 
@@ -135,3 +158,5 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 #### Resources settings (`resources.yaml`)
 
 #RESOURCESSCHEMA__tmb#
+
+
