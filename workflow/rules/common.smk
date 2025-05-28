@@ -69,4 +69,4 @@ def compile_output_list(wildcards):
     #         for t in get_unit_types(units, sample)
     #     ]
     # )
-    # return of
+    return of
