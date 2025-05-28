@@ -43,7 +43,7 @@ rule finaletoolkit_mds:
     input:
         end_motifs="biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv",
     output:
-        mds="biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt",
+        mds=temp("biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt"),
     log:
         "biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt.log",
     benchmark:
