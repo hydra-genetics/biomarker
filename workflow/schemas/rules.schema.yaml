@@ -46,6 +46,28 @@ properties:
             type: string
             description: End motif frequencies in plasma sample
 
+  finaletoolkit_frag_length_bins:
+    type: object
+    description: input and output parameters for finaletoolkit_frag_length_bins
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: Bam file
+          bai:
+            type: string
+            description: Bam index file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          frag_len_bins:
+            type: string
+            description: histogram data with fragment length fraction for each bin (default bin size 1)
+
   finaletoolkit_mds:
     type: object
     description: input and output parameters for finaletoolkit_mds

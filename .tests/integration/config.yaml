@@ -12,6 +12,9 @@ reference:
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
 
+finaletoolkit_frag_length_bins:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
 finaletoolkit_mds:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
 

@@ -55,6 +55,20 @@ properties:
         type: string
         description: parameters that should be forwarded
 
+  finaletoolkit_frag_length_bins:
+    type: object
+    description: parameters for finaletoolkit_frag_length_bins
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+
   finaletoolkit_mds:
     type: object
     description: parameters for finaletoolkit_mds

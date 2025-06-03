@@ -75,4 +75,11 @@ def compile_output_list(wildcards):
             for t in get_unit_types(units, sample)
         ]
     )
+    of.append(
+        [
+            "biomarker/finaletoolkit_frag_length_bins/%s_%s_frag-length-bins.tsv" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
+    )
     return of

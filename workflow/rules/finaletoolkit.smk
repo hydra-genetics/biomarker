@@ -66,3 +66,38 @@ rule finaletoolkit_mds:
         "finaletoolkit mds "
         "{input.end_motifs} "
         "> {output.mds} 2> {log}"
+
+
+rule finaletoolkit_frag_length_bins:
+    input:
+        bam="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam",
+        bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
+    output:
+        frag_len_bins=temp("biomarker/finaletoolkit_frag_length_bins/{sample}_{type}_frag-length-bins.tsv"),
+    params:
+        extra=config.get("finaletoolkit_frag_length_bins", {}).get("extra", ""),
+    log:
+        "biomarker/finaletoolkit_frag_length_bins/{sample}_{type}_frag-length-bins.tsv.log",
+    benchmark:
+        repeat(
+            "biomarker/finaletoolkit_frag_length_bins/{sample}_{type}_frag-length-bins.tsv.benchmark.tsv",
+            config.get("finaletoolkit_frag_length_bins", {}).get("benchmark_repeats", 1),
+        )
+    threads: config.get("finaletoolkit_frag_length_bins", {}).get("threads", config["default_resources"]["threads"])
+    resources:
+        mem_mb=config.get("finaletoolkit_frag_length_bins", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
+        mem_per_cpu=config.get("finaletoolkit_frag_length_bins", {}).get(
+            "mem_per_cpu", config["default_resources"]["mem_per_cpu"]
+        ),
+        partition=config.get("finaletoolkit_frag_length_bins", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("finaletoolkit_frag_length_bins", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("finaletoolkit_frag_length_bins", {}).get("time", config["default_resources"]["time"]),
+    container:
+        config.get("finaletoolkit_frag_length_bins", {}).get("container", config["default_container"])
+    message:
+        "{rule}: Calculate histogram with fragment lengths into {output.frag_len_bins}"
+    shell:
+        "finaletoolkit frag-length-bins "
+        "-o {output.frag_len_bins} "
+        "{params.extra} "
+        "{input.bam} >& {log}"
