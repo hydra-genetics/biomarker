@@ -82,4 +82,11 @@ def compile_output_list(wildcards):
             for t in get_unit_types(units, sample)
         ]
     )
+    of.append(
+        [
+            "biomarker/fragmentomics_fragment_length_patient_score/%s_%s.fragment_length_patient_score.txt" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
+    )
     return of

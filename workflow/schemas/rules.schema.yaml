@@ -106,6 +106,31 @@ properties:
             type: string
             description: Modified scarhrd output file with corrected column order
 
+  fragmentomics_fragment_length_patient_score:
+    type: object
+    description: input and output parameters for fragmentomics_fragment_length_patient_score
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: Bam file
+          bai:
+            type: string
+            description: Bam index file
+          reference_set:
+            type: string
+            description: reference fragment length frequency distribution data used for the fragment length patient score calculation
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          patient_score:
+            type: string
+            description: fragment length patient score
+
   msisensor_pro:
     type: object
     description: input and output parameters for msisensor_pro

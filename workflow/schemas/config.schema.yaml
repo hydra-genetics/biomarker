@@ -91,6 +91,20 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
+  fragmentomics_fragment_length_patient_score:
+    type: object
+    description: parameters for fragmentomics_fragment_length_patient_score
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+
   msisensor_pro:
     type: object
     description: parameters for msisensor_pro
@@ -223,4 +237,3 @@ properties:
       vd_limit:
         type: integer
         description: filter all variants with variants reads < vd_limit
-

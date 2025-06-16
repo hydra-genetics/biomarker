@@ -113,6 +113,29 @@ Script that modifies the scarhrd output for improved readability of the resultin
 
 ---
 
+## [fragmentomics_fragment_length_patient_score](https://github.com/pughlab/fragmentomics/tree/main/fragment_score)
+Calculates a fragment length score for each cfDNA sample in order to get an indication of the ctDNA content level.
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__fragmentomics__fragmentomics_fragment_length_patient_score#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__fragmentomics__fragmentomics_fragment_length_patient_score#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__fragmentomics_fragment_length_patient_score#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__fragmentomics_fragment_length_patient_score#
+
+---
+
 ## [msisensor_pro](https://github.com/xjtu-omics/msisensor-pro)
 Calculates the % of microsatelites detected that are instable which can be used to determine MSS or MSI status.
 
@@ -202,6 +225,4 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 #### Resources settings (`resources.yaml`)
 
 #RESOURCESSCHEMA__tmb#
-
-
 

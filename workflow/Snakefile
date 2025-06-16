@@ -5,6 +5,7 @@ __license__ = "GPL-3"
 
 
 include: "rules/common.smk"
+include: "rules/fragmentomics.smk"
 include: "rules/finaletoolkit.smk"
 include: "rules/msisensor_pro.smk"
 include: "rules/optitype.smk"
