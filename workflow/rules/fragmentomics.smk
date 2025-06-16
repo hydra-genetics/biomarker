@@ -10,7 +10,9 @@ rule fragmentomics_fragment_length_patient_score:
         bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
         reference_set=config.get("fragmentomics_fragment_length_patient_score", {}).get("reference_set", ""),
     output:
-        patient_score=temp("biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt"),
+        patient_score=temp(
+            "biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt"
+        ),
     log:
         "biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt.log",
     benchmark:
