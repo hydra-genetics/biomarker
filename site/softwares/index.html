@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Softwares - biomarkers</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Softwares";
+        var mkdocs_page_input_path = "softwares.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> biomarkers
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Softwares</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#cnvkit2scarhrd">cnvkit2scarhrd</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finaletoolkit_end_motifs">finaletoolkit_end_motifs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_1">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_1">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_1">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_1">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_1">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finaletoolkit_interval_end_motifs">finaletoolkit_interval_end_motifs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_2">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_2">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_2">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_2">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_2">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finaletoolkit_mds">finaletoolkit_mds</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_3">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_3">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_3">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_3">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_3">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finaletoolkit_interval_mds">finaletoolkit_interval_mds</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_4">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_4">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_4">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_4">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_4">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finaletoolkit_frag_length_bins">finaletoolkit_frag_length_bins</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_5">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_5">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_5">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_5">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_5">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fix_scarhrd_output">fix_scarhrd_output</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_6">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_6">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_6">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_6">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_6">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fragmentomics_fragment_length_patient_score">fragmentomics_fragment_length_patient_score</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_7">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_7">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_7">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_7">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_7">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#msisensor_pro">msisensor_pro</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_8">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_8">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_8">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_8">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_8">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#msisensor_pro_filter_sites">msisensor_pro_filter_sites</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_9">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_9">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_9">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_9">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_9">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scarhrd">scarhrd</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_10">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_10">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_10">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_10">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_10">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tmb">tmb</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rule_11">Rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-output-files_11">input / output files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_11">Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#software-settings-configyaml_11">Software settings (config.yaml)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resources-settings-resourcesyaml_11">Resources settings (resources.yaml)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">biomarkers</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Softwares</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="softwares-used-in-the-biomarker-module">Softwares used in the biomarker module</h1>
+<h2 id="cnvkit2scarhrd"><a href="https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/cnvkit2scarhrd.py">cnvkit2scarhrd</a></h2>
+<p>Script that modifies the cnvkit segmentation file so that it can be used by scarhrd.</p>
+<h3 id="rule"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule cnvkit2scarhrd:
+    input:
+        seg=&quot;cnv_sv/cnvkit_call/{sample}_{type}.{tc_method}.loh.cns&quot;,
+    output:
+        seg=temp(&quot;biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns&quot;),
+    log:
+        &quot;biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns.benchmark.tsv&quot;,
+            config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;cnvkit2scarhrd&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: convert cnvkit segmentation files to scarhrd input: {output.seg}&quot;
+    script:
+        &quot;../scripts/cnvkit2scarhrd.py&quot;
+</code></pre>
+<h4 id="input-output-files"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>seg</td>
+<td><code>"cnv_sv/cnvkit_call/{sample}_{type}.{tc_method}.loh.cns"</code></td>
+<td>Original cnvkit segmentation file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>seg</td>
+<td><code>"biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns"</code></td>
+<td>Modified cnvkit segmentation file used by scarhrd</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="finaletoolkit_end_motifs"><a href="https://github.com/epifluidlab/FinaleToolkit/wiki/End-Motifs">finaletoolkit_end_motifs</a></h2>
+<p>Use the finaletoolkit package to calculate end motif frequencies in plasma samples</p>
+<h3 id="rule_1"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule finaletoolkit_end_motifs:
+    input:
+        bam=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam&quot;,
+        bai=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai&quot;,
+        reference=config.get(&quot;reference&quot;, {}).get(&quot;fasta_2bit&quot;, &quot;&quot;),
+    output:
+        end_motifs=temp(&quot;biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv&quot;),
+    params:
+        extra=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;extra&quot;, &quot;&quot;),
+    log:
+        &quot;biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv.benchmark.tsv&quot;,
+            config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;finaletoolkit_end_motifs&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculate end motif frequencies in plasma samples into {output.end_motifs}&quot;
+    shell:
+        &quot;finaletoolkit end-motifs &quot;
+        &quot;{input.bam} &quot;
+        &quot;{input.reference} &quot;
+        &quot;{params.extra} &quot;
+        &quot;-o {output.end_motifs} &quot;
+        &quot;{params.extra} &gt;&amp; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_1"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3" style="vertical-align:top;">input</td>
+<td>bam</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam"</code></td>
+<td>Bam file</td>
+</tr>
+<tr>
+<td>bai</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai"</code></td>
+<td>Bam index file</td>
+</tr>
+<tr>
+<td>reference</td>
+<td><code>config.get("reference", {}).get("fasta_2bit", "")</code></td>
+<td>reference genome 2bit fasta file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>end_motifs</td>
+<td><code>"biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv"</code></td>
+<td>End motif frequencies in plasma sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_1"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_1">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>string</td>
+<td>parameters that should be forwarded</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_1">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finaletoolkit_interval_end_motifs"><a href="https://github.com/epifluidlab/FinaleToolkit/wiki/End-Motifs#interval-end-motifs">finaletoolkit_interval_end_motifs</a></h2>
+<p>Use the finaletoolkit package to calculate end motif frequencies for each region in plasma samples</p>
+<h3 id="rule_2"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule finaletoolkit_interval_end_motifs:
+    input:
+        bam=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam&quot;,
+        bai=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai&quot;,
+        design_bed=config.get(&quot;reference&quot;, {}).get(&quot;design_bed&quot;, &quot;&quot;),
+        reference=config.get(&quot;reference&quot;, {}).get(&quot;fasta_2bit&quot;, &quot;&quot;),
+    output:
+        interval_end_motifs=temp(&quot;biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv&quot;),
+    params:
+        extra=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;extra&quot;, &quot;&quot;),
+    log:
+        &quot;biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv.benchmark.tsv&quot;,
+            config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(
+            &quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]
+        ),
+        partition=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;finaletoolkit_interval_end_motifs&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculate end motif frequencies for each region in bed file in plasma samples into {output.interval_end_motifs}&quot;
+    shell:
+        &quot;finaletoolkit interval-end-motifs &quot;
+        &quot;{input.bam} &quot;
+        &quot;{input.reference} &quot;
+        &quot;{input.design_bed} &quot;
+        &quot;{params.extra} &quot;
+        &quot;-o {output.interval_end_motifs} &gt; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_2"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="4" style="vertical-align:top;">input</td>
+<td>bam</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam"</code></td>
+<td>Bam file</td>
+</tr>
+<tr>
+<td>bai</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai"</code></td>
+<td>Bam index file</td>
+</tr>
+<tr>
+<td>design_bed</td>
+<td><code>config.get("reference", {}).get("design_bed", "")</code></td>
+<td>Bed file used to define regions that should be analyzed separately</td>
+</tr>
+<tr>
+<td>reference</td>
+<td><code>config.get("reference", {}).get("fasta_2bit", "")</code></td>
+<td>reference genome 2bit fasta file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>interval_end_motifs</td>
+<td><code>"biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv"</code></td>
+<td>End motif frequencies for each region in a plasma sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_2"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_2">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>string</td>
+<td>parameters that should be forwarded</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_2">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finaletoolkit_mds"><a href="https://github.com/epifluidlab/FinaleToolkit/wiki/Motif-Diversity-Score">finaletoolkit_mds</a></h2>
+<p>Use the finaletoolkit package to calculate the motif diversity score in plasma samples. The score is based on end motif frequencies generated by the rule finaletoolkit_end_motifs.</p>
+<h3 id="rule_3"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule finaletoolkit_mds:
+    input:
+        end_motifs=&quot;biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv&quot;,
+    output:
+        mds=temp(&quot;biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt&quot;),
+    log:
+        &quot;biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt.benchmark.tsv&quot;,
+            config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;finaletoolkit_mds&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculate mds based on end motif frequencies in plasma samples into {output.mds}&quot;
+    shell:
+        &quot;finaletoolkit mds &quot;
+        &quot;{input.end_motifs} &quot;
+        &quot;&gt; {output.mds} 2&gt; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_3"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>end_motifs</td>
+<td><code>"biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv"</code></td>
+<td>End motif frequencies in plasma sample generated by rule finaletoolkit_end_motifs</td>
+</tr>
+<tr>
+<td>output</td>
+<td>mds</td>
+<td><code>"biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt"</code></td>
+<td>Motif diversity score (MDS) for a plasma sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_3"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_3">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_3">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finaletoolkit_interval_mds"><a href="https://github.com/epifluidlab/FinaleToolkit/wiki/Motif-Diversity-Score#interval-mds">finaletoolkit_interval_mds</a></h2>
+<p>Use the finaletoolkit package to calculate the motif diversity score for each region in bed file in plasma samples. The score is based on end motif frequencies generated by the rule finaletoolkit_interval_end_motifs.</p>
+<h3 id="rule_4"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule finaletoolkit_interval_mds:
+    input:
+        interval_end_motifs=&quot;biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv&quot;,
+    output:
+        interval_mds=temp(&quot;biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt&quot;),
+    log:
+        &quot;biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt.benchmark.tsv&quot;,
+            config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;finaletoolkit_interval_mds&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculate mds based on interval end motif frequencies in plasma samples into {output.interval_mds}&quot;
+    shell:
+        &quot;finaletoolkit interval-mds &quot;
+        &quot;{input.interval_end_motifs} &quot;
+        &quot;{output.interval_mds} &gt; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_4"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>interval_end_motifs</td>
+<td><code>"biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv"</code></td>
+<td>End motif frequencies for each region in a plasma sample generated by rule finaletoolkit_interval_end_motifs</td>
+</tr>
+<tr>
+<td>output</td>
+<td>interval_mds</td>
+<td><code>"biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt"</code></td>
+<td>Motif diversity score (MDS) for each region for a plasma sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_4"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_4">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_4">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finaletoolkit_frag_length_bins"><a href="https://epifluidlab.github.io/FinaleToolkit/documentation/cli_reference/index.html#frag-length-bins">finaletoolkit_frag_length_bins</a></h2>
+<p>Calculate histogram with fragment lengths from bam file from a plasma sample</p>
+<h3 id="rule_5"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule finaletoolkit_frag_length_bins:
+    input:
+        bam=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam&quot;,
+        bai=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai&quot;,
+    output:
+        frag_len_bins=temp(&quot;biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv&quot;),
+    params:
+        extra=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;extra&quot;, &quot;&quot;),
+    log:
+        &quot;biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv.benchmark.tsv&quot;,
+            config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(
+            &quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]
+        ),
+        partition=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;finaletoolkit_frag_length_bins&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculate histogram with fragment lengths into {output.frag_len_bins}&quot;
+    shell:
+        &quot;finaletoolkit frag-length-bins &quot;
+        &quot;-o {output.frag_len_bins} &quot;
+        &quot;{params.extra} &quot;
+        &quot;{input.bam} &gt;&amp; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_5"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2" style="vertical-align:top;">input</td>
+<td>bam</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam"</code></td>
+<td>Bam file</td>
+</tr>
+<tr>
+<td>bai</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai"</code></td>
+<td>Bam index file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>frag_len_bins</td>
+<td><code>"biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv"</code></td>
+<td>histogram data with fragment length fraction for each bin (default bin size 1)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_5"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_5">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>string</td>
+<td>parameters that should be forwarded</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_5">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fix_scarhrd_output"><a href="https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/fix_scarhrd_output.py">fix_scarhrd_output</a></h2>
+<p>Script that modifies the scarhrd output for improved readability of the resulting score.</p>
+<h3 id="rule_6"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule fix_scarhrd_output:
+    input:
+        hrd=&quot;biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt&quot;,
+    output:
+        hrd=temp(&quot;biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt&quot;),
+    log:
+        &quot;biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_score.txt.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_score.txt.benchmark.tsv&quot;,
+            config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;fix_scarhrd_output&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: fix scarhrd output into {output.hrd}&quot;
+    script:
+        &quot;../scripts/fix_scarhrd_output.py&quot;
+</code></pre>
+<h4 id="input-output-files_6"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>hrd</td>
+<td><code>"biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt"</code></td>
+<td>Original scarhrd output file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>hrd</td>
+<td><code>"biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt"</code></td>
+<td>Modified scarhrd output file with corrected column order</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_6"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_6">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_6">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fragmentomics_fragment_length_patient_score"><a href="https://github.com/pughlab/fragmentomics/tree/main/fragment_score">fragmentomics_fragment_length_patient_score</a></h2>
+<p>Calculates a fragment length score for each cfDNA sample in order to get an indication of the ctDNA content level.</p>
+<h3 id="rule_7"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule fragmentomics_fragment_length_patient_score:
+    input:
+        bam=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam&quot;,
+        bai=&quot;alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai&quot;,
+        reference_set=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;reference_set&quot;, &quot;&quot;),
+    output:
+        patient_score=temp(
+            &quot;biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt&quot;
+        ),
+    log:
+        &quot;biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt.benchmark.tsv&quot;,
+            config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(
+            &quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]
+        ),
+        partition=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(
+            &quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]
+        ),
+        threads=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(
+            &quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]
+        ),
+        time=config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;fragmentomics_fragment_length_patient_score&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: Calculates a fragment length score and store in {output.patient_score}&quot;
+    script:
+        &quot;../scripts/patient_score.R&quot;
+</code></pre>
+<h4 id="input-output-files_7"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3" style="vertical-align:top;">input</td>
+<td>bam</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam"</code></td>
+<td>Bam file</td>
+</tr>
+<tr>
+<td>bai</td>
+<td><code>"alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai"</code></td>
+<td>Bam index file</td>
+</tr>
+<tr>
+<td>reference_set</td>
+<td><code>config.get("fragmentomics_fragment_length_patient_score", {}).get("reference_set", "")</code></td>
+<td>reference fragment length frequency distribution data used for the fragment length patient score calculation</td>
+</tr>
+<tr>
+<td>output</td>
+<td>patient_score</td>
+<td><code>"biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt"</code></td>
+<td>fragment length patient score</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_7"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_7">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>string</td>
+<td>parameters that should be forwarded</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_7">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="msisensor_pro"><a href="https://github.com/xjtu-omics/msisensor-pro">msisensor_pro</a></h2>
+<p>Calculates the % of microsatelites detected that are instable which can be used to determine <abbr title="Microsatellite stable">MSS</abbr> or <abbr title="Microsatellite instability">MSI</abbr> status.</p>
+<h3 id="rule_8"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule msisensor_pro:
+    input:
+        bam=&quot;alignment/samtools_merge_bam/{sample}_{type}.bam&quot;,
+        bai=&quot;alignment/samtools_merge_bam/{sample}_{type}.bam.bai&quot;,
+        PoN=&quot;biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline&quot;,
+    output:
+        msi_score=temp(&quot;biomarker/msisensor_pro/{sample}_{type}&quot;),
+        msi_all=temp(&quot;biomarker/msisensor_pro/{sample}_{type}_all&quot;),
+        msi_dis=temp(&quot;biomarker/msisensor_pro/{sample}_{type}_dis&quot;),
+        msi_unstable=temp(&quot;biomarker/msisensor_pro/{sample}_{type}_unstable&quot;),
+    params:
+        extra=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;extra&quot;, &quot;-c 50 -b 2&quot;),
+        out_prefix=&quot;biomarker/msisensor_pro/{sample}_{type}&quot;,
+    log:
+        &quot;biomarker/msisensor_pro/{sample}_{type}.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/msisensor_pro/{sample}_{type}.benchmark.tsv&quot;, config.get(&quot;msisensor_pro&quot;, {}).get(&quot;benchmark_repeats&quot;, 1)
+        )
+    threads: config.get(&quot;msisensor_pro&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;msisensor_pro&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;msisensor_pro&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: calculate MSI-status in msisensor_pro/{rule}/{wildcards.sample}_{wildcards.type}&quot;
+    shell:
+        &quot;(msisensor-pro pro {params.extra} -d {input.PoN} -t {input.bam} -o {params.out_prefix}) &amp;&gt; {log}&quot;
+</code></pre>
+<h4 id="input-output-files_8"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3" style="vertical-align:top;">input</td>
+<td>bam</td>
+<td><code>"alignment/samtools_merge_bam/{sample}_{type}.bam"</code></td>
+<td>Bam file</td>
+</tr>
+<tr>
+<td>bai</td>
+<td><code>"alignment/samtools_merge_bam/{sample}_{type}.bam.bai"</code></td>
+<td>Bam index file</td>
+</tr>
+<tr>
+<td><abbr title="Panel of normal">PoN</abbr></td>
+<td><code>"biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline"</code></td>
+<td>Filtered panel of normal created by msisensor_pro based on <abbr title="Microsatellite instability">MSI</abbr>-negative samples</td>
+</tr>
+<tr>
+<td rowspan="4" style="vertical-align:top;">output</td>
+<td>msi_score</td>
+<td><code>"biomarker/msisensor_pro/{sample}_{type}"</code></td>
+<td>Text file with the <abbr title="Microsatellite instability">MSI</abbr> score in % sites with instability</td>
+</tr>
+<tr>
+<td>msi_all</td>
+<td><code>"biomarker/msisensor_pro/{sample}_{type}_all"</code></td>
+<td>All detected microsatelites</td>
+</tr>
+<tr>
+<td>msi_dis</td>
+<td><code>"biomarker/msisensor_pro/{sample}_{type}_dis"</code></td>
+<td>Discarded microsatelites</td>
+</tr>
+<tr>
+<td>msi_unstable</td>
+<td><code>"biomarker/msisensor_pro/{sample}_{type}_unstable"</code></td>
+<td>All <abbr title="Microsatellite instability">MSI</abbr> sites</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_8"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_8">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>string</td>
+<td>parameters that should be forwarded</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_8">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="msisensor_pro_filter_sites"><a href="https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/msisensor_pro_filter_sites.py">msisensor_pro_filter_sites</a></h2>
+<p>Script that takes the <abbr title="Panel of normal">PoN</abbr> for MSISensorPro and creates a new <abbr title="Panel of normal">PoN</abbr> with only msi sites found in the supplied bedfile. If bedfile is set to empty string no filtering is performed.</p>
+<h3 id="rule_9"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule msisensor_pro_filter_sites:
+    input:
+        PoN=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;PoN&quot;, &quot;&quot;),
+    output:
+        PoN=temp(&quot;biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline&quot;),
+    params:
+        msi_sites_bed=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;msi_sites_bed&quot;, &quot;&quot;),
+    log:
+        &quot;biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline.benchmark.tsv&quot;,
+            config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;msisensor_pro_filter_sites&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: filter msi sites in {input.PoN} into {output.PoN}&quot;
+    script:
+        &quot;../scripts/msisensor_pro_filter_sites.py&quot;
+</code></pre>
+<h4 id="input-output-files_9"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><abbr title="Panel of normal">PoN</abbr></td>
+<td><code>config.get("msisensor_pro_filter_sites", {}).get("PoN", "")</code></td>
+<td>Panel of normal created by msisensor_pro based on <abbr title="Microsatellite instability">MSI</abbr>-negative samples</td>
+</tr>
+<tr>
+<td>output</td>
+<td><abbr title="Panel of normal">PoN</abbr></td>
+<td><code>"biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline"</code></td>
+<td>Filtered panel of normal, were the filtering is based on sites in the msi bedfile</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_9"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_9">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>msi_sites</td>
+<td>string</td>
+<td>Bed file for choosing specific msi sites to analyze. Set to empty string for no filtering.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_9">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>max memory in MB to be available</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="scarhrd"><a href="https://github.com/sztup/scarHRD">scarhrd</a></h2>
+<p>Calculates a <abbr title="Homologous recombination deficiency">HRD</abbr> score by the sum of three different scores that counts the number of cnv events found. The program uses an external segmentation file from for example cnvkit.</p>
+<h3 id="rule_10"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule scarhrd:
+    input:
+        seg_cnvkit=&quot;biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns&quot;,
+    output:
+        hrd=temp(&quot;biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt&quot;),
+    params:
+        hrd_dir=directory(&quot;biomarker/scarhrd/{sample}_{type}.{tc_method}/&quot;),
+        reference_name=config.get(&quot;scarhrd&quot;, {}).get(&quot;reference_name&quot;, &quot;grch37&quot;),
+        seqz=config.get(&quot;scarhrd&quot;, {}).get(&quot;seqz&quot;, False),
+    log:
+        &quot;biomarker/scarhrd/{sample}_{type}.{tc_method}_HRDresults.txt.log&quot;,
+    benchmark:
+        repeat(
+            &quot;biomarker/scarhrd/{sample}_{type}.{tc_method}_HRDresults.txt.benchmark.tsv&quot;,
+            config.get(&quot;scarhrd&quot;, {}).get(&quot;benchmark_repeats&quot;, 1),
+        )
+    threads: config.get(&quot;scarhrd&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;scarhrd&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;scarhrd&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;scarhrd&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;scarhrd&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;scarhrd&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;scarhrd&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: calculate hrd on {input.seg_cnvkit}&quot;
+    # TODO: Add wrapper in order to remove output directory
+    shell:
+        &quot;(Rscript -e 'scarHRD::scar_score( &quot;
+        '&quot;{input.seg_cnvkit}&quot;, '
+        'reference=&quot;{params.reference_name}&quot;, '
+        'seqz=&quot;{params.seqz}&quot;, '
+        'outputdir=&quot;{params.hrd_dir}&quot;)\') &amp;&gt; {log}'
+</code></pre>
+<h4 id="input-output-files_10"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>seg_cnvkit</td>
+<td><code>"biomarker/cnvkit2scarhrd/{sample}_{type}.{tc_method}.scarhrd.cns"</code></td>
+<td>Modified cnvkit segmentation file from fix_scarhrd_output</td>
+</tr>
+<tr>
+<td>output</td>
+<td>hrd</td>
+<td><code>"biomarker/scarhrd/{sample}_{type}.{tc_method}/{sample}_{type}.{tc_method}_HRDresults.txt"</code></td>
+<td>Text file reporting the <abbr title="Homologous recombination deficiency">HRD</abbr> score</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_10"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_10">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>reference_name</td>
+<td>string</td>
+<td>references name (grch37, grch38)</td>
+</tr>
+<tr>
+<td>seqz</td>
+<td>boolean</td>
+<td>if sequeze file is produced by Sequenza or not (False, True)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_10">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>memory in MB used per cpu</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tmb"><a href="https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/tmb.py">tmb</a></h2>
+<p>Python script that calculates the tumor mutational burden. Filters the vcf file based on vep annotations to obtain a confident set of somatic <abbr title="Non-synonymous single nucleotide variations">nsSNVs</abbr>. The file can optionally be filtered by an artifact and background noise file. </p>
+<h3 id="rule_11"><img alt="🐍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f40d.svg" title=":snake:" /> Rule</h3>
+<pre><code>rule tmb:
+    input:
+        vcf=&quot;annotation/background_annotation/{sample}_{type}.background_annotation.vcf.gz&quot;,
+    output:
+        tmb=temp(&quot;biomarker/tmb/{sample}_{type}.TMB.txt&quot;),
+    params:
+        af_germline_lower_limit=config.get(&quot;tmb&quot;, {}).get(&quot;af_germline_lower_limit&quot;, 0.47),
+        af_germline_upper_limit=config.get(&quot;tmb&quot;, {}).get(&quot;af_germline_upper_limit&quot;, 0.53),
+        af_lower_limit=config.get(&quot;tmb&quot;, {}).get(&quot;af_lower_limit&quot;, 0.05),
+        af_upper_limit=config.get(&quot;tmb&quot;, {}).get(&quot;af_upper_limit&quot;, 0.95),
+        artifacts=config.get(&quot;tmb&quot;, {}).get(&quot;artifacts&quot;, &quot;&quot;),
+        background_panel=config.get(&quot;tmb&quot;, {}).get(&quot;background&quot;, &quot;&quot;),
+        background_sd_limit=config.get(&quot;tmb&quot;, {}).get(&quot;background_sd_limit&quot;, 5),
+        db1000g_limit=config.get(&quot;tmb&quot;, {}).get(&quot;db1000g_limit&quot;, 0.0001),
+        dp_limit=config.get(&quot;tmb&quot;, {}).get(&quot;dp_limit&quot;, 200),
+        filter_genes=config.get(&quot;tmb&quot;, {}).get(&quot;filter_genes&quot;, &quot;&quot;),
+        filter_nr_observations=config.get(&quot;tmb&quot;, {}).get(&quot;filter_nr_observations&quot;, 1),
+        filter_regions=config.get(&quot;tmb&quot;, {}).get(&quot;filter_regions&quot;, []),
+        gnomad_limit=config.get(&quot;tmb&quot;, {}).get(&quot;gnomad_limit&quot;, 0.0001),
+        nr_avg_germline_snvs=config.get(&quot;tmb&quot;, {}).get(&quot;nr_avg_germline_snvs&quot;, 2.0),
+        nssnv_tmb_correction=config.get(&quot;tmb&quot;, {}).get(&quot;nssnv_tmb_correction&quot;, 0.84),
+        variant_type_list=config.get(&quot;tmb&quot;, {}).get(&quot;variant_type_list&quot;, [&quot;missense_variant&quot;, &quot;stop_gained&quot;, &quot;stop_lost&quot;]),
+        vd_limit=config.get(&quot;tmb&quot;, {}).get(&quot;vd_limit&quot;, 20),
+    log:
+        &quot;biomarker/tmb/{sample}_{type}.TMB.txt.log&quot;,
+    benchmark:
+        repeat(&quot;biomarker/tmb/{sample}_{type}.TMB.txt.benchmark.tsv&quot;, config.get(&quot;tmb&quot;, {}).get(&quot;benchmark_repeats&quot;, 1))
+    threads: config.get(&quot;tmb&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;])
+    resources:
+        mem_mb=config.get(&quot;tmb&quot;, {}).get(&quot;mem_mb&quot;, config[&quot;default_resources&quot;][&quot;mem_mb&quot;]),
+        mem_per_cpu=config.get(&quot;tmb&quot;, {}).get(&quot;mem_per_cpu&quot;, config[&quot;default_resources&quot;][&quot;mem_per_cpu&quot;]),
+        partition=config.get(&quot;tmb&quot;, {}).get(&quot;partition&quot;, config[&quot;default_resources&quot;][&quot;partition&quot;]),
+        threads=config.get(&quot;tmb&quot;, {}).get(&quot;threads&quot;, config[&quot;default_resources&quot;][&quot;threads&quot;]),
+        time=config.get(&quot;tmb&quot;, {}).get(&quot;time&quot;, config[&quot;default_resources&quot;][&quot;time&quot;]),
+    container:
+        config.get(&quot;tmb&quot;, {}).get(&quot;container&quot;, config[&quot;default_container&quot;])
+    message:
+        &quot;{rule}: calculate TMB in tmb/{rule}/{wildcards.sample}_{wildcards.type}&quot;
+    script:
+        &quot;../scripts/tmb.py&quot;
+</code></pre>
+<h4 id="input-output-files_11"><img alt="↔" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2194.svg" title=":left_right_arrow:" /> input / output files</h4>
+<table>
+<thead>
+<tr>
+<th>Rule parameters</th>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>vcf</td>
+<td><code>"annotation/background_annotation/{sample}_{type}.background_annotation.vcf.gz"</code></td>
+<td>Vep annotated vcf file</td>
+</tr>
+<tr>
+<td>output</td>
+<td>tmb</td>
+<td><code>"biomarker/tmb/{sample}_{type}.TMB.txt"</code></td>
+<td>Text file with <abbr title="Tumor mutational burden">TMB</abbr> score</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration_11"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f527.svg" title=":wrench:" /> Configuration</h3>
+<h4 id="software-settings-configyaml_11">Software settings (<code>config.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>benchmark_repeats</td>
+<td>integer</td>
+<td>set number of times benchmark should be repeated</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>name or path to docker/singularity container</td>
+</tr>
+<tr>
+<td>af_lower_limit</td>
+<td>number</td>
+<td>filter all variants with <abbr title="Minor allele frequency">MAF</abbr> &lt; af_lower_limit</td>
+</tr>
+<tr>
+<td>af_upper_limit</td>
+<td>number</td>
+<td>filter all variants with <abbr title="Minor allele frequency">MAF</abbr> &gt; af_upper_limit</td>
+</tr>
+<tr>
+<td>af_germline_lower_limit</td>
+<td>number</td>
+<td>filter all variants with af_germline_lower_limit &gt; <abbr title="Minor allele frequency">MAF</abbr> &lt; af_germline_upper_limit</td>
+</tr>
+<tr>
+<td>af_germline_upper_limit</td>
+<td>number</td>
+<td>filter all variants with af_germline_lower_limit &gt; <abbr title="Minor allele frequency">MAF</abbr> &lt; af_germline_upper_limit</td>
+</tr>
+<tr>
+<td>artifacts</td>
+<td>string</td>
+<td>file with artifact info created by the reference module. Set to empty string to skip, which is the default setting.</td>
+</tr>
+<tr>
+<td>background_panel</td>
+<td>string</td>
+<td>file with background noise info created by the reference module. Set to empty string to skip, which is the default setting.</td>
+</tr>
+<tr>
+<td>background_sd_limit</td>
+<td>integer</td>
+<td>filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is not used.</td>
+</tr>
+<tr>
+<td>db1000g_limit</td>
+<td>number</td>
+<td>filter all variants with found in 1000 Genomes witn <abbr title="Minor allele frequency">MAF</abbr> &gt; db1000g_limit</td>
+</tr>
+<tr>
+<td>dp_limit</td>
+<td>integer</td>
+<td>filter all variants with depth &lt; dp_limit</td>
+</tr>
+<tr>
+<td>filter_genes</td>
+<td>string</td>
+<td>path to file with gene names where variants should be filter out</td>
+</tr>
+<tr>
+<td>filter_nr_observations</td>
+<td>integer</td>
+<td>filter all variants that has been observed before &gt;= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is not used.</td>
+</tr>
+<tr>
+<td>filter_regions</td>
+<td>array</td>
+<td>list of bedfiles</td>
+</tr>
+<tr>
+<td>gnomad_limit</td>
+<td>number</td>
+<td>filter all variants with found in GnomAD witn <abbr title="Minor allele frequency">MAF</abbr> &gt; gnomad_limit</td>
+</tr>
+<tr>
+<td>nr_avg_germline_snvs</td>
+<td>number</td>
+<td>design dependent <abbr title="Tumor mutational burden">TMB</abbr> correction term dependent on the average number of variants found in normal samples</td>
+</tr>
+<tr>
+<td>nssnv_tmb_correction</td>
+<td>number</td>
+<td>design dependent <abbr title="Tumor mutational burden">TMB</abbr> correction factor dependent on design size or correlation to commercial panels like TSO500</td>
+</tr>
+<tr>
+<td>variant_type_list</td>
+<td>array</td>
+<td>list of variant types</td>
+</tr>
+<tr>
+<td>vd_limit</td>
+<td>integer</td>
+<td>filter all variants with variants reads &lt; vd_limit</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resources-settings-resourcesyaml_11">Resources settings (<code>resources.yaml</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mem_mb</td>
+<td>integer</td>
+<td>memory used</td>
+</tr>
+<tr>
+<td>mem_per_cpu</td>
+<td>integer</td>
+<td>memory used per cpu</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>string</td>
+<td>partition to use on cluster</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>integer</td>
+<td>number of threads to be available</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>max execution time</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intro/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

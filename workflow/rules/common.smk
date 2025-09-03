@@ -70,6 +70,13 @@ def compile_output_list(wildcards):
     )
     of.append(
         [
+            "biomarker/finaletoolkit_interval_end_motifs/%s_%s.interval-end-motifs.tsv" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
+    )
+    of.append(
+        [
             "biomarker/finaletoolkit_mds/%s_%s.mds.txt" % (sample, t)
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
@@ -77,7 +84,14 @@ def compile_output_list(wildcards):
     )
     of.append(
         [
-            "biomarker/finaletoolkit_frag_length_bins/%s_%s_frag-length-bins.tsv" % (sample, t)
+            "biomarker/finaletoolkit_interval_mds/%s_%s.interval-mds.txt" % (sample, t)
+            for sample in get_samples(samples)
+            for t in get_unit_types(units, sample)
+        ]
+    )
+    of.append(
+        [
+            "biomarker/finaletoolkit_frag_length_bins/%s_%s.frag-length-bins.tsv" % (sample, t)
             for sample in get_samples(samples)
             for t in get_unit_types(units, sample)
         ]

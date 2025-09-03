@@ -5,8 +5,9 @@ units: "units.tsv"
 default_container: "docker://hydragenetics/common:3.0.0"
 
 reference:
-  background: "references/background_panel_small.tsv"
   artifacts: "references/artifact_positions_chr1.txt"
+  background: "references/background_panel_small.tsv"
+  design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
   fasta_2bit: "references/HES45.fa.2bit"
 
 finaletoolkit_end_motifs:

@@ -4,5 +4,43 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-tools:
-  common: "docker://hydragenetics/common:3.0.0"
+default_container: "docker://hydragenetics/common:3.0.0"
+
+reference:
+  artifacts: ""
+  background: ""
+  design_bed: ""
+  fasta_2bit: ""
+
+finaletoolkit_end_motifs:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_frag_length_bins:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_mds:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+fragmentomics_fragment_length_patient_score:
+  container: "docker://hydragenetics/fragmentomics:0.1.0"
+  reference_set: ""
+
+optitype:
+  container: "docker://fred2/optitype:release-v1.3.1"
+  sample_type: "-d"
+  enumeration: 2
+
+msisensor_pro:
+  container: "docker://hydragenetics/msisensor_pro:1.2.0"
+
+msisensor_pro_filter_sites:
+  PoN: ""
+  msi_sites_bed: ""
+
+scarhrd:
+  container: "docker://hydragenetics/scarhrd:20200825"
+  reference_name: "grch37"
+  seqz: False
+
+tmb:
+  container: "docker://python:3.9.7-slim"

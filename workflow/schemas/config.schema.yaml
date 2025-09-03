@@ -69,6 +69,31 @@ properties:
         type: string
         description: parameters that should be forwarded
 
+  finaletoolkit_interval_end_motifs:
+    type: object
+    description: parameters for finaletoolkit_interval_end_motifs
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: parameters that should be forwarded
+
+  finaletoolkit_interval_mds:
+    type: object
+    description: parameters for finaletoolkit_interval_mds
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
   finaletoolkit_mds:
     type: object
     description: parameters for finaletoolkit_mds

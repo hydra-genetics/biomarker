@@ -10,3 +10,4 @@ The biomarker module consists of programs used for producing biomarker values. T
  - TMB: tumor mutational burden
  - MSI: micro satellite instability score
  - **Under development** HRD: homologous recombination deﬁciency score
+ - Fragmentomics
