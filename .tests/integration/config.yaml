@@ -2,15 +2,36 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
-default_container: "docker://hydragenetics/common:0.1.9"
+default_container: "docker://hydragenetics/common:3.0.0"
 
 reference:
-  background: "references/background_panel_small.tsv"
   artifacts: "references/artifact_positions_chr1.txt"
+  background: "references/background_panel_small.tsv"
+  design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
+  fasta_2bit: "references/HES45.fa.2bit"
+
+finaletoolkit_end_motifs:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_frag_length_bins:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_interval_end_motifs:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_interval_mds:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+finaletoolkit_mds:
+  container: "docker://hydragenetics/finaletoolkit:0.10.7"
+
+fragmentomics_fragment_length_patient_score:
+  container: "docker://hydragenetics/fragmentomics:0.1.0"
+  reference_set: "references/vessies_reference_set.txt"
 
 optitype:
   #container: "docker://hydragenetics/optitype:1.3.5"
-  container: "docker://fred2/optitype"
+  container: "docker://fred2/optitype:release-v1.3.1"
   sample_type: "-d"
   enumeration: 2
 

@@ -12,6 +12,12 @@ digraph snakemake_dag {
 	6[label = "vcf", color = "0.0 0.0 0.0", style="dotted"];
 	7[label = "bam", color = "0.0 0.0 0.0", style="dotted"];
 	8[label = "cnv segmentation", color = "0.0 0.0 0.0", style="dotted"];
+	9[label = "finaletoolkit_end_motifs", color = "0.0 0.0 0.0", style="rounded"];
+	10[label = "finaletoolkit_interval_end_motifs", color = "0.0 0.0 0.0", style="rounded"];
+	11[label = "finaletoolkit_mds", color = "0.0 0.0 0.0", style="rounded"];
+	12[label = "finaletoolkit_interval_mds", color = "0.0 0.0 0.0", style="rounded"];
+	13[label = "finaletoolkit_frag_length_bins", color = "0.0 0.0 0.0", style="rounded"];
+	14[label = "fragmentomics_fragment_length_patient_score", color = "0.0 0.0 0.0", style="rounded"];
 	2 -> 0
 	1 -> 0
 	3 -> 0
@@ -20,4 +26,12 @@ digraph snakemake_dag {
 	6 -> 2
 	7 -> 1
 	8 -> 5
+	7 -> 9
+	7 -> 10
+	9 -> 11
+	10 -> 12
+	7 -> 13
+	7 -> 14
+	11 -> 0
+	14 -> 0
 }            

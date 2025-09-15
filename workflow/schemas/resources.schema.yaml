@@ -50,6 +50,106 @@ properties:
         type: string
         description: max execution time
 
+  finaletoolkit_end_motifs:
+    type: object
+    description: resource definitions for finaletoolkit_end_motifs
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  finaletoolkit_frag_length_bins:
+    type: object
+    description: resource definitions for finaletoolkit_frag_length_bins
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  finaletoolkit_interval_end_motifs:
+    type: object
+    description: resource definitions for finaletoolkit_interval_end_motifs
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  finaletoolkit_interval_mds:
+    type: object
+    description: resource definitions for finaletoolkit_interval_mds
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  finaletoolkit_mds:
+    type: object
+    description: resource definitions for finaletoolkit_mds
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
   fix_scarhrd_output:
     type: object
     description: resource definitions for fix_scarhrd_output
@@ -60,6 +160,26 @@ properties:
       mem_per_cpu:
         type: integer
         description: memory used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_fragment_length_patient_score:
+    type: object
+    description: resource definitions for fragmentomics_fragment_length_patient_score
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
       partition:
         type: string
         description: partition to use on cluster
