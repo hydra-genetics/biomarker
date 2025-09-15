@@ -3,7 +3,14 @@ The biomarker module consists of programs used for producing biomarker values. T
 
  - TMB: tumor mutational burden
  - MSI: micro satellite instability score
-  - **Under development**:  homologous recombination deﬁciency score
+ - **Under development**:  homologous recombination deﬁciency score
+ - Fragmentomics: 
+     - End-motifs
+     - Interval-end-motifs
+     - mds (motif diversity score)
+     - interval mds
+     - fragment length bins
+     - fragment length patient score
 
 
 ## Dag graph
@@ -24,3 +31,9 @@ The biomarker scores are reported in simple text format files.
 * `biomarker/tmb/{sample}_{type}.TMB.txt`
 * `biomarker/msisensor_pro/{sample}_{type}`
 * `biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt`
+* `biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv`
+* `biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv`
+* `biomarker/finaletoolkit_mds/{sample}_{type}.mds.txt`
+* `biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt`
+* `biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv`
+* `biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt`

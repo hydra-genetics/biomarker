@@ -50,15 +50,27 @@ def get_flowcell(units, wildcards):
 
 
 def compile_output_list(wildcards):
-    of = ["biomarker/msisensor_pro/%s_%s" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
-    of.append(
-        ["biomarker/tmb/%s_%s.TMB.txt" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
-    )
-    of.append(
-        [
-            "biomarker/scarhrd/%s_%s.pathology.scarhrd_cnvkit_score.txt" % (sample, t)
-            for sample in get_samples(samples)
-            for t in get_unit_types(units, sample)
-        ]
-    )
-    return of
+    platform = units.platform.iloc[0]
+    output_files = []
+    files = {
+        "biomarker/msisensor_pro": [""],
+        "biomarker/tmb": [".TMB.txt"],
+        "biomarker/finaletoolkit_end_motifs": [".end-motifs.tsv"],
+        "biomarker/finaletoolkit_interval_end_motifs": [".interval-end-motifs.tsv"],
+        "biomarker/finaletoolkit_mds": [".mds.txt"],
+        "biomarker/finaletoolkit_interval_mds": [".interval-mds.txt"],
+        "biomarker/finaletoolkit_frag_length_bins": [".frag-length-bins.tsv"],
+        "biomarker/finaletoolkit_interval_mds": [".interval-mds.txt"],
+        "biomarker/fragmentomics_fragment_length_patient_score": [".fragment_length_patient_score.txt"],
+    }
+    output_files += [
+        f"{prefix}/{sample}_{unit_type}{suffix}"
+        for prefix in files.keys()
+        for sample in get_samples(samples)
+        for platform in units.loc[(sample,)].platform
+        if platform not in ["ONT", "PACBIO"]
+        for unit_type in get_unit_types(units, sample)
+        if unit_type in ["N", "T"]
+        for suffix in files[prefix]
+    ]
+    return output_files
