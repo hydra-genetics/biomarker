@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.7.0](https://github.com/hydra-genetics/biomarker/compare/v0.6.0...v0.7.0) (2025-09-15)
+
+
+### Features
+
+* added finaltoolkit rules interval-mds and interval-end-motifs ([76afe3f](https://github.com/hydra-genetics/biomarker/commit/76afe3f9e9ad9eb661ecfd99e27a63527425931e))
+* Added fragmentomics end-motifs tool from Finaletoolkit ([e107f37](https://github.com/hydra-genetics/biomarker/commit/e107f373406154d8975a5efc97fdbf5cdf7c411c))
+* Added fragmentomics mds tool from Finaletoolkit ([d10e3f7](https://github.com/hydra-genetics/biomarker/commit/d10e3f709def14909703b67dd610d5a3b335fcb2))
+* Added fragmentomics tools from Finaletoolkit ([2f4d75a](https://github.com/hydra-genetics/biomarker/commit/2f4d75ad670107df62ab8963de9803d2b20a0b67))
+* added rule finaletoolkit_frag_length_bins ([f483f8f](https://github.com/hydra-genetics/biomarker/commit/f483f8f414c0a5b7ad65c0067ffa6778c581581c))
+* added rule fragmentomics_fragment_length_patient_score ([ab1808c](https://github.com/hydra-genetics/biomarker/commit/ab1808c9440116a0e6bc2ee850320e2867f6e6d8))
+
+
+### Bug Fixes
+
+* add temp on outputfile ([5c74c31](https://github.com/hydra-genetics/biomarker/commit/5c74c3192aa4ce4d3a5249d4b0390387edcee16e))
+* added containers for new rules ([b48ae28](https://github.com/hydra-genetics/biomarker/commit/b48ae2885a973ece68cd960bb071882ff7b2a8b5))
+* logging ([5ec6548](https://github.com/hydra-genetics/biomarker/commit/5ec65483611168d9fce2dad8d5f3ae35a7513ea3))
+* module output files in hydra standard format ([87a4c24](https://github.com/hydra-genetics/biomarker/commit/87a4c2433abbd72692c55812dddfe98ec23aec13))
+
 ## [0.6.0](https://www.github.com/hydra-genetics/biomarker/compare/v0.5.0...v0.6.0) (2025-03-18)
 
 
