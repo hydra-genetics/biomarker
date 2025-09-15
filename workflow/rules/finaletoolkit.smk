@@ -37,7 +37,7 @@ rule finaletoolkit_end_motifs:
         "{input.reference} "
         "{params.extra} "
         "-o {output.end_motifs} "
-        "{params.extra} >& {log}"
+        "{params.extra} &> {log}"
 
 
 rule finaletoolkit_interval_end_motifs:
@@ -76,7 +76,7 @@ rule finaletoolkit_interval_end_motifs:
         "{input.reference} "
         "{input.design_bed} "
         "{params.extra} "
-        "-o {output.interval_end_motifs} > {log}"
+        "-o {output.interval_end_motifs} &> {log}"
 
 
 rule finaletoolkit_mds:
@@ -105,7 +105,7 @@ rule finaletoolkit_mds:
     shell:
         "finaletoolkit mds "
         "{input.end_motifs} "
-        "> {output.mds} 2> {log}"
+        "1> {output.mds} 2> {log}"
 
 
 rule finaletoolkit_interval_mds:
@@ -134,7 +134,7 @@ rule finaletoolkit_interval_mds:
     shell:
         "finaletoolkit interval-mds "
         "{input.interval_end_motifs} "
-        "{output.interval_mds} > {log}"
+        "{output.interval_mds} &> {log}"
 
 
 rule finaletoolkit_frag_length_bins:
@@ -169,4 +169,4 @@ rule finaletoolkit_frag_length_bins:
         "finaletoolkit frag-length-bins "
         "-o {output.frag_len_bins} "
         "{params.extra} "
-        "{input.bam} >& {log}"
+        "{input.bam} &> {log}"

@@ -269,10 +269,6 @@ GenerateVariantFS <- function(ref, vcf, bam_file, id) {
 
 ## @USER: Please write an appropriate 'wrapper' function to apply GenerateVariantFS() to each patient (the function expects that the BAMs and VCFs from all plasma samples of that patient are provided at once)
 
-
-## Import functions
-#source("fragment_score/scripts/functions.R")
-
 ## Read in files
 reference <- read.delim(ref, header = FALSE)
 reference <- as.vector(reference$V1)
