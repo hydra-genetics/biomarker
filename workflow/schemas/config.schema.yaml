@@ -116,6 +116,29 @@ properties:
         type: string
         description: name or path to docker/singularity container
 
+  fragle:
+    type: object
+    description: parameters for fragle
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      design_bed:
+        type: string
+        description: Path to the target regions BED file
+      genome_build:
+        type: string
+        description: Reference genome build used for indexing alignment
+      mode:
+        type: string
+        description: Run mode for FRAGLE inference
+      outdir:
+        type: string
+        description: Output directory for FRAGLE results
+
   fragmentomics_fragment_length_patient_score:
     type: object
     description: parameters for fragmentomics_fragment_length_patient_score

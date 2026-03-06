@@ -135,6 +135,29 @@ Calculate histogram with fragment lengths from bam file from a plasma sample
 
 ---
 
+## [fragle](https://github.com/CancerDataScience/FRAGLE)
+Estimates ctDNA fraction from cfDNA whole-genome or targeted sequencing data using fragment length patterns in off-target reads.
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__fragle__fragle#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__fragle__fragle#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__fragle#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__fragle#
+
+---
+
 ## [fix_scarhrd_output](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/fix_scarhrd_output.py)
 Script that modifies the scarhrd output for improved readability of the resulting score.
 

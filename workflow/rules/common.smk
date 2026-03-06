@@ -10,6 +10,7 @@ from snakemake.utils import min_version
 from hydra_genetics.utils.resources import load_resources
 from hydra_genetics.utils.samples import *
 from hydra_genetics.utils.units import *
+from hydra_genetics.utils.misc import get_input_aligned_bam
 
 min_version("7.8.0")
 
@@ -62,6 +63,7 @@ def compile_output_list(wildcards):
         "biomarker/finaletoolkit_frag_length_bins": [".frag-length-bins.tsv"],
         "biomarker/finaletoolkit_interval_mds": [".interval-mds.txt"],
         "biomarker/fragmentomics_fragment_length_patient_score": [".fragment_length_patient_score.txt"],
+        "biomarker/fragle": ["/Fragle.csv"],
     }
     output_files += [
         f"{prefix}/{sample}_{unit_type}{suffix}"
