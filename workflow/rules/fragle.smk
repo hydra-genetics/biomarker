@@ -16,7 +16,7 @@ rule fragle:
         off_target_bam=temp("biomarker/fragle/{sample}_{type}/off_target_bams/{sample}_{type}.bam"),
         off_target_bai=temp("biomarker/fragle/{sample}_{type}/off_target_bams/{sample}_{type}.bam.bai"),
     params:
-        outdir="biomarker/fragle",
+        outdir=lambda wildcards, output: os.path.dirname(output.csv),
         design_bed=config.get("fragle", {}).get("design_bed", ""),
         genome_build=config.get("fragle", {}).get("genome_build", "hg19"),
         mode=config.get("fragle", {}).get("mode", "T"),
