@@ -40,7 +40,7 @@ rule fragle:
     message:
         "{rule}: Run FRAGLE ctDNA fraction estimation on {input.bam}"
     shell:
-        "(python /opt/FRAGLE/main.py "
+        "(python /opt/Fragle_app/main.py "
         "--input {input.bam} "
         "--output {params.outdir} "
         "--mode {params.mode} "
