@@ -131,6 +131,43 @@ properties:
             type: string
             description: fragment length patient score
 
+  fragle:
+    type: object
+    description: input and output parameters for fragle
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: Bam file
+          bai:
+            type: string
+            description: Bam index file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          csv:
+            type: string
+            description: FRAGLE output CSV with ctDNA fraction estimates
+          data:
+            type: string
+            description: FRAGLE intermediate data pickle file
+          ht:
+            type: string
+            description: FRAGLE high tumour fraction CSV
+          lt:
+            type: string
+            description: FRAGLE low tumour fraction CSV
+          off_target_bam:
+            type: string
+            description: Off-target reads BAM file produced by FRAGLE
+          off_target_bai:
+            type: string
+            description: Index of the off-target reads BAM file produced by FRAGLE
+
   msisensor_pro:
     type: object
     description: input and output parameters for msisensor_pro

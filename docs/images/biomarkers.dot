@@ -18,6 +18,7 @@ digraph snakemake_dag {
 	12[label = "finaletoolkit_interval_mds", color = "0.0 0.0 0.0", style="rounded"];
 	13[label = "finaletoolkit_frag_length_bins", color = "0.0 0.0 0.0", style="rounded"];
 	14[label = "fragmentomics_fragment_length_patient_score", color = "0.0 0.0 0.0", style="rounded"];
+	15[label = "fragle", color = "0.0 0.0 0.0", style="rounded"];
 	2 -> 0
 	1 -> 0
 	3 -> 0
@@ -34,4 +35,6 @@ digraph snakemake_dag {
 	7 -> 14
 	11 -> 0
 	14 -> 0
+	7 -> 15
+	15 -> 0
 }            
