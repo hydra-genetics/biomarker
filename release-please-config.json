@@ -1,0 +1,10 @@
+{
+  "packages": {
+    ".": {
+      "release-type": "python",
+      "bump-minor-pre-major": true,
+      "include-v-in-tag": true
+    }
+  },
+  "bootstrap-sha": "e81a8aaa82facf4d34b4a6b4674304a8608b2cdf"
+}

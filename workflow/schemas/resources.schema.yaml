@@ -205,7 +205,7 @@ properties:
         description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads to be available
+        description: number of threads to be available, minimum 2
       time:
         type: string
         description: max execution time
