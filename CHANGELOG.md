@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.8.0](https://github.com/hydra-genetics/biomarker/compare/v0.7.0...v0.8.0) (2026-03-10)
+
+
+### Features
+
+* added fragle for ctDNA fraction estimation ([655cadc](https://github.com/hydra-genetics/biomarker/commit/655cadc969c2451694478c66a0dd9536a38d0c4d))
+* added Fragle that estimates ctDNA fractions ([f708809](https://github.com/hydra-genetics/biomarker/commit/f70880936e2fe24eff2ac15543708fd77e99dcfb))
+
+
+### Bug Fixes
+
+* Fragle ([4dda7a7](https://github.com/hydra-genetics/biomarker/commit/4dda7a7fb77ca260738741933ae4ddbf82eda82b))
+* rm extra directory in output ([130b453](https://github.com/hydra-genetics/biomarker/commit/130b453070ff651b5a9bba2d515629484bfae83f))
+* update bin path ([c9d5295](https://github.com/hydra-genetics/biomarker/commit/c9d52957114f751b695c83e04cb291018a839020))
+* update hydra version ([3155cf4](https://github.com/hydra-genetics/biomarker/commit/3155cf442a13bdb8750b96db25b83afffe5409c0))
+
 ## [0.7.0](https://github.com/hydra-genetics/biomarker/compare/v0.6.0...v0.7.0) (2025-09-15)
 
 
