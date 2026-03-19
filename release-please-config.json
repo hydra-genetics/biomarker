@@ -1,10 +1,15 @@
 {
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "packages": {
     ".": {
-      "release-type": "python",
-      "bump-minor-pre-major": true,
-      "include-v-in-tag": true
+      "release-type": "simple",
+      "package-name": "biomarker",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": true,
+      "include-component-in-tag": false,
+      "draft": false,
+      "prerelease": false
     }
   },
-  "bootstrap-sha": "e81a8aaa82facf4d34b4a6b4674304a8608b2cdf"
+  "bootstrap-sha": "1e6d3faf8c98130005db09d75b5b1b74902f9a56"
 }
