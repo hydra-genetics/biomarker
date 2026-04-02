@@ -11,6 +11,7 @@ The biomarker module consists of programs used for producing biomarker values. T
      - interval mds
      - fragment length bins
      - fragment length patient score
+     - fragmentomics metrics (SE, normalized depth, full gene depth, small fragments, TFBS entropy, ATAC entropy)
 
 
 ## Dag graph
@@ -37,3 +38,4 @@ The biomarker scores are reported in simple text format files.
 * `biomarker/finaletoolkit_interval_mds/{sample}_{type}.interval-mds.txt`
 * `biomarker/finaletoolkit_frag_length_bins/{sample}_{type}.frag-length-bins.tsv`
 * `biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt`
+* `biomarker/fragmentomics_metrics/feature_tables/all_combined.rds`

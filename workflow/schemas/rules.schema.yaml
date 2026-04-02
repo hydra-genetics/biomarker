@@ -131,6 +131,226 @@ properties:
             type: string
             description: fragment length patient score
 
+  fragmentomics_metrics_build_combined_ft:
+    type: object
+    description: parameters for fragmentomics_metrics_build_combined_ft
+    properties:
+      input:
+        type: object
+        description: RDS files for all metrics
+      output:
+        type: object
+        description: Combined feature table RDS
+
+  fragmentomics_metrics_build_feature_tables:
+    type: object
+    description: parameters for fragmentomics_metrics_build_feature_tables
+    properties:
+      input:
+        type: object
+        description: TSV/TXT metrics for all samples
+      output:
+        type: object
+        description: Per-metric feature table RDS files
+
+  fragmentomics_metrics_calculate_ATAC_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_ATAC_entropy
+    properties:
+      input:
+        type: object
+        description: ATAC fragment count file
+      output:
+        type: object
+        description: ATAC entropy metrics
+
+  fragmentomics_metrics_calculate_MDS:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_MDS
+    properties:
+      input:
+        type: object
+        description: Left and right 4-mer count files
+      output:
+        type: object
+        description: MDS entropy metrics
+
+  fragmentomics_metrics_calculate_SE:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_SE
+    properties:
+      input:
+        type: object
+        description: SE fragstats file
+      output:
+        type: object
+        description: SE metrics
+
+  fragmentomics_metrics_calculate_TFBS_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_TFBS_entropy
+    properties:
+      input:
+        type: object
+        description: TFBS fragment count file
+      output:
+        type: object
+        description: TFBS entropy metrics
+
+  fragmentomics_metrics_calculate_frag_bins:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_frag_bins
+    properties:
+      input:
+        type: object
+        description: SE fragstats file
+      output:
+        type: object
+        description: Fragment bins metrics
+
+  fragmentomics_metrics_calculate_full_gene_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_full_gene_depth
+    properties:
+      input:
+        type: object
+        description: Depth fragstats file
+      output:
+        type: object
+        description: Full gene depth metrics
+
+  fragmentomics_metrics_calculate_normalized_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_normalized_depth
+    properties:
+      input:
+        type: object
+        description: Depth fragstats file
+      output:
+        type: object
+        description: Normalized depth metrics
+
+  fragmentomics_metrics_calculate_small_frags:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_small_frags
+    properties:
+      input:
+        type: object
+        description: SE fragstats file
+      output:
+        type: object
+        description: Small fragment metrics
+
+  fragmentomics_metrics_extract_first_exon:
+    type: object
+    description: parameters for fragmentomics_metrics_extract_first_exon
+    properties:
+      input:
+        type: object
+        description: Feature table RDS files
+      output:
+        type: object
+        description: First exon feature table RDS files
+
+  fragmentomics_metrics_filter_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_filter_comm_panel_genes
+    properties:
+      input:
+        type: object
+        description: Raw BED file
+      output:
+        type: object
+        description: Filtered BED file
+
+  fragmentomics_metrics_get_SE_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_SE_fragstats
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: SE fragstats file
+
+  fragmentomics_metrics_get_bed_from_bam:
+    type: object
+    description: parameters for fragmentomics_metrics_get_bed_from_bam
+    properties:
+      input:
+        type: object
+        description: UMI BAM file
+      output:
+        type: object
+        description: Raw BED file
+
+  fragmentomics_metrics_get_depth_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_depth_fragstats
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: Depth fragstats file
+
+  fragmentomics_metrics_get_left_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_left_4mer
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: Left 4-mer motif file
+
+  fragmentomics_metrics_get_right_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_right_4mer
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: Right 4-mer motif file
+
+  fragmentomics_metrics_gzip_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_gzip_comm_panel_genes
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: Gzipped filtered BED file
+
+  fragmentomics_metrics_overlap_ATAC:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_ATAC
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: ATAC fragment count file
+
+  fragmentomics_metrics_overlap_TFBS:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_TFBS
+    properties:
+      input:
+        type: object
+        description: Filtered BED file
+      output:
+        type: object
+        description: TFBS fragment count file
+
   fragle:
     type: object
     description: input and output parameters for fragle

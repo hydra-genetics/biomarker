@@ -1,40 +1,70 @@
 digraph snakemake_dag {
-	rankdir="LR"
     graph[bgcolor=white, margin=0];
     node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
-	0[label = "biomarker score", color = "0.0 0.0 0.0", style="dotted"];
-	1[label = "msisensor_pro", color = "0.19 0.6 0.85", style="rounded"];
-	2[label = "tmb", color = "0.10 0.6 0.85", style="rounded"];
-	3[label = "fix_scarhrd_output", color = "0.00 0.6 0.85", style="rounded"];
-	4[label = "scarhrd", color = "0.48 0.6 0.85", style="rounded"];
-	5[label = "cnvkit2scarhrd", color = "0.57 0.6 0.85", style="rounded"];
-	6[label = "vcf", color = "0.0 0.0 0.0", style="dotted"];
-	7[label = "bam", color = "0.0 0.0 0.0", style="dotted"];
-	8[label = "cnv segmentation", color = "0.0 0.0 0.0", style="dotted"];
-	9[label = "finaletoolkit_end_motifs", color = "0.0 0.0 0.0", style="rounded"];
-	10[label = "finaletoolkit_interval_end_motifs", color = "0.0 0.0 0.0", style="rounded"];
-	11[label = "finaletoolkit_mds", color = "0.0 0.0 0.0", style="rounded"];
-	12[label = "finaletoolkit_interval_mds", color = "0.0 0.0 0.0", style="rounded"];
-	13[label = "finaletoolkit_frag_length_bins", color = "0.0 0.0 0.0", style="rounded"];
-	14[label = "fragmentomics_fragment_length_patient_score", color = "0.0 0.0 0.0", style="rounded"];
-	15[label = "fragle", color = "0.0 0.0 0.0", style="rounded"];
-	2 -> 0
-	1 -> 0
+	0[label = "all", color = "0.63 0.6 0.85", style="rounded"];
+	1[label = "msisensor_pro", color = "0.34 0.6 0.85", style="rounded"];
+	2[label = "msisensor_pro_filter_sites", color = "0.42 0.6 0.85", style="rounded"];
+	3[label = "tmb", color = "0.53 0.6 0.85", style="rounded"];
+	4[label = "finaletoolkit_end_motifs", color = "0.25 0.6 0.85", style="rounded"];
+	5[label = "finaletoolkit_interval_end_motifs", color = "0.51 0.6 0.85", style="rounded"];
+	6[label = "finaletoolkit_mds", color = "0.38 0.6 0.85", style="rounded"];
+	7[label = "finaletoolkit_interval_mds", color = "0.44 0.6 0.85", style="rounded"];
+	8[label = "finaletoolkit_frag_length_bins", color = "0.21 0.6 0.85", style="rounded"];
+	9[label = "fragmentomics_fragment_length_patient_score", color = "0.11 0.6 0.85", style="rounded"];
+	10[label = "fragmentomics_metrics_calculate_SE", color = "0.30 0.6 0.85", style="rounded"];
+	11[label = "fragmentomics_metrics_get_SE_fragstats", color = "0.40 0.6 0.85", style="rounded"];
+	12[label = "fragmentomics_metrics_gzip_comm_panel_genes", color = "0.32 0.6 0.85", style="rounded"];
+	13[label = "fragmentomics_metrics_filter_comm_panel_genes", color = "0.59 0.6 0.85", style="rounded"];
+	14[label = "fragmentomics_metrics_get_bed_from_bam", color = "0.27 0.6 0.85", style="rounded"];
+	15[label = "fragmentomics_metrics_calculate_normalized_depth", color = "0.02 0.6 0.85", style="rounded"];
+	16[label = "fragmentomics_metrics_get_depth_fragstats", color = "0.17 0.6 0.85", style="rounded"];
+	17[label = "fragmentomics_metrics_calculate_frag_bins", color = "0.10 0.6 0.85", style="rounded"];
+	18[label = "fragmentomics_metrics_calculate_small_frags", color = "0.36 0.6 0.85", style="rounded"];
+	19[label = "fragmentomics_metrics_calculate_full_gene_depth", color = "0.50 0.6 0.85", style="rounded"];
+	20[label = "fragmentomics_metrics_calculate_MDS", color = "0.19 0.6 0.85", style="rounded"];
+	21[label = "fragmentomics_metrics_get_left_4mer", color = "0.00 0.6 0.85", style="rounded"];
+	22[label = "fragmentomics_metrics_get_right_4mer", color = "0.57 0.6 0.85", style="rounded"];
+	23[label = "fragmentomics_metrics_calculate_TFBS_entropy", color = "0.55 0.6 0.85", style="rounded"];
+	24[label = "fragmentomics_metrics_overlap_TFBS", color = "0.08 0.6 0.85", style="rounded"];
+	25[label = "fragmentomics_metrics_calculate_ATAC_entropy", color = "0.65 0.6 0.85", style="rounded"];
+	26[label = "fragmentomics_metrics_overlap_ATAC", color = "0.15 0.6 0.85", style="rounded"];
+	27[label = "fragle", color = "0.46 0.6 0.85", style="rounded"];
+	19 -> 0
+	5 -> 0
+	20 -> 0
 	3 -> 0
-	4 -> 3
-	5 -> 4
-	6 -> 2
-	7 -> 1
-	8 -> 5
-	7 -> 9
-	7 -> 10
-	9 -> 11
-	10 -> 12
-	7 -> 13
-	7 -> 14
-	11 -> 0
-	14 -> 0
-	7 -> 15
+	23 -> 0
+	8 -> 0
+	18 -> 0
+	6 -> 0
 	15 -> 0
+	25 -> 0
+	4 -> 0
+	17 -> 0
+	7 -> 0
+	27 -> 0
+	10 -> 0
+	9 -> 0
+	1 -> 0
+	2 -> 1
+	4 -> 6
+	5 -> 7
+	11 -> 10
+	12 -> 11
+	13 -> 12
+	14 -> 13
+	16 -> 15
+	12 -> 16
+	11 -> 17
+	11 -> 18
+	16 -> 19
+	22 -> 20
+	21 -> 20
+	12 -> 21
+	12 -> 22
+	24 -> 23
+	12 -> 24
+	26 -> 25
+	12 -> 26
 }            

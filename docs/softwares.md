@@ -294,3 +294,303 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 
 #RESOURCESSCHEMA__tmb#
 
+---
+
+## [fragmentomics_metrics_get_bed_from_bam](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Extracts BED from BAM using samtools and bedtools, intersected with canonical CDS regions.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_get_bed_from_bam#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_get_bed_from_bam#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_get_bed_from_bam#
+#RESOURCESSCHEMA__fragmentomics_metrics_get_bed_from_bam#
+
+---
+
+## [fragmentomics_metrics_filter_comm_panel_genes](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Filters BED file for commercial panel genes.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_filter_comm_panel_genes#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_filter_comm_panel_genes#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_filter_comm_panel_genes#
+#RESOURCESSCHEMA__fragmentomics_metrics_filter_comm_panel_genes#
+
+---
+
+## [fragmentomics_metrics_gzip_comm_panel_genes](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Gzips filtered commercial panel genes file.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_gzip_comm_panel_genes#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_gzip_comm_panel_genes#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_gzip_comm_panel_genes#
+#RESOURCESSCHEMA__fragmentomics_metrics_gzip_comm_panel_genes#
+
+---
+
+## [fragmentomics_metrics_get_SE_fragstats](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates SE fragstats using awk and sort.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_get_SE_fragstats#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_get_SE_fragstats#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_get_SE_fragstats#
+#RESOURCESSCHEMA__fragmentomics_metrics_get_SE_fragstats#
+
+---
+
+## [fragmentomics_metrics_calculate_SE](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates SE metrics from fragstats using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_SE#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_SE#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_SE#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_SE#
+
+---
+
+## [fragmentomics_metrics_get_depth_fragstats](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates depth fragstats using awk and sort.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_get_depth_fragstats#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_get_depth_fragstats#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_get_depth_fragstats#
+#RESOURCESSCHEMA__fragmentomics_metrics_get_depth_fragstats#
+
+---
+
+## [fragmentomics_metrics_calculate_normalized_depth](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates normalized depth using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_normalized_depth#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_normalized_depth#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_normalized_depth#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_normalized_depth#
+
+---
+
+## [fragmentomics_metrics_calculate_frag_bins](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates fragment bins from SE fragstats using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_frag_bins#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_frag_bins#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_frag_bins#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_frag_bins#
+
+---
+
+## [fragmentomics_metrics_calculate_small_frags](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates small fragment metrics using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_small_frags#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_small_frags#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_small_frags#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_small_frags#
+
+---
+
+## [fragmentomics_metrics_calculate_full_gene_depth](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates full gene depth using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_full_gene_depth#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_full_gene_depth#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_full_gene_depth#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_full_gene_depth#
+
+---
+
+## [fragmentomics_metrics_get_left_4mer](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Extracts left 4-mer motifs from BED files using bedtools.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_get_left_4mer#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_get_left_4mer#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_get_left_4mer#
+#RESOURCESSCHEMA__fragmentomics_metrics_get_left_4mer#
+
+---
+
+## [fragmentomics_metrics_get_right_4mer](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Extracts right 4-mer motifs from BED files using bedtools.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_get_right_4mer#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_get_right_4mer#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_get_right_4mer#
+#RESOURCESSCHEMA__fragmentomics_metrics_get_right_4mer#
+
+---
+
+## [fragmentomics_metrics_calculate_MDS](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates MDS entropy from 4-mer counts using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_MDS#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_MDS#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_MDS#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_MDS#
+
+---
+
+## [fragmentomics_metrics_overlap_TFBS](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Overlaps fragments with TFBS midpoints using bedtools.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_overlap_TFBS#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_overlap_TFBS#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_overlap_TFBS#
+#RESOURCESSCHEMA__fragmentomics_metrics_overlap_TFBS#
+
+---
+
+## [fragmentomics_metrics_calculate_TFBS_entropy](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates TFBS entropy using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_TFBS_entropy#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_TFBS_entropy#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_TFBS_entropy#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_TFBS_entropy#
+
+---
+
+## [fragmentomics_metrics_overlap_ATAC](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Overlaps fragments with ATAC peaks using bedtools.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_overlap_ATAC#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_overlap_ATAC#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_overlap_ATAC#
+#RESOURCESSCHEMA__fragmentomics_metrics_overlap_ATAC#
+
+---
+
+## [fragmentomics_metrics_calculate_ATAC_entropy](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Calculates ATAC entropy using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_calculate_ATAC_entropy#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_calculate_ATAC_entropy#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_calculate_ATAC_entropy#
+#RESOURCESSCHEMA__fragmentomics_metrics_calculate_ATAC_entropy#
+
+---
+
+## [fragmentomics_metrics_build_feature_tables](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Builds feature table RDS files from sample metrics.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_build_feature_tables#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_build_feature_tables#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_build_feature_tables#
+#RESOURCESSCHEMA__fragmentomics_metrics_build_feature_tables#
+
+---
+
+## [fragmentomics_metrics_extract_first_exon](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Extracts first exon metrics from feature tables using R.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_extract_first_exon#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_extract_first_exon#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_extract_first_exon#
+#RESOURCESSCHEMA__fragmentomics_metrics_extract_first_exon#
+
+---
+
+## [fragmentomics_metrics_build_combined_ft](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
+Builds a combined feature table for all metrics.
+
+### :snake: Rule
+#SNAKEMAKE_RULE_SOURCE__fragmentomics_metrics__fragmentomics_metrics_build_combined_ft#
+
+#### :left_right_arrow: input / output files
+#SNAKEMAKE_RULE_TABLE__fragmentomics_metrics__fragmentomics_metrics_build_combined_ft#
+
+### :wrench: Configuration
+#CONFIGSCHEMA__fragmentomics_metrics_build_combined_ft#
+#RESOURCESSCHEMA__fragmentomics_metrics_build_combined_ft#
+

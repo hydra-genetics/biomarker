@@ -285,3 +285,201 @@ properties:
       vd_limit:
         type: integer
         description: filter all variants with variants reads < vd_limit
+
+  fragmentomics_metrics_get_bed_from_bam:
+    type: object
+    description: parameters for fragmentomics_metrics_get_bed_from_bam
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      canonical_cds_bed:
+        type: string
+      min_mapq:
+        type: integer
+
+  fragmentomics_metrics_filter_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_filter_comm_panel_genes
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_gzip_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_gzip_comm_panel_genes
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_get_SE_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_SE_fragstats
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_calculate_SE:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_SE
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_get_depth_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_depth_fragstats
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_calculate_normalized_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_normalized_depth
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      exon_sizes:
+        type: string
+
+  fragmentomics_metrics_calculate_frag_bins:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_frag_bins
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_calculate_small_frags:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_small_frags
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_calculate_full_gene_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_full_gene_depth
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      exon_sizes:
+        type: string
+
+  fragmentomics_metrics_get_left_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_left_4mer
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      genome:
+        type: string
+
+  fragmentomics_metrics_get_right_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_right_4mer
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      genome:
+        type: string
+
+  fragmentomics_metrics_calculate_MDS:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_MDS
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_overlap_TFBS:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_TFBS
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      tfbs_midpoints:
+        type: string
+
+  fragmentomics_metrics_calculate_TFBS_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_TFBS_entropy
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_overlap_ATAC:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_ATAC
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      atac_peaks:
+        type: string
+
+  fragmentomics_metrics_calculate_ATAC_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_ATAC_entropy
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_build_feature_tables:
+    type: object
+    description: parameters for fragmentomics_metrics_build_feature_tables
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+
+  fragmentomics_metrics_extract_first_exon:
+    type: object
+    description: parameters for fragmentomics_metrics_extract_first_exon
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
+      exon_strand_mapping:
+        type: string
+
+  fragmentomics_metrics_build_combined_ft:
+    type: object
+    description: parameters for fragmentomics_metrics_build_combined_ft
+    properties:
+      benchmark_repeats:
+        type: integer
+      container:
+        type: string
