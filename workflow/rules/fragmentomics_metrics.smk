@@ -6,7 +6,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         bam="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam",
         bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
     output:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz",
+        bed_gz=temp("biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz"),
     params:
         canonical_cds_bed=config.get("fragmentomics_metrics", {}).get(
             "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
@@ -48,9 +48,9 @@ rule fragmentomics_metrics_get_bed_from_bam:
 
 rule fragmentomics_metrics_filter_comm_panel_genes:
     input:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz",
+        bed_gz="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz",
     output:
-        temp("biomarker/fragmentomics_metrics/data/{sample}_{type}.bed"),
+        bed=temp("biomarker/fragmentomics_metrics/data/{sample}_{type}.bed"),
     log:
         "biomarker/fragmentomics_metrics_filter_comm_panel_genes/{sample}_{type}.log",
     benchmark:
@@ -78,14 +78,14 @@ rule fragmentomics_metrics_filter_comm_panel_genes:
     message:
         "{rule}: Filters commercial panel genes for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/filter_comm_panels.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/filter_comm_panels.R {input.bed_gz} {output.bed} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_gzip_comm_panel_genes:
     input:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed",
+        bed="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed",
     output:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
+        bed_gz_filtered=temp("biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered"),
     log:
         "biomarker/fragmentomics_metrics_gzip_comm_panel_genes/{sample}_{type}.log",
     benchmark:
@@ -111,14 +111,14 @@ rule fragmentomics_metrics_gzip_comm_panel_genes:
     message:
         "{rule}: Gzips filtered commercial panel genes for {wildcards.sample}_{wildcards.type}"
     shell:
-        "gzip -c {input} > {output} 2> {log}"
+        "gzip -c {input.bed} > {output.bed_gz_filtered} 2> {log}"
 
 
 rule fragmentomics_metrics_get_SE_fragstats:
     input:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
+        bed_gz_filtered="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        "biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
+        se_fragstats=temp("biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz"),
     log:
         "biomarker/fragmentomics_metrics_get_SE_fragstats/{sample}_{type}.log",
     benchmark:
@@ -144,7 +144,7 @@ rule fragmentomics_metrics_get_SE_fragstats:
     priority: 20
     shell:
         """
-        (zcat {input} \
+        (zcat {input.bed_gz_filtered} \
         | awk '{{print $6, \"\\t\", $7, \"\\t\", ($3-$2)}}' \
         | sort -k1,1 -k2,2n -k3,3n \
         | uniq -c \
@@ -155,9 +155,9 @@ rule fragmentomics_metrics_get_SE_fragstats:
 
 rule fragmentomics_metrics_calculate_SE:
     input:
-        "biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
+        se_fragstats="biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/se/{sample}_{type}.SE.tsv",
+        se_metrics=temp("biomarker/fragmentomics_metrics/metrics/se/{sample}_{type}.SE.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_SE/{sample}_{type}.log",
     benchmark:
@@ -179,14 +179,14 @@ rule fragmentomics_metrics_calculate_SE:
     message:
         "{rule}: Calculates SE metrics for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_SE.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_SE.R {input.se_fragstats} {output.se_metrics} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_get_depth_fragstats:
     input:
-        "biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
+        bed_gz_filtered="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        "biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt",
+        depth_fragstats=temp("biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt"),
     log:
         "biomarker/fragmentomics_metrics_get_depth_fragstats/{sample}_{type}.log",
     benchmark:
@@ -212,19 +212,19 @@ rule fragmentomics_metrics_get_depth_fragstats:
     priority: 20
     shell:
         """
-        (zcat {input} \
+        (zcat {input.bed_gz_filtered} \
         | cut -f 6,7 \
         | sort -k1,1 -k2,2n \
         | uniq -c \
-        | awk '{{print $2, \"\\t\", $3, \"\\t\", $1 }}' > {output}) > {log} 2>&1
+        | awk '{{print $2, \"\\t\", $3, \"\\t\", $1 }}' > {output.depth_fragstats}) > {log} 2>&1
         """
 
 
 rule fragmentomics_metrics_calculate_normalized_depth:
     input:
-        "biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt",
+        depth_fragstats="biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt",
     output:
-        "biomarker/fragmentomics_metrics/metrics/depth/{sample}_{type}.depth.tsv",
+        depth=temp("biomarker/fragmentomics_metrics/metrics/depth/{sample}_{type}.depth.tsv"),
     params:
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
@@ -254,14 +254,14 @@ rule fragmentomics_metrics_calculate_normalized_depth:
     message:
         "{rule}: Calculates normalized depth for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_depth.R {params.exon_sizes} {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_depth.R {params.exon_sizes} {input.depth_fragstats} {output.depth} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_calculate_frag_bins:
     input:
-        "biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
+        se_fragstats="biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/frag_bins/{sample}_{type}.fragbins.tsv",
+        fragbins=temp("biomarker/fragmentomics_metrics/metrics/frag_bins/{sample}_{type}.fragbins.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_frag_bins/{sample}_{type}.log",
     benchmark:
@@ -285,14 +285,14 @@ rule fragmentomics_metrics_calculate_frag_bins:
     message:
         "{rule}: Calculates fragment bins for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_frag_bins.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_frag_bins.R {input.se_fragstats} {output.fragbins} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_calculate_small_frags:
     input:
-        "biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
+        se_fragstats="biomarker/fragmentomics_metrics/fragstats/SE_files/{sample}_{type}.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/small_frags/{sample}_{type}.smallfrag.tsv",
+        smallfrag=temp("biomarker/fragmentomics_metrics/metrics/small_frags/{sample}_{type}.smallfrag.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_small_frags/{sample}_{type}.log",
     benchmark:
@@ -318,14 +318,14 @@ rule fragmentomics_metrics_calculate_small_frags:
     message:
         "{rule}: Calculates small fragment metrics for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_small_frags.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_small_frags.R {input.se_fragstats} {output.smallfrag} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_calculate_full_gene_depth:
     input:
-        "biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt",
+        depth_fragstats="biomarker/fragmentomics_metrics/fragstats/depth_files/{sample}_{type}.txt",
     output:
-        "biomarker/fragmentomics_metrics/metrics/full_gene_depth/{sample}_{type}.fullgenedepth.tsv",
+        fullgenedepth=temp("biomarker/fragmentomics_metrics/metrics/full_gene_depth/{sample}_{type}.fullgenedepth.tsv"),
     params:
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
@@ -355,14 +355,14 @@ rule fragmentomics_metrics_calculate_full_gene_depth:
     message:
         "{rule}: Calculates full gene depth for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_full_gene_depth.R {params.exon_sizes} {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_full_gene_depth.R {params.exon_sizes} {input.depth_fragstats} {output.fullgenedepth} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_get_left_4mer:
     input:
         sample_reads="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        temp("biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_left_4mers.txt.gz"),
+        left_4mers=temp("biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_left_4mers.txt.gz"),
     params:
         reference=config.get("reference", {}).get("fasta", ""),
     log:
@@ -401,7 +401,7 @@ rule fragmentomics_metrics_get_right_4mer:
     input:
         sample_reads="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        temp("biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_right_4mers.txt.gz"),
+        right_4mers=temp("biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_right_4mers.txt.gz"),
     params:
         reference=config.get("reference", {}).get("fasta", ""),
     log:
@@ -443,7 +443,7 @@ rule fragmentomics_metrics_calculate_MDS:
         left="biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_left_4mers.txt.gz",
         right="biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_right_4mers.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_mds.txt",
+        mds=temp("biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_mds.txt"),
     log:
         "biomarker/fragmentomics_metrics_calculate_MDS/{sample}_{type}.log",
     benchmark:
@@ -472,7 +472,7 @@ rule fragmentomics_metrics_overlap_TFBS:
     input:
         sample_reads="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        temp("biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_frag_count.txt.gz"),
+        tfbs_frag_count=temp("biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_frag_count.txt.gz"),
     params:
         tfbs=config.get("fragmentomics_metrics", {}).get("tfbs_midpoints", ""),
     log:
@@ -508,9 +508,9 @@ rule fragmentomics_metrics_overlap_TFBS:
 
 rule fragmentomics_metrics_calculate_TFBS_entropy:
     input:
-        "biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_frag_count.txt.gz",
+        tfbs_frag_count="biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_frag_count.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_entropy.txt",
+        tfbs_entropy=temp("biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_entropy.txt"),
     log:
         "biomarker/fragmentomics_metrics_calculate_TFBS_entropy/{sample}_{type}.log",
     benchmark:
@@ -536,14 +536,14 @@ rule fragmentomics_metrics_calculate_TFBS_entropy:
     message:
         "{rule}: Calculates TFBS entropy for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_TFBS_entropy.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_TFBS_entropy.R {input.tfbs_frag_count} {output.tfbs_entropy} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_overlap_ATAC:
     input:
         sample_reads="biomarker/fragmentomics_metrics/data/{sample}_{type}.bed.gz_filtered",
     output:
-        temp("biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_frag_count.txt.gz"),
+        atac_frag_count=temp("biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_frag_count.txt.gz"),
     params:
         atac=config.get("fragmentomics_metrics", {}).get("atac_peaks", ""),
     log:
@@ -579,9 +579,9 @@ rule fragmentomics_metrics_overlap_ATAC:
 
 rule fragmentomics_metrics_calculate_ATAC_entropy:
     input:
-        "biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_frag_count.txt.gz",
+        atac_frag_count="biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_frag_count.txt.gz",
     output:
-        "biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_entropy.txt",
+        atac_entropy=temp("biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_entropy.txt"),
     log:
         "biomarker/fragmentomics_metrics_calculate_ATAC_entropy/{sample}_{type}.log",
     benchmark:
@@ -607,60 +607,60 @@ rule fragmentomics_metrics_calculate_ATAC_entropy:
     message:
         "{rule}: Calculates ATAC entropy for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_ATAC_entropy.R {input} {output} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/calculate_ATAC_entropy.R {input.atac_frag_count} {output.atac_entropy} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_build_feature_tables:
     input:
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/se/{sample}_{type}.SE.tsv",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/depth/{sample}_{type}.depth.tsv",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/frag_bins/{sample}_{type}.fragbins.tsv",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/small_frags/{sample}_{type}.smallfrag.tsv",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/full_gene_depth/{sample}_{type}.fullgenedepth.tsv",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_mds.txt",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_entropy.txt",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
-        expand(
-            "biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_entropy.txt",
-            sample=get_samples(samples),
-            type=get_unit_types(units, samples.index[0]),
-        ),
+        se=[
+            f"biomarker/fragmentomics_metrics/metrics/se/{sample}_{type}.SE.tsv"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        depth=[
+            f"biomarker/fragmentomics_metrics/metrics/depth/{sample}_{type}.depth.tsv"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        frag_bins=[
+            f"biomarker/fragmentomics_metrics/metrics/frag_bins/{sample}_{type}.fragbins.tsv"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        small_frags=[
+            f"biomarker/fragmentomics_metrics/metrics/small_frags/{sample}_{type}.smallfrag.tsv"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        full_gene_depth=[
+            f"biomarker/fragmentomics_metrics/metrics/full_gene_depth/{sample}_{type}.fullgenedepth.tsv"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        mds=[
+            f"biomarker/fragmentomics_metrics/metrics/mds/{sample}_{type}_mds.txt"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        TFBS_entropy=[
+            f"biomarker/fragmentomics_metrics/metrics/TFBS_entropy/{sample}_{type}_TFBS_entropy.txt"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
+        ATAC_entropy=[
+            f"biomarker/fragmentomics_metrics/metrics/ATAC_entropy/{sample}_{type}_ATAC_entropy.txt"
+            for sample in get_samples(samples)
+            for type in get_unit_types(units, sample)
+        ],
     output:
-        "biomarker/fragmentomics_metrics/feature_tables/se.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/mds.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
+        se=temp("biomarker/fragmentomics_metrics/feature_tables/se.rds"),
+        depth=temp("biomarker/fragmentomics_metrics/feature_tables/depth.rds"),
+        frag_bins=temp("biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds"),
+        small_frags=temp("biomarker/fragmentomics_metrics/feature_tables/small_frags.rds"),
+        full_gene_depth=temp("biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds"),
+        mds=temp("biomarker/fragmentomics_metrics/feature_tables/mds.rds"),
+        TFBS_entropy=temp("biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds"),
+        ATAC_entropy=temp("biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds"),
     log:
         "biomarker/fragmentomics_metrics_build_feature_tables/build_feature_tables.log",
     benchmark:
@@ -691,19 +691,19 @@ rule fragmentomics_metrics_build_feature_tables:
 
 rule fragmentomics_metrics_extract_first_exon:
     input:
-        "biomarker/fragmentomics_metrics/feature_tables/se.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/mds.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
+        se="biomarker/fragmentomics_metrics/feature_tables/se.rds",
+        depth="biomarker/fragmentomics_metrics/feature_tables/depth.rds",
+        frag_bins="biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
+        small_frags="biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
+        full_gene_depth="biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
+        mds="biomarker/fragmentomics_metrics/feature_tables/mds.rds",
+        TFBS_entropy="biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds",
+        ATAC_entropy="biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
     output:
-        "biomarker/fragmentomics_metrics/feature_tables/se_E1.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/depth_E1.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/small_frags_E1.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/mds_E1.rds",
+        se_E1="biomarker/fragmentomics_metrics/feature_tables/se_E1.rds",
+        depth_E1="biomarker/fragmentomics_metrics/feature_tables/depth_E1.rds",
+        small_frags_E1="biomarker/fragmentomics_metrics/feature_tables/small_frags_E1.rds",
+        mds_E1="biomarker/fragmentomics_metrics/feature_tables/mds_E1.rds",
     params:
         strand_mapping=config.get("fragmentomics_metrics", {}).get("exon_strand_mapping", ""),
     log:
@@ -734,16 +734,16 @@ rule fragmentomics_metrics_extract_first_exon:
 
 rule fragmentomics_metrics_build_combined_ft:
     input:
-        "biomarker/fragmentomics_metrics/feature_tables/se.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/mds.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds",
-        "biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
+        se="biomarker/fragmentomics_metrics/feature_tables/se.rds",
+        depth="biomarker/fragmentomics_metrics/feature_tables/depth.rds",
+        frag_bins="biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
+        small_frags="biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
+        full_gene_depth="biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
+        mds="biomarker/fragmentomics_metrics/feature_tables/mds.rds",
+        TFBS_entropy="biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds",
+        ATAC_entropy="biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
     output:
-        "biomarker/fragmentomics_metrics/feature_tables/all_combined.rds",
+        combined_rds="biomarker/fragmentomics_metrics/feature_tables/all_combined.rds",
     log:
         "biomarker/fragmentomics_metrics_build_combined_ft/build_combined_ft.log",
     benchmark:
