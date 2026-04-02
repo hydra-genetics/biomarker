@@ -20,17 +20,17 @@ append_suffix_to_colnames <- function(df, suffix) {
 
 print("Generating Combined Feature Table")
 
-outpath <- "output/feature_tables/all_combined.rds"
+outpath <- "biomarker/fragmentomics_metrics/feature_tables/all_combined.rds"
 
 feature_files <- c(
-  "ATAC_entropy" = "output/feature_tables/ATAC_entropy.rds",
-  "depth" = "output/feature_tables/depth.rds",
-  "frag_bins" = "output/feature_tables/frag_bins.rds",
-  "full_gene_depth" = "output/feature_tables/full_gene_depth.rds",
-  "mds" = "output/feature_tables/mds.rds",
-  "se" = "output/feature_tables/se.rds",
-  "small_frags" = "output/feature_tables/small_frags.rds",
-  "TFBS_entropy" = "output/feature_tables/TFBS_entropy.rds"
+  "ATAC_entropy" = "biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
+  "depth" = "biomarker/fragmentomics_metrics/feature_tables/depth.rds",
+  "frag_bins" = "biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
+  "full_gene_depth" = "biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
+  "mds" = "biomarker/fragmentomics_metrics/feature_tables/mds.rds",
+  "se" = "biomarker/fragmentomics_metrics/feature_tables/se.rds",
+  "small_frags" = "biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
+  "TFBS_entropy" = "biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds"
 )
 
 dfs <- list()

@@ -37,8 +37,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   finaletoolkit_end_motifs:
@@ -48,8 +50,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -62,8 +66,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -76,8 +82,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -90,8 +98,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   finaletoolkit_mds:
@@ -101,8 +111,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   fix_scarhrd_output:
@@ -112,8 +124,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   fragle:
@@ -123,8 +137,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       design_bed:
         type: string
@@ -146,8 +162,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -160,8 +178,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -174,8 +194,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       msi_sites:
         type: string
@@ -188,8 +210,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -208,8 +232,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       reference_name:
         type: string
@@ -225,8 +251,10 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       af_lower_limit:
         type: number
@@ -292,12 +320,16 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       canonical_cds_bed:
         type: string
+        description: Path to canonical_cds_bed file
       min_mapq:
         type: integer
+        description: Minimum mapping quality
 
   fragmentomics_metrics_filter_comm_panel_genes:
     type: object
@@ -305,8 +337,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_gzip_comm_panel_genes:
     type: object
@@ -314,8 +348,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_get_SE_fragstats:
     type: object
@@ -323,8 +359,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_SE:
     type: object
@@ -332,8 +370,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_get_depth_fragstats:
     type: object
@@ -341,8 +381,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_normalized_depth:
     type: object
@@ -350,10 +392,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       exon_sizes:
         type: string
+        description: Path to exon_sizes file
 
   fragmentomics_metrics_calculate_frag_bins:
     type: object
@@ -361,8 +406,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_small_frags:
     type: object
@@ -370,8 +417,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_full_gene_depth:
     type: object
@@ -379,10 +428,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       exon_sizes:
         type: string
+        description: Path to exon_sizes file
 
   fragmentomics_metrics_get_left_4mer:
     type: object
@@ -390,10 +442,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       genome:
         type: string
+        description: Path to genome file
 
   fragmentomics_metrics_get_right_4mer:
     type: object
@@ -401,10 +456,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       genome:
         type: string
+        description: Path to genome file
 
   fragmentomics_metrics_calculate_MDS:
     type: object
@@ -412,8 +470,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_overlap_TFBS:
     type: object
@@ -421,10 +481,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       tfbs_midpoints:
         type: string
+        description: Path to tfbs_midpoints file
 
   fragmentomics_metrics_calculate_TFBS_entropy:
     type: object
@@ -432,8 +495,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_overlap_ATAC:
     type: object
@@ -441,10 +506,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       atac_peaks:
         type: string
+        description: Path to atac_peaks file
 
   fragmentomics_metrics_calculate_ATAC_entropy:
     type: object
@@ -452,8 +520,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_build_feature_tables:
     type: object
@@ -461,8 +531,10 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
 
   fragmentomics_metrics_extract_first_exon:
     type: object
@@ -470,10 +542,13 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container
       exon_strand_mapping:
         type: string
+        description: Path to exon_strand_mapping file
 
   fragmentomics_metrics_build_combined_ft:
     type: object
@@ -481,5 +556,7 @@ properties:
     properties:
       benchmark_repeats:
         type: integer
+        description: set number of times benchmark should be repeated
       container:
         type: string
+        description: name or path to docker/singularity container

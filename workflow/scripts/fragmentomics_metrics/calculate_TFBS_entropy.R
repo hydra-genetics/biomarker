@@ -3,10 +3,11 @@ suppressPackageStartupMessages(library(entropy))
 
 input_args <- commandArgs(trailingOnly = TRUE)
 
-if (length(input_args) > 0) {
-  sample_file <- input_args[1]
-  output_file <- input_args[2]
+if (length(input_args) != 2) {
+  stop("Usage: Rscript calculate_TFBS_entropy.R <input_file> <output_file>")
 }
+sample_file <- input_args[1]
+output_file <- input_args[2]
 
 calculate_tfbs_entropy <- function(input_file) {
   

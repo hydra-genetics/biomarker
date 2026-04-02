@@ -12,6 +12,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
             "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
         ),
         min_mapq=config.get("fragmentomics_metrics", {}).get("min_mapq", 30),
+        sort_mem=lambda wildcards, resources: f"{int(resources.mem_mb * 0.8)}M" if getattr(resources, "mem_mb", None) else "8G",
     log:
         "biomarker/fragmentomics_metrics_get_bed_from_bam/{sample}_{type}.log",
     benchmark:
@@ -40,7 +41,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         | bedtools bamtobed -i stdin \
         | bedtools intersect -wa -wb -a stdin -b {params.canonical_cds_bed} \
         | awk 'BEGIN{{OFS=\"\\t\"}}{{print $$1,$$2,$$3,$$4,$$5,$$12,$$13,$$6}}' \
-        | sort --parallel={threads} -S 30G -k1,1 -k2,2n \
+        | sort --parallel={threads} -S {params.sort_mem} -k1,1 -k2,2n \
         | gzip > {output}) > {log} 2>&1
         """
 
@@ -77,7 +78,7 @@ rule fragmentomics_metrics_filter_comm_panel_genes:
     message:
         "{rule}: Filters commercial panel genes for {wildcards.sample}_{wildcards.type}"
     shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/filter_comm_panels.R {input} > {log} 2>&1"
+        "Rscript workflow/scripts/fragmentomics_metrics/filter_comm_panels.R {input} {output} > {log} 2>&1"
 
 
 rule fragmentomics_metrics_gzip_comm_panel_genes:

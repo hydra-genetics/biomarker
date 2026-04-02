@@ -3,11 +3,12 @@ suppressPackageStartupMessages(library(entropy))
 
 input_args <- commandArgs(trailingOnly = TRUE)
 
-if (length(input_args) > 0) {
-  left_file <- input_args[1]
-  right_file <- input_args[2]
-  output_file <- input_args[3]
+if (length(input_args) < 3) {
+  stop("Usage: Rscript calculate_mds.R <left_file> <right_file> <output_file>")
 }
+left_file <- input_args[1]
+right_file <- input_args[2]
+output_file <- input_args[3]
 
 calculate_mds <- function(left_data, right_data) {
   

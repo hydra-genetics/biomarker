@@ -23,8 +23,8 @@ feature_tables <- c("depth","mds", "se", "small_frags")
 for (ft in feature_tables) {
     print(str_c("Filtering E1 for", ft, sep = " "))
     
-    rds_inpath <- str_c("output/feature_tables/", ft, ".rds")
-    outpath <- str_c("output/feature_tables/", ft, "_E1.rds")
+    rds_inpath <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, ".rds")
+    outpath <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, "_E1.rds")
     
     if (!file.exists(rds_inpath)) {
       warning(str_c("Input RDS not found: ", rds_inpath))
@@ -37,6 +37,7 @@ for (ft in feature_tables) {
       pivot_longer(cols = -sample, names_to = "feature", values_to = "value") %>% 
       separate(feature, into = c("gene", "exon"), sep = "_", remove = FALSE) %>% 
       left_join(gene_strands, by = "gene") %>% 
+      mutate(exon = as.integer(exon)) %>% 
       group_by(gene) %>% 
       mutate(
         first_exon = ifelse(strand == "+" & exon == min(exon), TRUE, FALSE),

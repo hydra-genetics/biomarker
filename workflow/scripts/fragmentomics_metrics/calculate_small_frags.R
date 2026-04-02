@@ -20,6 +20,7 @@ calculate_small_frag_prop <- function(input_file) {
     group_by(gene, exon, bin) %>% 
     summarise(bin_count = sum(count)) %>% 
     ungroup() %>% 
+    filter(!is.na(bin)) %>%
     group_by(gene, exon) %>% 
     mutate(bin_prop = bin_count / sum(bin_count)) %>% 
     ungroup() %>% 

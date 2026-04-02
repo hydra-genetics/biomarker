@@ -170,6 +170,26 @@ properties:
         type: string
         description: max execution time
 
+  fragle:
+    type: object
+    description: resource definitions for fragle
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available, minimum 2
+      time:
+        type: string
+        description: max execution time
+
   fragmentomics_fragment_length_patient_score:
     type: object
     description: resource definitions for fragmentomics_fragment_length_patient_score
@@ -190,9 +210,9 @@ properties:
         type: string
         description: max execution time
 
-  fragle:
+  fragmentomics_metrics_build_combined_ft:
     type: object
-    description: resource definitions for fragle
+    description: resource definitions for fragmentomics_metrics_build_combined_ft
     properties:
       mem_mb:
         type: integer
@@ -205,7 +225,387 @@ properties:
         description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads to be available, minimum 2
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_build_feature_tables:
+    type: object
+    description: resource definitions for fragmentomics_metrics_build_feature_tables
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_ATAC_entropy:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_ATAC_entropy
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_MDS:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_MDS
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_SE:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_SE
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_TFBS_entropy:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_TFBS_entropy
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_frag_bins:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_frag_bins
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_full_gene_depth:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_full_gene_depth
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_normalized_depth:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_normalized_depth
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_calculate_small_frags:
+    type: object
+    description: resource definitions for fragmentomics_metrics_calculate_small_frags
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_extract_first_exon:
+    type: object
+    description: resource definitions for fragmentomics_metrics_extract_first_exon
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_filter_comm_panel_genes:
+    type: object
+    description: resource definitions for fragmentomics_metrics_filter_comm_panel_genes
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_get_SE_fragstats:
+    type: object
+    description: resource definitions for fragmentomics_metrics_get_SE_fragstats
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_get_bed_from_bam:
+    type: object
+    description: resource definitions for fragmentomics_metrics_get_bed_from_bam
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_get_depth_fragstats:
+    type: object
+    description: resource definitions for fragmentomics_metrics_get_depth_fragstats
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_get_left_4mer:
+    type: object
+    description: resource definitions for fragmentomics_metrics_get_left_4mer
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_get_right_4mer:
+    type: object
+    description: resource definitions for fragmentomics_metrics_get_right_4mer
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_gzip_comm_panel_genes:
+    type: object
+    description: resource definitions for fragmentomics_metrics_gzip_comm_panel_genes
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_overlap_ATAC:
+    type: object
+    description: resource definitions for fragmentomics_metrics_overlap_ATAC
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+
+  fragmentomics_metrics_overlap_TFBS:
+    type: object
+    description: resource definitions for fragmentomics_metrics_overlap_TFBS
+    properties:
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
       time:
         type: string
         description: max execution time

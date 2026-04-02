@@ -17,12 +17,12 @@ for (ft in feature_tables) {
     
     print(str_c("Building feature table for", ft, sep = " "))
     
-    file_path <- str_c("output/metrics/", ft, "/")
-    out_path <- str_c("output/feature_tables/", ft, ".rds")
+    file_path <- str_c("biomarker/fragmentomics_metrics/metrics/", ft, "/")
+    out_path <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, ".rds")
     
-    dir.create("output/feature_tables", showWarnings = FALSE, recursive = TRUE)
+    dir.create("biomarker/fragmentomics_metrics/feature_tables", showWarnings = FALSE, recursive = TRUE)
     
-    file_list <- list.files(path = file_path, pattern = file_prefix)
+    file_list <- list.files(path = file_path, pattern = glob2rx(file_prefix))
     
     if (length(file_list) == 0) {
       warning(str_c("No files found for feature category: ", ft))
