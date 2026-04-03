@@ -9,6 +9,7 @@ reference:
   background: "references/background_panel_small.tsv"
   design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
   fasta_2bit: "references/HES45.fa.2bit"
+  fasta: "references/HES45.fa"
 
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
@@ -56,70 +57,10 @@ scarhrd:
 tmb:
   container: "docker://python:3.9.7-slim"
 
-fragmentomics_metrics_get_bed_from_bam:
-  container: "docker://hydragenetics/fragmentomics:260402"
+fragmentomics_metrics:
+  container: "docker://hydragenetics/fragmentomics_metrics:260402"
   canonical_cds_bed: "references/fragmentomics_files/UCSC_hg19_canonical_cds.bed"
-
-fragmentomics_metrics_filter_comm_panel_genes:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_gzip_comm_panel_genes:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_get_SE_fragstats:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_calculate_SE:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_get_depth_fragstats:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_calculate_normalized_depth:
-  container: "docker://hydragenetics/fragmentomics:260402"
   exon_sizes: "references/fragmentomics_files/UCSC_hg19_exon_sizes.tsv"
-
-fragmentomics_metrics_calculate_frag_bins:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_calculate_small_frags:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_calculate_full_gene_depth:
-  container: "docker://hydragenetics/fragmentomics:260402"
-  exon_sizes: "references/fragmentomics_files/UCSC_hg19_exon_sizes.tsv"
-
-fragmentomics_metrics_get_left_4mer:
-  container: "docker://hydragenetics/fragmentomics:260402"
-  genome: "references/HES45.fa"
-
-fragmentomics_metrics_get_right_4mer:
-  container: "docker://hydragenetics/fragmentomics:260402"
-  genome: "references/HES45.fa"
-
-fragmentomics_metrics_calculate_MDS:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_overlap_TFBS:
-  container: "docker://hydragenetics/fragmentomics:260402"
   tfbs_midpoints: "references/fragmentomics_files/TFBS.bed.gz"
-
-fragmentomics_metrics_calculate_TFBS_entropy:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_overlap_ATAC:
-  container: "docker://hydragenetics/fragmentomics:260402"
   atac_peaks: "references/fragmentomics_files/ATAC.bed"
-
-fragmentomics_metrics_calculate_ATAC_entropy:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_build_feature_tables:
-  container: "docker://hydragenetics/fragmentomics:260402"
-
-fragmentomics_metrics_extract_first_exon:
-  container: "docker://hydragenetics/fragmentomics:260402"
   exon_strand_mapping: "references/UCSC_hg19_canonical_cds.bed"
-
-fragmentomics_metrics_build_combined_ft:
-  container: "docker://hydragenetics/fragmentomics:260402"

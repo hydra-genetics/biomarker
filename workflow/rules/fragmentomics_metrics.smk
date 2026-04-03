@@ -32,7 +32,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         threads=config.get("fragmentomics_metrics_get_bed_from_bam", {}).get("threads", 6),
         time=config.get("fragmentomics_metrics_get_bed_from_bam", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_get_bed_from_bam", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Extracts BED from BAM for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -74,7 +74,7 @@ rule fragmentomics_metrics_filter_comm_panel_genes:
         ),
         time=config.get("fragmentomics_metrics_filter_comm_panel_genes", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_filter_comm_panel_genes", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Filters commercial panel genes for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -107,7 +107,7 @@ rule fragmentomics_metrics_gzip_comm_panel_genes:
         ),
         time=config.get("fragmentomics_metrics_gzip_comm_panel_genes", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_gzip_comm_panel_genes", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Gzips filtered commercial panel genes for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -138,7 +138,7 @@ rule fragmentomics_metrics_get_SE_fragstats:
         threads=config.get("fragmentomics_metrics_get_SE_fragstats", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_get_SE_fragstats", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_get_SE_fragstats", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates SE fragstats for {wildcards.sample}_{wildcards.type}"
     priority: 20
@@ -175,7 +175,7 @@ rule fragmentomics_metrics_calculate_SE:
         threads=config.get("fragmentomics_metrics_calculate_SE", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_calculate_SE", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_SE", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates SE metrics for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -206,7 +206,7 @@ rule fragmentomics_metrics_get_depth_fragstats:
         threads=config.get("fragmentomics_metrics_get_depth_fragstats", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_get_depth_fragstats", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_get_depth_fragstats", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates depth fragstats for {wildcards.sample}_{wildcards.type}"
     priority: 20
@@ -250,7 +250,7 @@ rule fragmentomics_metrics_calculate_normalized_depth:
         ),
         time=config.get("fragmentomics_metrics_calculate_normalized_depth", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_normalized_depth", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates normalized depth for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -281,7 +281,7 @@ rule fragmentomics_metrics_calculate_frag_bins:
         threads=config.get("fragmentomics_metrics_calculate_frag_bins", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_calculate_frag_bins", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_frag_bins", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates fragment bins for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -314,7 +314,7 @@ rule fragmentomics_metrics_calculate_small_frags:
         ),
         time=config.get("fragmentomics_metrics_calculate_small_frags", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_small_frags", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates small fragment metrics for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -351,7 +351,7 @@ rule fragmentomics_metrics_calculate_full_gene_depth:
         ),
         time=config.get("fragmentomics_metrics_calculate_full_gene_depth", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_full_gene_depth", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates full gene depth for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -382,7 +382,7 @@ rule fragmentomics_metrics_get_left_4mer:
         threads=config.get("fragmentomics_metrics_get_left_4mer", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_get_left_4mer", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_get_left_4mer", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates left 4-mer motifs for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -423,7 +423,7 @@ rule fragmentomics_metrics_get_right_4mer:
         threads=config.get("fragmentomics_metrics_get_right_4mer", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_get_right_4mer", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_get_right_4mer", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates right 4-mer motifs for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -461,7 +461,7 @@ rule fragmentomics_metrics_calculate_MDS:
         threads=config.get("fragmentomics_metrics_calculate_MDS", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_calculate_MDS", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_MDS", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates MDS entropy for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -492,7 +492,7 @@ rule fragmentomics_metrics_overlap_TFBS:
         threads=config.get("fragmentomics_metrics_overlap_TFBS", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_overlap_TFBS", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_overlap_TFBS", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Overlaps TFBS midpoints for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -532,7 +532,7 @@ rule fragmentomics_metrics_calculate_TFBS_entropy:
         ),
         time=config.get("fragmentomics_metrics_calculate_TFBS_entropy", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_TFBS_entropy", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates TFBS entropy for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -563,7 +563,7 @@ rule fragmentomics_metrics_overlap_ATAC:
         threads=config.get("fragmentomics_metrics_overlap_ATAC", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_overlap_ATAC", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_overlap_ATAC", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Overlaps ATAC peaks for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -603,7 +603,7 @@ rule fragmentomics_metrics_calculate_ATAC_entropy:
         ),
         time=config.get("fragmentomics_metrics_calculate_ATAC_entropy", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_calculate_ATAC_entropy", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates ATAC entropy for {wildcards.sample}_{wildcards.type}"
     shell:
@@ -682,7 +682,7 @@ rule fragmentomics_metrics_build_feature_tables:
         ),
         time=config.get("fragmentomics_metrics_build_feature_tables", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_build_feature_tables", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Builds feature tables for all samples"
     shell:
@@ -725,7 +725,7 @@ rule fragmentomics_metrics_extract_first_exon:
         threads=config.get("fragmentomics_metrics_extract_first_exon", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_extract_first_exon", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_extract_first_exon", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Extracts first exons for feature tables"
     shell:
@@ -763,7 +763,7 @@ rule fragmentomics_metrics_build_combined_ft:
         threads=config.get("fragmentomics_metrics_build_combined_ft", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fragmentomics_metrics_build_combined_ft", {}).get("time", config["default_resources"]["time"]),
     container:
-        config.get("fragmentomics_metrics_build_combined_ft", {}).get("container", config["default_container"])
+        config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Builds combined feature table for all samples"
     shell:
