@@ -1,13 +1,8 @@
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(entropy))
 
-input_args <- commandArgs(trailingOnly = TRUE)
-
-if (length(input_args) != 2) {
-  stop("Usage: Rscript calculate_TFBS_entropy.R <input_file> <output_file>")
-}
-sample_file <- input_args[1]
-output_file <- input_args[2]
+sample_file <- snakemake@input[[1]]
+output_file <- snakemake@output[[1]]
 
 calculate_tfbs_entropy <- function(input_file) {
   

@@ -1,15 +1,9 @@
 suppressPackageStartupMessages(library(tidyverse))
 
-input_args <- commandArgs(trailingOnly = TRUE)
-
-if (length(input_args) < 1) {
-  stop("Usage: Rscript filter_first_exons.R <strand_mapping_file>")
-}
-
-# Get Strand Info from argument
-strand_file <- input_args[1]
-if (!file.exists(strand_file)) {
-    stop(str_c("Strand mapping file not found: ", strand_file))
+# Get Strand Info from snakemake params
+strand_file <- snakemake@params[["strand_mapping"]]
+if (is.null(strand_file) || !file.exists(strand_file)) {
+    stop(paste("Strand mapping file not found or NULL:", strand_file))
 }
 
 gene_strands <- read_tsv(strand_file, show_col_types = F) %>% 
@@ -23,10 +17,10 @@ feature_tables <- c("depth","mds", "se", "small_frags")
 for (ft in feature_tables) {
     print(str_c("Filtering E1 for", ft, sep = " "))
     
-    rds_inpath <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, ".rds")
-    outpath <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, "_E1.rds")
+    rds_inpath <- snakemake@input[[ft]]
+    outpath <- snakemake@output[[paste0(ft, "_E1")]]
     
-    if (!file.exists(rds_inpath)) {
+    if (is.null(rds_inpath) || !file.exists(rds_inpath)) {
       warning(str_c("Input RDS not found: ", rds_inpath))
       next
     }

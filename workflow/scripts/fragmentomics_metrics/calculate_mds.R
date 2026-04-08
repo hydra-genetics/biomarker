@@ -1,14 +1,9 @@
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(entropy))
 
-input_args <- commandArgs(trailingOnly = TRUE)
-
-if (length(input_args) < 3) {
-  stop("Usage: Rscript calculate_mds.R <left_file> <right_file> <output_file>")
-}
-left_file <- input_args[1]
-right_file <- input_args[2]
-output_file <- input_args[3]
+left_file <- snakemake@input[["left"]]
+right_file <- snakemake@input[["right"]]
+output_file <- snakemake@output[[1]]
 
 calculate_mds <- function(left_data, right_data) {
   

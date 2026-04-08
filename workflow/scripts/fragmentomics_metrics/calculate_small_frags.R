@@ -1,11 +1,7 @@
 suppressPackageStartupMessages(library(tidyverse))
 
-input_args <- commandArgs(trailingOnly = TRUE)
-
-if (length(input_args) > 0) {
-  input_file <- input_args[1]
-  output_file <- input_args[2]
-}
+input_file <- snakemake@input[[1]]
+output_file <- snakemake@output[[1]]
 
 # function to read in file and calculate Shannon entropy
 calculate_small_frag_prop <- function(input_file) {

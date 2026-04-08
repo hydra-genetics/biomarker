@@ -4,32 +4,17 @@ feature_tables <- c("ATAC_entropy", "depth", "frag_bins", "full_gene_depth", "md
 
 for (ft in feature_tables) {
     
-    file_prefix <- case_when(
-      ft == "ATAC_entropy" ~ "*_ATAC_entropy.txt",
-      ft == "depth" ~ "*.depth.tsv",
-      ft == "frag_bins" ~ "*.fragbins.tsv",
-      ft == "full_gene_depth" ~ "*.fullgenedepth.tsv",
-      ft == "mds" ~ "*_mds.txt",
-      ft == "se" ~ "*.SE.tsv", 
-      ft == "small_frags" ~ "*.smallfrag.tsv", 
-      ft == "TFBS_entropy" ~ "*_TFBS_entropy.txt"
-    )
-    
     print(str_c("Building feature table for", ft, sep = " "))
     
-    file_path <- str_c("biomarker/fragmentomics_metrics/metrics/", ft, "/")
-    out_path <- str_c("biomarker/fragmentomics_metrics/feature_tables/", ft, ".rds")
-    
-    dir.create("biomarker/fragmentomics_metrics/feature_tables", showWarnings = FALSE, recursive = TRUE)
-    
-    file_list <- list.files(path = file_path, pattern = glob2rx(file_prefix))
+    file_list <- snakemake@input[[ft]]
+    out_path <- snakemake@output[[ft]]
     
     if (length(file_list) == 0) {
-      warning(str_c("No files found for feature category: ", ft))
+      warning(str_c("No files provided for feature category: ", ft))
       next
     }
     
-    all_data <- purrr::map_dfr(str_c(file_path, file_list), ~ read_tsv(.x, show_col_types = FALSE))
+    all_data <- purrr::map_dfr(file_list, ~ read_tsv(.x, show_col_types = FALSE))
     
     all_data <- all_data %>% 
       dplyr::rename("sample" = 1, "feature" = 2, "value" = 3) %>% 

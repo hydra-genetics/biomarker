@@ -1,18 +1,12 @@
 suppressPackageStartupMessages(library(tidyverse))
 
-input_args <- commandArgs(trailingOnly = TRUE)
-
-if (length(input_args) < 3) {
-  stop("Usage: Rscript calculate_depth.R <exon_sizes_file> <input_file> <output_file>")
-}
-
 # Parameterized resources
-exon_sizes_file <- input_args[1]
-input_file <- input_args[2]
-output_file <- input_args[3]
+exon_sizes_file <- snakemake@params[["exon_sizes"]]
+input_file <- snakemake@input[[1]]
+output_file <- snakemake@output[[1]]
 
-if (!file.exists(exon_sizes_file)) {
-    stop(str_c("Exon sizes file not found: ", exon_sizes_file))
+if (is.null(exon_sizes_file) || !file.exists(exon_sizes_file)) {
+    stop(paste("Exon sizes file not found or NULL:", exon_sizes_file))
 }
 
 # need to get list of all unique gene_exon values with their exon sizes

@@ -77,8 +77,8 @@ rule fragmentomics_metrics_filter_comm_panel_genes:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Filters commercial panel genes for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/filter_comm_panels.R {input.bed_gz} {output.bed} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/filter_comm_panels.R"
 
 
 rule fragmentomics_metrics_gzip_comm_panel_genes:
@@ -178,8 +178,8 @@ rule fragmentomics_metrics_calculate_SE:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates SE metrics for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_SE.R {input.se_fragstats} {output.se_metrics} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_SE.R"
 
 
 rule fragmentomics_metrics_get_depth_fragstats:
@@ -253,8 +253,8 @@ rule fragmentomics_metrics_calculate_normalized_depth:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates normalized depth for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_depth.R {params.exon_sizes} {input.depth_fragstats} {output.depth} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_depth.R"
 
 
 rule fragmentomics_metrics_calculate_frag_bins:
@@ -284,8 +284,8 @@ rule fragmentomics_metrics_calculate_frag_bins:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates fragment bins for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_frag_bins.R {input.se_fragstats} {output.fragbins} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_frag_bins.R"
 
 
 rule fragmentomics_metrics_calculate_small_frags:
@@ -317,8 +317,8 @@ rule fragmentomics_metrics_calculate_small_frags:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates small fragment metrics for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_small_frags.R {input.se_fragstats} {output.smallfrag} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_small_frags.R"
 
 
 rule fragmentomics_metrics_calculate_full_gene_depth:
@@ -354,8 +354,8 @@ rule fragmentomics_metrics_calculate_full_gene_depth:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates full gene depth for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_full_gene_depth.R {params.exon_sizes} {input.depth_fragstats} {output.fullgenedepth} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_full_gene_depth.R"
 
 
 rule fragmentomics_metrics_get_left_4mer:
@@ -464,8 +464,8 @@ rule fragmentomics_metrics_calculate_MDS:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates MDS entropy for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_mds.R {input.left} {input.right} {output} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_mds.R"
 
 
 rule fragmentomics_metrics_overlap_TFBS:
@@ -535,8 +535,8 @@ rule fragmentomics_metrics_calculate_TFBS_entropy:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates TFBS entropy for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_TFBS_entropy.R {input.tfbs_frag_count} {output.tfbs_entropy} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_TFBS_entropy.R"
 
 
 rule fragmentomics_metrics_overlap_ATAC:
@@ -606,8 +606,8 @@ rule fragmentomics_metrics_calculate_ATAC_entropy:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Calculates ATAC entropy for {wildcards.sample}_{wildcards.type}"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/calculate_ATAC_entropy.R {input.atac_frag_count} {output.atac_entropy} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/calculate_ATAC_entropy.R"
 
 
 rule fragmentomics_metrics_build_feature_tables:
@@ -685,8 +685,8 @@ rule fragmentomics_metrics_build_feature_tables:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Builds feature tables for all samples"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/build_feature_tables.R > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/build_feature_tables.R"
 
 
 rule fragmentomics_metrics_extract_first_exon:
@@ -728,8 +728,8 @@ rule fragmentomics_metrics_extract_first_exon:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Extracts first exons for feature tables"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/filter_first_exons.R {params.strand_mapping} > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/filter_first_exons.R"
 
 
 rule fragmentomics_metrics_build_combined_ft:
@@ -766,5 +766,5 @@ rule fragmentomics_metrics_build_combined_ft:
         config.get("fragmentomics_metrics", {}).get("container", config["default_container"])
     message:
         "{rule}: Builds combined feature table for all samples"
-    shell:
-        "Rscript workflow/scripts/fragmentomics_metrics/generate_combined_ft.R > {log} 2>&1"
+    script:
+        "../scripts/fragmentomics_metrics/generate_combined_ft.R"

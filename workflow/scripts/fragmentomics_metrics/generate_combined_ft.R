@@ -20,23 +20,12 @@ append_suffix_to_colnames <- function(df, suffix) {
 
 print("Generating Combined Feature Table")
 
-outpath <- "biomarker/fragmentomics_metrics/feature_tables/all_combined.rds"
-
-feature_files <- c(
-  "ATAC_entropy" = "biomarker/fragmentomics_metrics/feature_tables/ATAC_entropy.rds",
-  "depth" = "biomarker/fragmentomics_metrics/feature_tables/depth.rds",
-  "frag_bins" = "biomarker/fragmentomics_metrics/feature_tables/frag_bins.rds",
-  "full_gene_depth" = "biomarker/fragmentomics_metrics/feature_tables/full_gene_depth.rds",
-  "mds" = "biomarker/fragmentomics_metrics/feature_tables/mds.rds",
-  "se" = "biomarker/fragmentomics_metrics/feature_tables/se.rds",
-  "small_frags" = "biomarker/fragmentomics_metrics/feature_tables/small_frags.rds",
-  "TFBS_entropy" = "biomarker/fragmentomics_metrics/feature_tables/TFBS_entropy.rds"
-)
+outpath <- snakemake@output[["combined_rds"]]
 
 dfs <- list()
 
-for (suffix in names(feature_files)) {
-  f <- feature_files[[suffix]]
+for (suffix in names(snakemake@input)) {
+  f <- snakemake@input[[suffix]]
   if (file.exists(f)) {
     dfs[[suffix]] <- read_rds(f) %>% append_suffix_to_colnames(suffix = suffix)
   } else {

@@ -58,7 +58,7 @@ tmb:
   container: "docker://python:3.9.7-slim"
 
 fragmentomics_metrics:
-  container: "docker://hydragenetics/fragmentomics_metrics:260402"
+  container: "docker://hydragenetics/fragmentomics_metrics:020426"
   canonical_cds_bed: "references/fragmentomics_files/UCSC_hg19_canonical_cds.bed"
   exon_sizes: "references/fragmentomics_files/UCSC_hg19_exon_sizes.tsv"
   tfbs_midpoints: "references/fragmentomics_files/TFBS.bed.gz"
