@@ -5,7 +5,8 @@ output_file <- snakemake@output[[1]]
 
 # Load reads
 reads <- read_tsv(input_file, show_col_types = F,
-         col_names = c("chr", "start", "stop", "ens_id", "refseq", "gene", "exon", "strand"))
+         col_names = c("chr", "start", "stop", "ens_id", "refseq", "gene", "exon", "strand")) %>%
+         select(chr, start, stop, ens_id, refseq, gene, exon, strand)
 
 # Output to target path
 output_dir <- dirname(output_file)
