@@ -40,7 +40,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         (samtools view -@ {threads} -b -q {params.min_mapq} {input.bam} \
         | bedtools bamtobed -i stdin \
         | bedtools intersect -wa -wb -a stdin -b {params.canonical_cds_bed} \
-        | awk 'BEGIN{{OFS="\t"}}{{print $$1,$$2,$$3,$$10,$$11,$$12,$$13,$$6}}' \
+        | awk -F"\t" 'BEGIN{{OFS="\t"}}{{print $$1,$$2,$$3,$$10,$$11,$$12,$$13,$$6}}' \
         | sort --parallel={threads} -S {params.sort_mem} -k1,1 -k2,2n \
         | gzip > {output}) > {log} 2>&1
         """
@@ -145,7 +145,7 @@ rule fragmentomics_metrics_get_SE_fragstats:
     shell:
         """
         (zcat {input.bed_gz_filtered} \
-        | awk 'BEGIN{{OFS="\t"}}{{print $$6, $$7, ($$3-$$2)}}' \
+        | awk -F"\t" 'BEGIN{{OFS="\t"}}{{print $$6, $$7, ($$3-$$2)}}' \
         | sort -k1,1 -k2,2n -k3,3n \
         | uniq -c \
         | awk 'BEGIN{{OFS="\t"}}{{print $$2, $$3, $$4, $$1}}' \
@@ -216,7 +216,7 @@ rule fragmentomics_metrics_get_depth_fragstats:
         | cut -f 6,7 \
         | sort -k1,1 -k2,2n \
         | uniq -c \
-        | awk 'BEGIN{{OFS="\t"}}{{print $$2, $$3, $$1 }}' > {output.depth_fragstats}) > {log} 2>&1
+        | awk -F"\t" 'BEGIN{{OFS="\t"}}{{print $$2, $$3, $$1 }}' > {output.depth_fragstats}) > {log} 2>&1
         """
 
 
@@ -499,9 +499,10 @@ rule fragmentomics_metrics_overlap_TFBS:
         """
         (zcat {input.sample_reads} \
         | bedtools intersect -a stdin -b {params.tfbs} -wa -wb \
-        | awk -F"\t" 'BEGIN {{OFS=FS}} {{print $$3-$$2, $$12}}' \
+        | awk -F"\t" 'BEGIN {{OFS="\t"}} {{print $$3-$$2, $$12}}' \
         | sort -k2,2 -k1,1n \
         | uniq -c \
+        | awk -F" " 'BEGIN{{OFS="\t"}}{{print $$2, $$3, $$1}}' \
         | gzip  > {output}) > {log} 2>&1
         """
 
@@ -570,9 +571,10 @@ rule fragmentomics_metrics_overlap_ATAC:
         """
         (zcat {input.sample_reads} \
         | bedtools intersect -a stdin -b {params.atac} -wa -wb \
-        | awk -F"\t" 'BEGIN{{OFS=FS}}; {{split($$12, arr, "_"); print arr[1], $$3-$$2}}' \
+        | awk -F"\t" 'BEGIN{{OFS="\t"}}; {{split($$12, arr, "_"); print arr[1], $$3-$$2}}' \
         | sort -k1,1 -k2,2n \
         | uniq -c \
+        | awk -F" " 'BEGIN{{OFS="\t"}}{{print $$2, $$3, $$1}}' \
         | gzip > {output}) > {log} 2>&1
         """
 
