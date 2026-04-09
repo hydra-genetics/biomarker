@@ -41,7 +41,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         | bedtools bamtobed -i stdin \
         | cut -f 1-6 \
         | bedtools intersect -wa -wb -a stdin -b {params.canonical_cds_bed} \
-        | awk -F"\t" 'BEGIN{{OFS="\t"}}{{print $$1,$$2,$$3,$$10,$$11,$$12,$$13,$$6}}' \
+        | awk -F"\t" 'BEGIN{{OFS="\t"}} {{ if (NF != 14) {{ print "ERROR: Expected 14 fields from intersect, got " NF > "/dev/stderr"; print $$0 > "/dev/stderr"; exit 1; }} print $$1,$$2,$$3,$$10,$$11,$$12,$$13,$$6 }}' \
         | sort --parallel={threads} -S {params.sort_mem} -k1,1 -k2,2n \
         | gzip > {output}) > {log} 2>&1
         """
