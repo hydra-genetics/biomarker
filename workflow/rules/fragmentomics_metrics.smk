@@ -219,7 +219,7 @@ rule fragmentomics_metrics_get_depth_fragstats:
         | cut -f 6,7 \
         | sort -k1,1 -k2,2n \
         | uniq -c \
-        | awk -F"\t" -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c1 }}' > {output.depth_fragstats}) > {log} 2>&1
+        | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c1 }}' > {output.depth_fragstats}) > {log} 2>&1
         """
 
 
@@ -505,7 +505,7 @@ rule fragmentomics_metrics_overlap_TFBS:
         | awk -F"\t" -v c2=2 -v c3=3 -v c12=12 'BEGIN {{OFS="\t"}} {{print $c3-$c2, $c12}}' \
         | sort -k2,2 -k1,1n \
         | uniq -c \
-        | awk -F" " -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c1}}' \
+        | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c1, $c2, $c3}}' \
         | gzip  > {output}) > {log} 2>&1
         """
 
@@ -577,7 +577,7 @@ rule fragmentomics_metrics_overlap_ATAC:
         | awk -F"\t" -v c2=2 -v c3=3 -v c12=12 'BEGIN{{OFS="\t"}}; {{split($c12, arr, "_"); print arr[1], $c3-$c2}}' \
         | sort -k1,1 -k2,2n \
         | uniq -c \
-        | awk -F" " -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c1}}' \
+        | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c1, $c2, $c3}}' \
         | gzip > {output}) > {log} 2>&1
         """
 
