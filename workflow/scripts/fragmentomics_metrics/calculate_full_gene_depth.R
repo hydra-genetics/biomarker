@@ -37,7 +37,7 @@ normalize_full_depth_data <- function(input_file) {
     summarise(gene_count = sum(count)) %>% 
     left_join(gene_sizes, by = "gene") %>% 
     filter(!is.na(gene_size)) %>% 
-    mutate(norm_depth = if_else(is.na(scale_factor), NA_real_, (gene_count / gene_size) / scale_factor)) %>% 
+    mutate(norm_depth = (gene_count / gene_size) / scale_factor) %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, gene, norm_depth)
   

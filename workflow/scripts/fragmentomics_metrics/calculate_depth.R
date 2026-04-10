@@ -29,7 +29,7 @@ normalize_depth_data <- function(input_file) {
   output <- depth_data %>% 
     mutate(id = str_c(gene, exon, sep = "_")) %>% 
     left_join(all_ids, by = "id") %>% 
-    mutate(norm_depth = if_else(is.na(scale_factor), NA_real_, (count / size) / scale_factor)) %>% 
+    mutate(norm_depth = (count / size) / scale_factor) %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, norm_depth)
   
