@@ -11,6 +11,10 @@ calculate_small_frag_prop <- function(input_file) {
                          col_names = c("gene", "exon", "fragsize", "count"),
                          col_types = cols())
   
+  if (nrow(read_data) == 0) {
+      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+  }
+
   output <- read_data %>% 
     mutate(bin = cut(fragsize, breaks = c(0, 150, 500), labels = c("small", "large"))) %>% 
     group_by(gene, exon, bin) %>% 
@@ -24,6 +28,10 @@ calculate_small_frag_prop <- function(input_file) {
     filter(bin == "small") %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, bin_prop)
+  
+  if (nrow(output) == 0) {
+      stop(paste("FATAL: Small frags calculation produced zero results for sample:", sample_name))
+  }
     
   return(output)
 }

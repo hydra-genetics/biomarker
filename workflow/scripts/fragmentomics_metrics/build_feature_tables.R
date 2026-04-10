@@ -10,11 +10,14 @@ for (ft in feature_tables) {
     out_path <- snakemake@output[[ft]]
     
     if (length(file_list) == 0) {
-      warning(str_c("No files provided for feature category: ", ft))
-      next
+      stop(str_c("FATAL: No input files provided for feature category: ", ft))
     }
     
     all_data <- purrr::map_dfr(file_list, ~ read_tsv(.x, show_col_types = FALSE))
+    
+    if (nrow(all_data) == 0) {
+      stop(str_c("FATAL: No data found in input files for feature category: ", ft))
+    }
     
     all_data <- all_data %>% 
       dplyr::rename("sample" = 1, "feature" = 2, "value" = 3) %>% 
@@ -26,7 +29,12 @@ for (ft in feature_tables) {
     output_data <- all_data %>% 
       pivot_wider(names_from = feature, values_from = value)
     
-    # remove or replace NAs with 0
+    # Check if we still have data after filtering/pivoting
+    if (nrow(output_data) == 0) {
+      stop(str_c("FATAL: Resulting feature table is empty after filtering for category: ", ft))
+    }
+
+    # replace NAs with 0
     output_data <- output_data %>%
       mutate(across(everything(), ~replace_na(., 0)))
     

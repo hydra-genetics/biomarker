@@ -12,6 +12,10 @@ calculate_SE <- function(input_file) {
                          col_names = c("gene", "exon", "fragsize", "count"),
                          col_types = cols())
   
+  if (nrow(read_data) == 0) {
+      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+  }
+
   output <- read_data %>% 
     mutate(id = str_c(gene, exon, sep = "_")) %>% 
     group_by(id) %>% 
@@ -19,6 +23,10 @@ calculate_SE <- function(input_file) {
     ungroup() %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, se)
+  
+  if (nrow(output) == 0) {
+      stop(paste("FATAL: Shannon entropy calculation produced zero results for sample:", sample_name))
+  }
     
   return(output)
 }

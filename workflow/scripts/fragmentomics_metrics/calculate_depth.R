@@ -6,7 +6,7 @@ input_file <- snakemake@input[[1]]
 output_file <- snakemake@output[[1]]
 
 if (is.null(exon_sizes_file) || !file.exists(exon_sizes_file)) {
-    stop(paste("Exon sizes file not found or NULL:", exon_sizes_file))
+    stop(paste("FATAL: Exon sizes file not found or NULL:", exon_sizes_file))
 }
 
 # need to get list of all unique gene_exon values with their exon sizes
@@ -23,6 +23,10 @@ normalize_depth_data <- function(input_file) {
                         col_names = c("gene", "exon", "count"),
                         col_types = cols())
   
+  if (nrow(depth_data) == 0) {
+      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+  }
+
   num_reads <- sum(depth_data$count)
   scale_factor <- if (num_reads == 0) NA_real_ else num_reads / 1e6
   
@@ -33,6 +37,10 @@ normalize_depth_data <- function(input_file) {
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, norm_depth)
   
+  if (nrow(output) == 0) {
+      stop(paste("FATAL: Normalization results are empty for sample:", sample_name))
+  }
+
   return(output)
 }
 

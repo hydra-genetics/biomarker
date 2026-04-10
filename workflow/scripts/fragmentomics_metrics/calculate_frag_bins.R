@@ -11,6 +11,10 @@ calculate_frag_bins <- function(input_file) {
                          col_names = c("gene", "exon", "fragsize", "count"),
                          col_types = cols())
   
+  if (nrow(read_data) == 0) {
+      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+  }
+
   output <- read_data %>% 
     mutate(bin = cut(fragsize, breaks = c(0, 100, 150, 200, 250, 300, 1000), labels = str_c("bin", seq(1, 6)))) %>% 
     group_by(gene, exon, bin) %>% 
@@ -23,6 +27,10 @@ calculate_frag_bins <- function(input_file) {
     mutate(id = str_c(gene, exon, bin, sep = "_")) %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, bin_prop)
+  
+  if (nrow(output) == 0) {
+      stop(paste("FATAL: Frag bins calculation produced zero results for sample:", sample_name))
+  }
     
   return(output)
 }
