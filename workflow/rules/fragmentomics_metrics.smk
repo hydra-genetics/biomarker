@@ -43,7 +43,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
         | cut -f 1-6 \
         | bedtools intersect -wa -wb -a stdin -b {params.canonical_cds_bed} \
         | awk '{{ if (NF < 14) {{ print "ERROR: Expected at least 14 fields from intersect, got " NF; exit 1; }} print }}' \
-        | cut -f 1,2,3,10,11,12,13,14 \
+        | cut -f 1,2,3,12,13,14 \
         | sort --parallel={threads} -S {params.sort_mem} -k1,1 -k2,2n \
         | gzip > {output}) > {log} 2>&1
         """
@@ -148,7 +148,7 @@ rule fragmentomics_metrics_get_SE_fragstats:
     shell:
         """
         (zcat {input.bed_gz_filtered} \
-        | awk -F"\t" -v c2=2 -v c3=3 -v c6=6 -v c7=7 'BEGIN{{OFS="\t"}}{{print $c6, $c7, ($c3-$c2)}}' \
+        | awk -F"\t" -v c2=2 -v c3=3 -v c4=4 -v c5=5 'BEGIN{{OFS="\t"}}{{print $c4, $c5, ($c3-$c2)}}' \
         | sort -k1,1 -k2,2n -k3,3n \
         | uniq -c \
         | awk -v c1=1 -v c2=2 -v c3=3 -v c4=4 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c4, $c1}}' \
@@ -216,7 +216,7 @@ rule fragmentomics_metrics_get_depth_fragstats:
     shell:
         """
         (zcat {input.bed_gz_filtered} \
-        | cut -f 6,7 \
+        | cut -f 4,5 \
         | sort -k1,1 -k2,2n \
         | uniq -c \
         | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c2, $c3, $c1 }}' > {output.depth_fragstats}) > {log} 2>&1
@@ -391,9 +391,9 @@ rule fragmentomics_metrics_get_left_4mer:
     shell:
         """
         (zcat {input.sample_reads} \
-        | awk -F "\t" -v c1=1 -v c2=2 -v c4=4 -v c5=5 -v c6=6 -v c7=7 -v c8=8 'BEGIN{{OFS=FS}}; {{print $c1, $c2, $c2+4, $c4, $c5, $c6, $c7, $c8}}' \
+        | awk -F "\t" -v c1=1 -v c2=2 -v c4=4 -v c5=5 -v c6=6 'BEGIN{{OFS=FS}}; {{print $c1, $c2, $c2+4, $c4, $c5, $c6}}' \
         | bedtools getfasta -fi {params.reference} -bed stdin -bedOut \
-        | awk -F "\t" -v c6=6 -v c7=7 -v c9=9 'BEGIN{{OFS=FS}}; {{print $c6, $c7, toupper($c9)}}' \
+        | awk -F "\t" -v c4=4 -v c5=5 -v c7=7 'BEGIN{{OFS=FS}}; {{print $c4, $c5, toupper($c7)}}' \
         | sort -k1,1 -k2,2n -k3,3 \
         | uniq -c \
         | gzip > {output}) > {log} 2>&1
@@ -432,9 +432,9 @@ rule fragmentomics_metrics_get_right_4mer:
     shell:
         """
         (zcat {input.sample_reads} \
-        | awk -F "\t" -v c1=1 -v c3=3 -v c4=4 -v c5=5 -v c6=6 -v c7=7 -v c8=8 'BEGIN{{OFS=FS}}; {{print $c1, $c3-4, $c3, $c4, $c5, "-", $c6, $c7, $c8}}' \
+        | awk -F "\t" -v c1=1 -v c3=3 -v c4=4 -v c5=5 'BEGIN{{OFS=FS}}; {{print $c1, $c3-4, $c3, $c4, $c5, "-"}}' \
         | bedtools getfasta -fi {params.reference} -bed stdin -bedOut -s \
-        | awk -F "\t" -v c7=7 -v c8=8 -v c10=10 'BEGIN{{OFS=FS}}; {{print $c7, $c8, toupper($c10)}}' \
+        | awk -F "\t" -v c4=4 -v c5=5 -v c7=7 'BEGIN{{OFS=FS}}; {{print $c4, $c5, toupper($c7)}}' \
         | sort -k1,1 -k2,2n -k3,3 \
         | uniq -c \
         | gzip > {output}) > {log} 2>&1
@@ -502,7 +502,7 @@ rule fragmentomics_metrics_overlap_TFBS:
         """
         (zcat {input.sample_reads} \
         | bedtools intersect -a stdin -b {params.tfbs} -wa -wb \
-        | awk -F"\t" -v c2=2 -v c3=3 -v c12=12 'BEGIN {{OFS="\t"}} {{print $c3-$c2, $c12}}' \
+        | awk -F"\t" -v c2=2 -v c3=3 -v c10=10 'BEGIN {{OFS="\t"}} {{print $c3-$c2, $c10}}' \
         | sort -k2,2 -k1,1n \
         | uniq -c \
         | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c1, $c2, $c3}}' \
@@ -574,7 +574,7 @@ rule fragmentomics_metrics_overlap_ATAC:
         """
         (zcat {input.sample_reads} \
         | bedtools intersect -a stdin -b {params.atac} -wa -wb \
-        | awk -F"\t" -v c2=2 -v c3=3 -v c12=12 'BEGIN{{OFS="\t"}}; {{split($c12, arr, "_"); print arr[1], $c3-$c2}}' \
+        | awk -F"\t" -v c2=2 -v c3=3 -v c10=10 'BEGIN{{OFS="\t"}}; {{split($c10, arr, "_"); print arr[1], $c3-$c2}}' \
         | sort -k1,1 -k2,2n \
         | uniq -c \
         | awk -v c1=1 -v c2=2 -v c3=3 'BEGIN{{OFS="\t"}}{{print $c1, $c2, $c3}}' \
