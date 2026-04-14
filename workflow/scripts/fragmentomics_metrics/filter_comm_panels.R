@@ -3,7 +3,8 @@ suppressPackageStartupMessages(library(tidyverse))
 input_file <- snakemake@input[[1]]
 output_file <- snakemake@output[[1]]
 
-# Load reads
+# Load reads (8-column format as per specification:
+# chr, start, stop, ens_id, refseq, gene, exon, strand)
 reads <- read_tsv(input_file, show_col_types = FALSE, quote = "",
          col_names = c("chr", "start", "stop", "ens_id", "refseq", "gene", "exon", "strand"),
          col_types = cols(
