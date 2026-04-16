@@ -2,6 +2,7 @@ suppressPackageStartupMessages(library(tidyverse))
 
 # Parameterized resources
 exon_sizes_file <- snakemake@params[["exon_sizes"]]
+cds_bed_file <- snakemake@params[["cds_bed"]]
 input_file <- snakemake@input[[1]]
 output_file <- snakemake@output[[1]]
 
@@ -9,11 +10,20 @@ if (is.null(exon_sizes_file) || !file.exists(exon_sizes_file)) {
     stop(paste("FATAL: Exon sizes file not found or NULL:", exon_sizes_file))
 }
 
+# Load Targeted Exons from BED
+targeted_exons <- read_tsv(cds_bed_file, 
+                          col_names = c("chr", "start", "stop", "transcript", "refseq", "gene", "exon", "strand"),
+                          col_types = cols()) %>%
+  mutate(id = str_c(gene, exon, sep = "_")) %>%
+  pull(id) %>%
+  unique()
+
 # need to get list of all unique gene_exon values with their exon sizes
 all_ids <- read_tsv(exon_sizes_file,
                     col_types = cols()) %>% 
   filter(str_detect(gene, "_", negate = TRUE)) %>% 
   mutate(id = str_c(gene, exon, sep = "_")) %>% 
+  filter(id %in% targeted_exons) %>% # Filter to targeted exons only
   dplyr::select(id, size)
 
 gene_sizes <- all_ids %>% 

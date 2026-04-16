@@ -229,6 +229,9 @@ rule fragmentomics_metrics_calculate_normalized_depth:
     output:
         depth=temp("biomarker/fragmentomics_metrics_calculate_normalized_depth/{sample}_{type}.depth.tsv"),
     params:
+        cds_bed=config.get("fragmentomics_metrics", {}).get(
+            "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
+        ),
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_normalized_depth/{sample}_{type}.log",
@@ -330,6 +333,9 @@ rule fragmentomics_metrics_calculate_full_gene_depth:
     output:
         fullgenedepth=temp("biomarker/fragmentomics_metrics_calculate_full_gene_depth/{sample}_{type}.fullgenedepth.tsv"),
     params:
+        cds_bed=config.get("fragmentomics_metrics", {}).get(
+            "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
+        ),
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_full_gene_depth/{sample}_{type}.log",

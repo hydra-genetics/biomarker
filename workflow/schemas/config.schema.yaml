@@ -171,6 +171,29 @@ properties:
         type: string
         description: parameters that should be forwarded
 
+  fragmentomics_metrics:
+    type: object
+    description: Global parameters for fragmentomics metrics
+    properties:
+      canonical_cds_bed:
+        type: string
+        description: Path to canonical_cds_bed file
+      exon_sizes:
+        type: string
+        description: Path to exon_sizes file
+      tfbs_midpoints:
+        type: string
+        description: Path to tfbs_midpoints file
+      atac_peaks:
+        type: string
+        description: Path to atac_peaks file
+      exon_strand_mapping:
+        type: string
+        description: Path to exon_strand_mapping file
+      min_mapq:
+        type: integer
+        description: Minimum mapping quality
+
   msisensor_pro:
     type: object
     description: parameters for msisensor_pro
