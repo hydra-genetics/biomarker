@@ -43,7 +43,9 @@ rule fragmentomics_metrics_get_bed_from_bam:
         | cut -f 1-6 \
         | bedtools intersect -wa -wb -a stdin -b {params.canonical_cds_bed} \
         | awk '{{ if (NF < 14) {{ print "ERROR: Expected at least 14 fields from intersect, got " NF; exit 1; }} print }}' \
-        | cut -f 1,2,3,10,11,12,13,14 \
+        | cut -f 1,2,3,4,10,11,12,13,14 \
+        | sort --parallel={threads} -S {params.sort_mem} -u \
+        | cut -f 1,2,3,5,6,7,8,9 \
         | sort --parallel={threads} -S {params.sort_mem} -k1,1 -k2,2n \
         | gzip > {output}) > {log} 2>&1
         """
@@ -229,9 +231,7 @@ rule fragmentomics_metrics_calculate_normalized_depth:
     output:
         depth=temp("biomarker/fragmentomics_metrics_calculate_normalized_depth/{sample}_{type}.depth.tsv"),
     params:
-        cds_bed=config.get("fragmentomics_metrics", {}).get(
-            "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
-        ),
+        cds_bed=config.get("fragmentomics_metrics", {}).get("canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"),
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_normalized_depth/{sample}_{type}.log",
@@ -333,9 +333,7 @@ rule fragmentomics_metrics_calculate_full_gene_depth:
     output:
         fullgenedepth=temp("biomarker/fragmentomics_metrics_calculate_full_gene_depth/{sample}_{type}.fullgenedepth.tsv"),
     params:
-        cds_bed=config.get("fragmentomics_metrics", {}).get(
-            "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
-        ),
+        cds_bed=config.get("fragmentomics_metrics", {}).get("canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"),
         exon_sizes=config.get("fragmentomics_metrics", {}).get("exon_sizes", "resources/UCSC_hg38_exon_sizes.tsv"),
     log:
         "biomarker/fragmentomics_metrics_calculate_full_gene_depth/{sample}_{type}.log",
