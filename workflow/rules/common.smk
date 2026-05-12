@@ -72,7 +72,7 @@ def compile_output_list(wildcards):
         "biomarker/fragmentomics_metrics_calculate_MDS": ["_mds.txt"],
         "biomarker/fragmentomics_metrics_calculate_TFBS_entropy": ["_TFBS_entropy.txt"],
         "biomarker/fragmentomics_metrics_calculate_ATAC_entropy": ["_ATAC_entropy.txt"],
-        "biomarker/fragle": [f"/Fragle.csv"],
+        "biomarker/fragle": [f"{os.sep}Fragle.csv"],
     }
     output_files += [
         f"{prefix}/{sample}_{unit_type}{suffix}"
