@@ -40,15 +40,16 @@ normalize_full_depth_data <- function(input_file) {
                         col_types = cols())
   
   if (nrow(depth_data) == 0) {
-      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+      message(paste("WARNING: Input data is empty for sample:", sample_name))
+      return(tibble(sample = character(), gene = character(), norm_depth = numeric()))
   }
 
   num_reads <- sum(depth_data$count)
-  scale_factor <- if (num_reads == 0) NA_real_ else num_reads / 1e6
+  scale_factor <- if (num_reads == 0) 1 else num_reads / 1e6
   
   output <- depth_data %>% 
     group_by(gene) %>% 
-    summarise(gene_count = sum(count)) %>% 
+    summarise(gene_count = sum(count), .groups = "drop") %>% 
     left_join(gene_sizes, by = "gene") %>% 
     filter(!is.na(gene_size)) %>% 
     mutate(norm_depth = (gene_count / gene_size) / scale_factor) %>% 
@@ -56,7 +57,8 @@ normalize_full_depth_data <- function(input_file) {
     dplyr::select(sample, gene, norm_depth)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: Normalization results are empty for sample:", sample_name))
+      message(paste("WARNING: Normalization results are empty for sample:", sample_name))
+      return(tibble(sample = character(), gene = character(), norm_depth = numeric()))
   }
 
   return(output)

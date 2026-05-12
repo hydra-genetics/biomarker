@@ -37,10 +37,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   finaletoolkit_end_motifs:
@@ -50,10 +48,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -66,10 +62,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -82,10 +76,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -98,10 +90,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   finaletoolkit_mds:
@@ -111,10 +101,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   fix_scarhrd_output:
@@ -124,10 +112,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
 
   fragle:
@@ -137,10 +123,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       design_bed:
         type: string
@@ -162,10 +146,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -201,10 +183,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -217,10 +197,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       msi_sites:
         type: string
@@ -233,10 +211,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -255,10 +231,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       reference_name:
         type: string
@@ -274,10 +248,8 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-        description: set number of times benchmark should be repeated
       container:
         type: string
-        description: name or path to docker/singularity container
         description: name or path to docker/singularity container
       af_lower_limit:
         type: number

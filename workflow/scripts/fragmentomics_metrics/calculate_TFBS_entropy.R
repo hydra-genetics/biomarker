@@ -13,17 +13,19 @@ calculate_tfbs_entropy <- function(input_file) {
                      col_types = cols())
   
   if (nrow(data) == 0) {
-      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+      message(paste("WARNING: Input data is empty for sample:", sample_name))
+      return(tibble(sample = character(), tfbs = character(), TF_entropy = numeric()))
   }
 
   output <- data %>% 
     group_by(tfbs) %>% 
-    summarise(TF_entropy = entropy(count)) %>% 
+    summarise(TF_entropy = entropy(count), .groups = "drop") %>% 
     mutate(sample = sample_name) %>% 
     relocate(sample, tfbs, TF_entropy)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: Entropy calculation results are empty for sample:", sample_name))
+      message(paste("WARNING: Entropy calculation results are empty for sample:", sample_name))
+      return(tibble(sample = character(), tfbs = character(), TF_entropy = numeric()))
   }
 
   return(output)

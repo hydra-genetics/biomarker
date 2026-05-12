@@ -1,4 +1,7 @@
-# Fragmentomics Metrics rules for Hydra Genetics Biomarker module
+__author__ = "Jonas Almlöf"
+__copyright__ = "Copyright 2025, Jonas Almlöf"
+__email__ = "jonas.scilifelab.uu.se"
+__license__ = "GPL-3"
 
 
 rule fragmentomics_metrics_get_bed_from_bam:

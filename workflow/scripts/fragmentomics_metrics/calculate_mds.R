@@ -17,7 +17,8 @@ calculate_mds <- function(left_data, right_data) {
                            col_types = cols())
   
   if (nrow(left_motifs) == 0 && nrow(right_motifs) == 0) {
-      stop(paste("FATAL: Both left and right motif inputs are empty for sample:", sample_name))
+      message(paste("WARNING: Both left and right motif inputs are empty for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), mds = numeric()))
   }
 
   combined_data <- bind_rows(left_motifs, right_motifs) %>% 
@@ -32,13 +33,15 @@ calculate_mds <- function(left_data, right_data) {
   output <- combined_data %>% 
     group_by(id) %>% 
     summarise(
-      mds = entropy(count)
+      mds = entropy(count),
+      .groups = "drop"
     ) %>% 
     mutate(sample = sample_name) %>% 
     relocate(sample, id, mds)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: MDS calculation produced zero results for sample:", sample_name))
+      message(paste("WARNING: MDS calculation produced zero results for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), mds = numeric()))
   }
 
   return(output)

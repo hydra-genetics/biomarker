@@ -38,17 +38,26 @@ for (suffix in input_names) {
   data <- read_rds(f)
   
   if (nrow(data) == 0) {
-      stop(paste("FATAL: Feature table is empty for category:", suffix))
+      message(paste("WARNING: Feature table is empty for category:", suffix))
+      next
   }
   
   dfs[[suffix]] <- data %>% append_suffix_to_colnames(suffix = suffix)
 }
 
-combined_df <- bind_rows(dfs) %>% 
-  pivot_wider(names_from = feature, values_from = value)
+if (length(dfs) == 0) {
+    message("WARNING: All feature tables were empty. Creating empty combined table.")
+    combined_df <- tibble(sample = character())
+} else {
+    combined_df <- bind_rows(dfs) %>% 
+      pivot_wider(names_from = feature, values_from = value)
+}
 
 if (nrow(combined_df) == 0) {
-    stop("FATAL: Combined feature table ended up with 0 rows.")
+    message("WARNING: Combined feature table ended up with 0 rows.")
+    # Create a dummy RDS to avoid downstream crashes if possible
+    saveRDS(combined_df, outpath)
+    return()
 }
 
 top_features <- get_top_15k_by_variance(combined_df)

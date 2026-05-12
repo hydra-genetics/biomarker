@@ -34,11 +34,12 @@ normalize_depth_data <- function(input_file) {
                         col_types = cols())
   
   if (nrow(depth_data) == 0) {
-      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+      message(paste("WARNING: Input data is empty for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), norm_depth = numeric()))
   }
 
   num_reads <- sum(depth_data$count)
-  scale_factor <- if (num_reads == 0) NA_real_ else num_reads / 1e6
+  scale_factor <- if (num_reads == 0) 1 else num_reads / 1e6
   
   output <- depth_data %>% 
     mutate(id = str_c(gene, exon, sep = "_")) %>% 
@@ -48,7 +49,8 @@ normalize_depth_data <- function(input_file) {
     dplyr::select(sample, id, norm_depth)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: Normalization results are empty for sample:", sample_name))
+      message(paste("WARNING: Normalization results are empty for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), norm_depth = numeric()))
   }
 
   return(output)

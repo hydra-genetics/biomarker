@@ -13,19 +13,20 @@ calculate_SE <- function(input_file) {
                          col_types = cols())
   
   if (nrow(read_data) == 0) {
-      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+      message(paste("WARNING: Input data is empty for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), se = numeric()))
   }
 
   output <- read_data %>% 
     mutate(id = str_c(gene, exon, sep = "_")) %>% 
     group_by(id) %>% 
-    summarise(se = entropy(count)) %>% 
-    ungroup() %>% 
+    summarise(se = entropy(count), .groups = "drop") %>% 
     mutate(sample = sample_name) %>% 
     dplyr::select(sample, id, se)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: Shannon entropy calculation produced zero results for sample:", sample_name))
+      message(paste("WARNING: Shannon entropy calculation produced zero results for sample:", sample_name))
+      return(tibble(sample = character(), id = character(), se = numeric()))
   }
     
   return(output)

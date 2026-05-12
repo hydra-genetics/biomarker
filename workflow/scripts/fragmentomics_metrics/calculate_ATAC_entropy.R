@@ -13,17 +13,19 @@ calculate_atac_entropy <- function(input_file) {
                      col_types = cols())
   
   if (nrow(data) == 0) {
-      stop(paste("FATAL: Input data is empty for sample:", sample_name))
+      message(paste("WARNING: Input data is empty for sample:", sample_name))
+      return(tibble(sample = character(), cancer = character(), ATAC_entropy = numeric()))
   }
 
   output <- data %>% 
     group_by(cancer) %>% 
-    summarise(ATAC_entropy = entropy(count)) %>% 
+    summarise(ATAC_entropy = entropy(count), .groups = "drop") %>% 
     mutate(sample = sample_name) %>% 
     relocate(sample, cancer, ATAC_entropy)
   
   if (nrow(output) == 0) {
-      stop(paste("FATAL: Entropy calculation results are empty for sample:", sample_name))
+      message(paste("WARNING: Entropy calculation results are empty for sample:", sample_name))
+      return(tibble(sample = character(), cancer = character(), ATAC_entropy = numeric()))
   }
 
   return(output)
