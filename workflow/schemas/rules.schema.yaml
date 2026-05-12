@@ -131,6 +131,485 @@ properties:
             type: string
             description: fragment length patient score
 
+  fragmentomics_metrics_build_combined_ft:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_build_combined_ft
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se:
+            type: string
+            description: Shannon entropy feature table RDS
+          depth:
+            type: string
+            description: Normalised depth feature table RDS
+          frag_bins:
+            type: string
+            description: Fragment bins feature table RDS
+          small_frags:
+            type: string
+            description: Small-fragment proportion feature table RDS
+          full_gene_depth:
+            type: string
+            description: Full-gene depth feature table RDS
+          mds:
+            type: string
+            description: MDS entropy feature table RDS
+          TFBS_entropy:
+            type: string
+            description: TFBS entropy feature table RDS
+          ATAC_entropy:
+            type: string
+            description: ATAC entropy feature table RDS
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          combined_rds:
+            type: string
+            description: Combined feature table RDS file
+
+  fragmentomics_metrics_build_feature_tables:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_build_feature_tables
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se:
+            type: string
+            description: Per-sample Shannon entropy TSV files
+          depth:
+            type: string
+            description: Per-sample normalised depth TSV files
+          frag_bins:
+            type: string
+            description: Per-sample fragment bins TSV files
+          small_frags:
+            type: string
+            description: Per-sample small-fragment proportion TSV files
+          full_gene_depth:
+            type: string
+            description: Per-sample full-gene depth TSV files
+          mds:
+            type: string
+            description: Per-sample MDS entropy TXT files
+          TFBS_entropy:
+            type: string
+            description: Per-sample TFBS entropy TXT files
+          ATAC_entropy:
+            type: string
+            description: Per-sample ATAC entropy TXT files
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          se:
+            type: string
+            description: Shannon entropy feature table RDS
+          depth:
+            type: string
+            description: Normalised depth feature table RDS
+          frag_bins:
+            type: string
+            description: Fragment bins feature table RDS
+          small_frags:
+            type: string
+            description: Small-fragment proportion feature table RDS
+          full_gene_depth:
+            type: string
+            description: Full-gene depth feature table RDS
+          mds:
+            type: string
+            description: MDS entropy feature table RDS
+          TFBS_entropy:
+            type: string
+            description: TFBS entropy feature table RDS
+          ATAC_entropy:
+            type: string
+            description: ATAC entropy feature table RDS
+
+  fragmentomics_metrics_calculate_ATAC_entropy:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_ATAC_entropy
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          atac_frag_count:
+            type: string
+            description: ATAC fragment count file (txt.gz)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          atac_entropy:
+            type: string
+            description: ATAC entropy metrics per ATAC peak
+
+  fragmentomics_metrics_calculate_MDS:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_MDS
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          left:
+            type: string
+            description: Left 4-mer motif count file
+          right:
+            type: string
+            description: Right 4-mer motif count file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          mds:
+            type: string
+            description: MDS entropy metrics per gene/exon
+
+  fragmentomics_metrics_calculate_SE:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_SE
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se_fragstats:
+            type: string
+            description: SE fragstats file (txt.gz)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          se_metrics:
+            type: string
+            description: Shannon entropy metrics per gene/exon (tsv)
+
+  fragmentomics_metrics_calculate_TFBS_entropy:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_TFBS_entropy
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          tfbs_frag_count:
+            type: string
+            description: TFBS fragment count file (txt.gz)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          tfbs_entropy:
+            type: string
+            description: TFBS entropy metrics per transcription factor
+
+  fragmentomics_metrics_calculate_frag_bins:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_frag_bins
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se_fragstats:
+            type: string
+            description: SE fragstats file (txt.gz)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          fragbins:
+            type: string
+            description: Fragment bin proportion metrics per gene/exon (tsv)
+
+  fragmentomics_metrics_calculate_full_gene_depth:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_full_gene_depth
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          depth_fragstats:
+            type: string
+            description: Depth fragstats file (txt)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          fullgenedepth:
+            type: string
+            description: Full gene depth metrics per gene (tsv)
+
+  fragmentomics_metrics_calculate_normalized_depth:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_normalized_depth
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          depth_fragstats:
+            type: string
+            description: Depth fragstats file (txt)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          depth:
+            type: string
+            description: Normalized depth metrics per gene/exon (tsv)
+
+  fragmentomics_metrics_calculate_small_frags:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_calculate_small_frags
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se_fragstats:
+            type: string
+            description: SE fragstats file (txt.gz)
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          smallfrag:
+            type: string
+            description: Small fragment proportion metrics per gene/exon (tsv)
+
+  fragmentomics_metrics_extract_first_exon:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_extract_first_exon
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          se:
+            type: string
+            description: Shannon entropy feature table RDS
+          depth:
+            type: string
+            description: Normalised depth feature table RDS
+          frag_bins:
+            type: string
+            description: Fragment bins feature table RDS
+          small_frags:
+            type: string
+            description: Small-fragment proportion feature table RDS
+          full_gene_depth:
+            type: string
+            description: Full-gene depth feature table RDS
+          mds:
+            type: string
+            description: MDS entropy feature table RDS
+          TFBS_entropy:
+            type: string
+            description: TFBS entropy feature table RDS
+          ATAC_entropy:
+            type: string
+            description: ATAC entropy feature table RDS
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          se_E1:
+            type: string
+            description: First-exon Shannon entropy feature table RDS
+          depth_E1:
+            type: string
+            description: First-exon normalised depth feature table RDS
+          small_frags_E1:
+            type: string
+            description: First-exon small-fragment proportion feature table RDS
+          mds_E1:
+            type: string
+            description: First-exon MDS entropy feature table RDS
+
+  fragmentomics_metrics_filter_comm_panel_genes:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_filter_comm_panel_genes
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bed_gz:
+            type: string
+            description: Raw gzipped BED file from BAM extraction
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          bed:
+            type: string
+            description: Filtered BED file (commercial panel genes removed)
+
+  fragmentomics_metrics_get_SE_fragstats:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_get_SE_fragstats
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bed_gz_filtered:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          se_fragstats:
+            type: string
+            description: SE fragstats file with gene, exon, size, count columns (txt.gz)
+
+  fragmentomics_metrics_get_bed_from_bam:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_get_bed_from_bam
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bam:
+            type: string
+            description: UMI consensus BAM file
+          bai:
+            type: string
+            description: BAM index file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          bed_gz:
+            type: string
+            description: Sorted gzipped BED file intersected with canonical CDS regions
+
+  fragmentomics_metrics_get_depth_fragstats:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_get_depth_fragstats
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bed_gz_filtered:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          depth_fragstats:
+            type: string
+            description: Depth fragstats file with gene, exon, count columns (txt)
+
+  fragmentomics_metrics_get_left_4mer:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_get_left_4mer
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          sample_reads:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          left_4mers:
+            type: string
+            description: Left 4-mer motif count file (txt.gz)
+
+  fragmentomics_metrics_get_right_4mer:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_get_right_4mer
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          sample_reads:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          right_4mers:
+            type: string
+            description: Right 4-mer motif count file (txt.gz)
+
+  fragmentomics_metrics_gzip_comm_panel_genes:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_gzip_comm_panel_genes
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          bed:
+            type: string
+            description: Filtered BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          bed_gz_filtered:
+            type: string
+            description: Gzipped filtered BED file
+
+  fragmentomics_metrics_overlap_ATAC:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_overlap_ATAC
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          sample_reads:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          atac_frag_count:
+            type: string
+            description: ATAC fragment count file (txt.gz)
+
+  fragmentomics_metrics_overlap_TFBS:
+    type: object
+    description: input and output parameters for fragmentomics_metrics_overlap_TFBS
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          sample_reads:
+            type: string
+            description: Filtered gzipped BED file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          tfbs_frag_count:
+            type: string
+            description: TFBS fragment count file (txt.gz)
+
   fragle:
     type: object
     description: input and output parameters for fragle
