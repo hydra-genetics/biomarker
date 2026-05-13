@@ -50,3 +50,6 @@ scarhrd:
 
 tmb:
   container: "docker://python:3.9.7-slim"
+
+fragmentomics_metrics:
+  container: "docker://hydragenetics/fragmentomics_metrics:020426"

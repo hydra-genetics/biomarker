@@ -153,6 +153,29 @@ properties:
         type: string
         description: parameters that should be forwarded
 
+  fragmentomics_metrics:
+    type: object
+    description: Global parameters for fragmentomics metrics
+    properties:
+      canonical_cds_bed:
+        type: string
+        description: Path to canonical_cds_bed file
+      exon_sizes:
+        type: string
+        description: Path to exon_sizes file
+      tfbs_midpoints:
+        type: string
+        description: Path to tfbs_midpoints file
+      atac_peaks:
+        type: string
+        description: Path to atac_peaks file
+      exon_strand_mapping:
+        type: string
+        description: Path to exon_strand_mapping file
+      min_mapq:
+        type: integer
+        description: Minimum mapping quality
+
   msisensor_pro:
     type: object
     description: parameters for msisensor_pro
@@ -285,3 +308,250 @@ properties:
       vd_limit:
         type: integer
         description: filter all variants with variants reads < vd_limit
+
+  fragmentomics_metrics_get_bed_from_bam:
+    type: object
+    description: parameters for fragmentomics_metrics_get_bed_from_bam
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      canonical_cds_bed:
+        type: string
+        description: Path to canonical_cds_bed file
+      min_mapq:
+        type: integer
+        description: Minimum mapping quality
+
+  fragmentomics_metrics_filter_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_filter_comm_panel_genes
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_gzip_comm_panel_genes:
+    type: object
+    description: parameters for fragmentomics_metrics_gzip_comm_panel_genes
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_get_SE_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_SE_fragstats
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_calculate_SE:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_SE
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_get_depth_fragstats:
+    type: object
+    description: parameters for fragmentomics_metrics_get_depth_fragstats
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_calculate_normalized_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_normalized_depth
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      exon_sizes:
+        type: string
+        description: Path to exon_sizes file
+
+  fragmentomics_metrics_calculate_frag_bins:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_frag_bins
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_calculate_small_frags:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_small_frags
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_calculate_full_gene_depth:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_full_gene_depth
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      exon_sizes:
+        type: string
+        description: Path to exon_sizes file
+
+  fragmentomics_metrics_get_left_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_left_4mer
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      genome:
+        type: string
+        description: Path to genome file
+
+  fragmentomics_metrics_get_right_4mer:
+    type: object
+    description: parameters for fragmentomics_metrics_get_right_4mer
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      genome:
+        type: string
+        description: Path to genome file
+
+  fragmentomics_metrics_calculate_MDS:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_MDS
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_overlap_TFBS:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_TFBS
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      tfbs_midpoints:
+        type: string
+        description: Path to tfbs_midpoints file
+
+  fragmentomics_metrics_calculate_TFBS_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_TFBS_entropy
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_overlap_ATAC:
+    type: object
+    description: parameters for fragmentomics_metrics_overlap_ATAC
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      atac_peaks:
+        type: string
+        description: Path to atac_peaks file
+
+  fragmentomics_metrics_calculate_ATAC_entropy:
+    type: object
+    description: parameters for fragmentomics_metrics_calculate_ATAC_entropy
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_build_feature_tables:
+    type: object
+    description: parameters for fragmentomics_metrics_build_feature_tables
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+
+  fragmentomics_metrics_extract_first_exon:
+    type: object
+    description: parameters for fragmentomics_metrics_extract_first_exon
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      exon_strand_mapping:
+        type: string
+        description: Path to exon_strand_mapping file
+
+  fragmentomics_metrics_build_combined_ft:
+    type: object
+    description: parameters for fragmentomics_metrics_build_combined_ft
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container

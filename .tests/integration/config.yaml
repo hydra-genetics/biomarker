@@ -9,6 +9,7 @@ reference:
   background: "references/background_panel_small.tsv"
   design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
   fasta_2bit: "references/HES45.fa.2bit"
+  fasta: "references/HES45.fa"
 
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
@@ -34,6 +35,14 @@ fragle:
 fragmentomics_fragment_length_patient_score:
   container: "docker://hydragenetics/fragmentomics:0.1.0"
   reference_set: "references/vessies_reference_set.txt"
+
+fragmentomics_metrics:
+  container: "docker://hydragenetics/fragmentomics_metrics:020426"
+  canonical_cds_bed: "references/fragmentomics_files/UCSC_hg19_canonical_cds.bed"
+  exon_sizes: "references/fragmentomics_files/UCSC_hg19_exon_sizes.tsv"
+  tfbs_midpoints: "references/fragmentomics_files/TFBS.bed.gz"
+  atac_peaks: "references/fragmentomics_files/ATAC.bed"
+  exon_strand_mapping: "references/fragmentomics_filesUCSC_hg19_canonical_cds.bed"
 
 optitype:
   #container: "docker://hydragenetics/optitype:1.3.5"

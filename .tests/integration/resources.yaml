@@ -7,3 +7,7 @@ default_resources:
 
 fragle:
   threads: 2
+
+fragmentomics_metrics_get_bed_from_bam:
+  threads: 6
+  mem_mb: 30000
