@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.9.0](https://github.com/hydra-genetics/biomarker/compare/v0.8.0...v0.9.0) (2026-05-13)
+
+
+### Features
+
+* added the entire fragmentomics_metrics pipeline ([2aa57b6](https://github.com/hydra-genetics/biomarker/commit/2aa57b6dc076386bff1b26fa1608cf4048f9acc0))
+* added the entire fragmentomics_metrics pipeline ([cf61eb0](https://github.com/hydra-genetics/biomarker/commit/cf61eb02a5f2c18f94a8153bc06bc2a85ba73854))
+
+
+### Bug Fixes
+
+* a lot of pathways that needed updates ([d6643f0](https://github.com/hydra-genetics/biomarker/commit/d6643f0ecb2fc4ed9e5ba69a9b1ed5232bb45fc3))
+* awk ([77da672](https://github.com/hydra-genetics/biomarker/commit/77da6722c68afa5242fe0dbb89aa358a0633f3fb))
+* awk script ([25c005e](https://github.com/hydra-genetics/biomarker/commit/25c005e2286a5f53e1e9ffc57bea420602ab7ae9))
+* awk script ([04fa2d0](https://github.com/hydra-genetics/biomarker/commit/04fa2d04851bbec6c8590487bdb6aa37f16119b4))
+* awk script ([e677748](https://github.com/hydra-genetics/biomarker/commit/e6777483de63b01b6d1da7106058b5de59dbbf68))
+* corrected depth caluclations to specific panel design ([09ad284](https://github.com/hydra-genetics/biomarker/commit/09ad284dac48fc17667c2844a5817a5b71fbd79f))
+* easier configuration ([87db1a1](https://github.com/hydra-genetics/biomarker/commit/87db1a14b38edcb3d70804e8d3ee39c282b2a36e))
+* make R scripts take snakemake inputs and outputs ([8f44e46](https://github.com/hydra-genetics/biomarker/commit/8f44e4626fd848cc5e18ced6b50e507df3efd3ee))
+* overlapping regions counted once ([c2203db](https://github.com/hydra-genetics/biomarker/commit/c2203dbdaa53c72d83b009b135bff2b862c24ed6))
+* paths and awk ([7430288](https://github.com/hydra-genetics/biomarker/commit/74302881dab2353559d834883cc4966dd8d0974a))
+* pipefail ([47a62fe](https://github.com/hydra-genetics/biomarker/commit/47a62feefc2c067be31f26b1933c9d2adb67acb9))
+* R handling of quote characters ([027f7be](https://github.com/hydra-genetics/biomarker/commit/027f7be4648ce27ef6c7d697d1f057b3cc3f0605))
+* R handling of quote characters ([1c8155c](https://github.com/hydra-genetics/biomarker/commit/1c8155c976b9b8f8ceb03d10fcb0d41fb95a1637))
+* R script separator ([94591ca](https://github.com/hydra-genetics/biomarker/commit/94591ca9db1022cbded0edd263c33f4a599cefb0))
+* refactor all awk field refs to -v positional variables for cluster stability ([1fb6371](https://github.com/hydra-genetics/biomarker/commit/1fb63718f8109a613290b7c20472b4e1651164e6))
+* remove dollar signs from awk and clean up backslashes for shell pipeline ([ef08b63](https://github.com/hydra-genetics/biomarker/commit/ef08b634fb9d83ad8620b350a0d7352777afde6e))
+* resolve absolute path lint by removing /dev/stderr ([10c4dda](https://github.com/hydra-genetics/biomarker/commit/10c4ddadb3e3af9603666ebf6228abe4de49621a))
+* resolve if_else size mismatch in depth normalization scripts ([cd64cd0](https://github.com/hydra-genetics/biomarker/commit/cd64cd0198069dc0a13abe71b937be833becdb0a))
+* resolve R script sum() errors by fixing awk delimiters and column orders ([6a69125](https://github.com/hydra-genetics/biomarker/commit/6a69125754e77138fd96c917d12b681780f15efc))
+* resolve R technical crash and implement strict data validation across fragmentomics pipeline ([67a56f4](https://github.com/hydra-genetics/biomarker/commit/67a56f4537e9a8550c6e2962d30d5fb023acf8e5))
+* restore Snakemake escaping for awk script ([6237fe6](https://github.com/hydra-genetics/biomarker/commit/6237fe63aeea352e5d4184b527992e9d309fcd80))
+* standardize filtered BED to 6-col (chr,start,stop,gene,exon,strand) and update all downstream column indices ([ab04d8a](https://github.com/hydra-genetics/biomarker/commit/ab04d8abb0596e149a5721f9d710e2c27f1792c4))
+* use robust awk|cut pipeline to avoid indirect field reference bug ([b3e2152](https://github.com/hydra-genetics/biomarker/commit/b3e21523a699c65f0ee080a41a01df62d78a4c8a))
+* use single-dollar field refs in single-quoted awk to prevent indirect reference bug ([a2e5105](https://github.com/hydra-genetics/biomarker/commit/a2e5105c6e2b1f36099478c198e4dcee4a210344))
+
+
+### Reverts
+
+* restore 8-column BED format (chr,start,stop,ens_id,refseq,gene,exon,strand) as per specification ([7d97f91](https://github.com/hydra-genetics/biomarker/commit/7d97f917b8f100c0a66f6354fd8d71a3c45966b9))
+
 ## [0.8.0](https://github.com/hydra-genetics/biomarker/compare/v0.7.0...v0.8.0) (2026-03-10)
 
 
