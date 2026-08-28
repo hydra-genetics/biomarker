@@ -16,6 +16,15 @@ configfile: "config.yaml"
 config = load_resources(config, config["resources"])
 
 
+# prealignment and cnv_sv are pulled from their migration branches instead of the release tags
+# recorded in README.md: every released tag of both annotates functions with
+# snakemake.io.Wildcards, which Snakemake 9 no longer provides, so they cannot even be parsed.
+# alignment and annotation stay on their release tags - they parse under Snakemake 9 as-is.
+# TODO: move prealignment and cnv_sv back to tag=extract_module_version_from_readme(...) once
+# they publish Snakemake 9 releases, and record the version pairs in COMPATIBILITY.md.
+SNAKEMAKE9_BRANCH = "migrate-to-snakemake9"
+
+
 def extract_module_version_from_readme(modulename):
     search_string = modulename + ":(.+)\n$"
     with open("../../README.md", "r") as reader:
@@ -30,7 +39,7 @@ module prealignment:
         github(
             "hydra-genetics/prealignment",
             path="workflow/Snakefile",
-            tag=extract_module_version_from_readme("prealignment"),
+            branch=SNAKEMAKE9_BRANCH,
         )
     config:
         config
@@ -72,7 +81,7 @@ module cnv_sv:
         github(
             "hydra-genetics/cnv_sv",
             path="workflow/Snakefile",
-            tag=extract_module_version_from_readme("cnv_sv"),
+            branch=SNAKEMAKE9_BRANCH,
         )
     config:
         config
