@@ -4,6 +4,7 @@ __email__ = "jonas.almlof@scilifelab.se"
 __license__ = "GPL-3"
 
 import os
+import re
 import pandas as pd
 from snakemake.utils import validate
 from snakemake.utils import min_version
@@ -13,7 +14,7 @@ from hydra_genetics.utils.samples import *
 from hydra_genetics.utils.units import *
 from hydra_genetics.utils.misc import get_input_aligned_bam
 
-min_version("7.8.0")
+min_version("9.0.0")
 
 ### Set and validate config file
 
@@ -40,7 +41,7 @@ validate(units, schema="../schemas/units.schema.yaml")
 
 
 wildcard_constraints:
-    sample="|".join(samples.index),
+    sample="|".join(re.escape(s) for s in samples.index),
     unit="N|T|R",
 
 

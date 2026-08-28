@@ -15,7 +15,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
             "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
         ),
         min_mapq=config.get("fragmentomics_metrics", {}).get("min_mapq", 30),
-        sort_mem=lambda wildcards, resources: f"{int(resources.mem_mb * 0.8)}M" if getattr(resources, "mem_mb", None) else "8G",
+        sort_mem=lambda wildcards, resources: f"{int(resources.mem_mb*0.8)}M" if getattr(resources, "mem_mb", None) else "8G",
     log:
         "biomarker/fragmentomics_metrics_get_bed_from_bam/{sample}_{type}.log",
     benchmark:
