@@ -9,6 +9,7 @@ import pandas as pd
 from snakemake.utils import validate
 from snakemake.utils import min_version
 
+from hydra_genetics.utils.config import config_accessor
 from hydra_genetics.utils.resources import load_resources
 from hydra_genetics.utils.samples import *
 from hydra_genetics.utils.units import *
@@ -42,7 +43,10 @@ validate(units, schema="../schemas/units.schema.yaml")
 
 wildcard_constraints:
     sample="|".join(re.escape(s) for s in samples.index),
-    unit="N|T|R",
+    type="N|T|R",
+
+
+get_config_value = config_accessor(config, module="biomarker")
 
 
 def get_flowcell(units, wildcards):
