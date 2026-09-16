@@ -4,31 +4,43 @@ type: object
 properties:
   resources:
     type: string
+    minLength: 1
     description: Path to resources.yaml file
   samples:
     type: string
+    minLength: 1
     description: path to samples.tsv file
   units:
     type: string
+    minLength: 1
     description: path to units.tsv file
   default_container:
     type: string
+    minLength: 1
     description: name or path to a default docker/singularity container
   reference:
     type: object
     properties:
+      design_bed:
+        type: string
+        minLength: 1
+        description: path to the panel design bed file
+      fasta:
+        type: string
+        minLength: 1
+        description: path to reference fasta file
+      fasta_2bit:
+        type: string
+        minLength: 1
+        description: path to the reference in 2bit format
       twist_dna_st_artifacts:
         type: string
+        minLength: 1
         description: artifact file for twist dna st
       twist_dna_st_background_panel:
         type: string
+        minLength: 1
         description: background noise file for twist dna st
-
-  required:
-    - default_container
-    - resources
-    - samples
-    - units
 
   cnvkit2scarhrd:
     type: object
@@ -39,6 +51,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   finaletoolkit_end_motifs:
@@ -50,6 +63,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -64,6 +78,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -78,6 +93,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -92,6 +108,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   finaletoolkit_mds:
@@ -103,6 +120,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fix_scarhrd_output:
@@ -114,6 +132,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragle:
@@ -125,18 +144,23 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       design_bed:
         type: string
+        minLength: 1
         description: Path to the target regions BED file
       genome_build:
         type: string
+        minLength: 1
         description: Reference genome build used for indexing alignment
       mode:
         type: string
+        minLength: 1
         description: Run mode for FRAGLE inference
       outdir:
         type: string
+        minLength: 1
         description: Output directory for FRAGLE results
 
   fragmentomics_fragment_length_patient_score:
@@ -148,10 +172,17 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
         description: parameters that should be forwarded
+      reference_set:
+        type: string
+        minLength: 1
+        description: path to the reference set used to score fragment lengths
+    required:
+      - reference_set
 
   fragmentomics_metrics:
     type: object
@@ -159,18 +190,23 @@ properties:
     properties:
       canonical_cds_bed:
         type: string
+        minLength: 1
         description: Path to canonical_cds_bed file
       exon_sizes:
         type: string
+        minLength: 1
         description: Path to exon_sizes file
       tfbs_midpoints:
         type: string
+        minLength: 1
         description: Path to tfbs_midpoints file
       atac_peaks:
         type: string
+        minLength: 1
         description: Path to atac_peaks file
       exon_strand_mapping:
         type: string
+        minLength: 1
         description: Path to exon_strand_mapping file
       min_mapq:
         type: integer
@@ -185,6 +221,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
@@ -199,10 +236,19 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
-      msi_sites:
+      PoN:
         type: string
-        description: Bed file for choosing specific msi sites to analyze. Set to empty string for no filtering.
+        minLength: 1
+        description: path to the msisensor-pro panel of normals to filter
+      msi_sites_bed:
+        type: string
+        description: |
+          Bed file for choosing specific msi sites to analyze.
+          NOTE: "" is a meaningful value, msisensor_pro_filter_sites.py reads it as "no filtering".
+    required:
+      - PoN
 
   optitype:
     type: object
@@ -213,12 +259,14 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       extra:
         type: string
         description: parameters that should be forwarded
       sample_type:
         type: string
+        minLength: 1
         description: -d for dna and -r for rna
       enumeration:
         type: integer
@@ -233,9 +281,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       reference_name:
         type: string
+        minLength: 1
         description: references name (grch37, grch38)
       seqz:
         type: boolean
@@ -250,6 +300,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       af_lower_limit:
         type: number
@@ -266,7 +317,7 @@ properties:
       artifacts:
         type: string
         description: file with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
-      background_panel:
+      background:
         type: string
         description: file with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
       background_sd_limit:
@@ -289,6 +340,7 @@ properties:
         description: list of bedfiles
         items:
           type: string
+          minLength: 1
           description: BED file with chromosomal regions that are used to filter out potential artifact variants
       gnomad_limit:
         type: number
@@ -304,6 +356,7 @@ properties:
         description: list of variant types
         items:
           type: string
+          minLength: 1
           description: Variant types that should be included in the in the TMB calculations ("missense_variant", "synonymous_variant", "stop_gained", "stop_lost")
       vd_limit:
         type: integer
@@ -318,9 +371,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       canonical_cds_bed:
         type: string
+        minLength: 1
         description: Path to canonical_cds_bed file
       min_mapq:
         type: integer
@@ -335,6 +390,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_gzip_comm_panel_genes:
@@ -346,6 +402,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_get_SE_fragstats:
@@ -357,6 +414,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_SE:
@@ -368,6 +426,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_get_depth_fragstats:
@@ -379,6 +438,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_normalized_depth:
@@ -390,9 +450,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       exon_sizes:
         type: string
+        minLength: 1
         description: Path to exon_sizes file
 
   fragmentomics_metrics_calculate_frag_bins:
@@ -404,6 +466,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_small_frags:
@@ -415,6 +478,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_calculate_full_gene_depth:
@@ -426,9 +490,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       exon_sizes:
         type: string
+        minLength: 1
         description: Path to exon_sizes file
 
   fragmentomics_metrics_get_left_4mer:
@@ -440,9 +506,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       genome:
         type: string
+        minLength: 1
         description: Path to genome file
 
   fragmentomics_metrics_get_right_4mer:
@@ -454,9 +522,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       genome:
         type: string
+        minLength: 1
         description: Path to genome file
 
   fragmentomics_metrics_calculate_MDS:
@@ -468,6 +538,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_overlap_TFBS:
@@ -479,9 +550,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       tfbs_midpoints:
         type: string
+        minLength: 1
         description: Path to tfbs_midpoints file
 
   fragmentomics_metrics_calculate_TFBS_entropy:
@@ -493,6 +566,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_overlap_ATAC:
@@ -504,9 +578,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       atac_peaks:
         type: string
+        minLength: 1
         description: Path to atac_peaks file
 
   fragmentomics_metrics_calculate_ATAC_entropy:
@@ -518,6 +594,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_build_feature_tables:
@@ -529,6 +606,7 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
 
   fragmentomics_metrics_extract_first_exon:
@@ -540,9 +618,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
       exon_strand_mapping:
         type: string
+        minLength: 1
         description: Path to exon_strand_mapping file
 
   fragmentomics_metrics_build_combined_ft:
@@ -554,4 +634,11 @@ properties:
         description: set number of times benchmark should be repeated
       container:
         type: string
+        minLength: 1
         description: name or path to docker/singularity container
+
+required:
+  - default_container
+  - resources
+  - samples
+  - units
