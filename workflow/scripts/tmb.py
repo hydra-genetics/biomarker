@@ -157,7 +157,7 @@ def tmb(
 
             # Only SNVs
             Observations = 0
-            if not(len(ref) == 1 and len(alt) == 1):
+            if not (len(ref) == 1 and len(alt) == 1):
                 continue
 
             # Artifact observations
