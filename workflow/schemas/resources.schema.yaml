@@ -709,3 +709,23 @@ properties:
       time:
         type: string
         description: max execution time
+
+  tmb_cnv_aware:
+    type: object
+    description: resource definitions for tmb_cnv_aware
+    properties:
+      mem_mb:
+        type: integer
+        description: memory used
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
