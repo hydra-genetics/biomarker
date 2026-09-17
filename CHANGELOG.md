@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/hydra-genetics/biomarker/compare/v0.9.0...v0.10.0) (2026-09-17)
+
+
+### Features
+
+* added a new TMB estimation (based on the old) with CNV-aware ge… ([63b3a21](https://github.com/hydra-genetics/biomarker/commit/63b3a216fcd2168fd861886ff97901d5409f01c8))
+* added a new TMB estimation (based on the old) with CNV-aware germline filtering ([4b964bc](https://github.com/hydra-genetics/biomarker/commit/4b964bcb90c8460b298fff1fb743dc0aa966f710))
+
 ## [0.9.0](https://github.com/hydra-genetics/biomarker/compare/v0.8.0...v0.9.0) (2026-05-13)
 
 
