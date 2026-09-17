@@ -309,6 +309,83 @@ properties:
         type: integer
         description: filter all variants with variants reads < vd_limit
 
+  tmb_cnv_aware:
+    type: object
+    description: parameters for tmb_cnv_aware, a copy-number/BAF-aware variant of tmb
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      af_lower_limit:
+        type: number
+        description: filter all variants with MAF < af_lower_limit
+      af_upper_limit:
+        type: number
+        description: filter all variants with MAF > af_upper_limit
+      af_germline_lower_limit:
+        type: number
+        description: fallback diploid germline window lower bound, used when no reliable local baf is available
+      af_germline_upper_limit:
+        type: number
+        description: fallback diploid germline window upper bound, used when no reliable local baf is available
+      artifacts:
+        type: string
+        description: file with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
+      background_panel:
+        type: string
+        description: file with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
+      background_sd_limit:
+        type: integer
+        description: filter all variants that are closer than background_sd_limit standard deviations from the background median noise. Set to arbitrary value if artifact file is not used.
+      cn_baf_tolerance:
+        type: number
+        description: +/- tolerance around a segment's fitted CNVkit baf (and its mirror 1-baf) used to identify germline variants in copy-number-altered regions
+      db1000g_limit:
+        type: number
+        description: filter all variants with found in 1000 Genomes witn MAF > db1000g_limit
+      dp_limit:
+        type: integer
+        description: filter all variants with depth < dp_limit
+      filter_genes:
+        type: string
+        description: path to file with gene names where variants should be filter out
+      filter_nr_observations:
+        type: integer
+        description: filter all variants that has been observed before >= filter_nr_observations times in artifact file. Set to arbitrary value if artifact file is not used.
+      filter_regions:
+        type: array
+        description: list of bedfiles
+        items:
+          type: string
+          description: BED file with chromosomal regions that are used to filter out potential artifact variants
+      gnomad_limit:
+        type: number
+        description: filter all variants with found in GnomAD witn MAF > gnomad_limit
+      nm_limit:
+        type: number
+        description: filter all variants with mean mismatches per read (INFO:NM) > nm_limit
+      nr_avg_germline_snvs:
+        type: number
+        description: design dependent TMB correction term dependent on the average number of variants found in normal samples
+      nssnv_tmb_correction:
+        type: number
+        description: design dependent TMB correction factor dependent on design size or correlation to commercial panels like TSO500
+      pmean_limit:
+        type: number
+        description: filter all variants with mean read position (INFO:PMEAN) < pmean_limit
+      variant_type_list:
+        type: array
+        description: list of variant types
+        items:
+          type: string
+          description: Variant types that should be included in the in the TMB calculations ("missense_variant", "synonymous_variant", "stop_gained", "stop_lost")
+      vd_limit:
+        type: integer
+        description: filter all variants with variants reads < vd_limit
+
   fragmentomics_metrics_get_bed_from_bam:
     type: object
     description: parameters for fragmentomics_metrics_get_bed_from_bam

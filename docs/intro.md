@@ -30,6 +30,7 @@ Depending on the biomarker the input files are either bam-files, vcf-files, or c
 The biomarker scores are reported in simple text format files.
 
 * `biomarker/tmb/{sample}_{type}.TMB.txt`
+* `biomarker/tmb_cnv_aware/{sample}_{type}.TMB.txt`
 * `biomarker/msisensor_pro/{sample}_{type}`
 * `biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt`
 * `biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv`

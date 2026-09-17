@@ -296,6 +296,29 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 
 ---
 
+## [tmb_cnv_aware](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/tmb_cnv_aware.py)
+Copy-number/BAF-aware variant of `tmb`. Runs the same nsSNV-based TMB calculation but replaces the fixed germline allele-frequency window with a check against the local CNVkit segment's fitted BAF (falling back to the fixed window where no segment BAF is available), and adds PMEAN/NM read-quality gates. Produced alongside `tmb` as a separate, comparison output.
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__tmb__tmb_cnv_aware#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__tmb__tmb_cnv_aware#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__tmb_cnv_aware#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__tmb_cnv_aware#
+
+---
+
 ## [fragmentomics_metrics_get_bed_from_bam](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/rules/fragmentomics_metrics.smk)
 Extracts BED from BAM using samtools and bedtools, intersected with canonical CDS regions.
 

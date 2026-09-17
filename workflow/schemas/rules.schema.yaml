@@ -738,6 +738,28 @@ properties:
             type: string
             description: Text file with TMB score
 
+  tmb_cnv_aware:
+    type: object
+    description: input and output parameters for tmb_cnv_aware
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          vcf:
+            type: string
+            description: Vep annotated vcf file
+          cns:
+            type: string
+            description: CNVkit purity/BAF-aware .loh.cns segment file
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          tmb:
+            type: string
+            description: Text file with copy-number-aware TMB score
+
 
   finaletoolkit_interval_end_motifs:
     type: object
