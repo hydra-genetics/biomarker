@@ -1,5 +1,33 @@
 # Softwares used in the biomarker module
 
+## [bcprs](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/prs_daniel.py)
+Calculates a polygenic risk score (PRS) for one subject from a gVCF and a score file, using a Python port of
+the PRS313 script prs.Daniel.R (Daniel Eriksson 2022). Each genotype is multiplied by the marker weight and summed into
+a total score. Reference blocks in the gVCF that overlap score positions are counted as reference calls, and
+multi-allelic sites and proxies are collapsed so that no weight is counted twice. Missing markers are counted and
+used in a sensitivity analysis (lowest/highest possible score and expected score). The VCF is expected to already be
+subset to the score file positions; that extraction is not part of this rule.
+
+### :snake: Rule
+
+#SNAKEMAKE_RULE_SOURCE__bcprs__bcprs#
+
+#### :left_right_arrow: input / output files
+
+#SNAKEMAKE_RULE_TABLE__bcprs__bcprs#
+
+### :wrench: Configuration
+
+#### Software settings (`config.yaml`)
+
+#CONFIGSCHEMA__bcprs#
+
+#### Resources settings (`resources.yaml`)
+
+#RESOURCESSCHEMA__bcprs#
+
+---
+
 ## [cnvkit2scarhrd](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/cnvkit2scarhrd.py)
 Script that modifies the cnvkit segmentation file so that it can be used by scarhrd.
 

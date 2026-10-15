@@ -55,6 +55,7 @@ def compile_output_list(wildcards):
     platform = units.platform.iloc[0]
     output_files = []
     files = {
+        "biomarker/bcprs": [".detailed_scores.csv", ".total_scores.csv"],
         "biomarker/msisensor_pro": [""],
         "biomarker/tmb": [".TMB.txt"],
         "biomarker/finaletoolkit_end_motifs": [".end-motifs.tsv"],

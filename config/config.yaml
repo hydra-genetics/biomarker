@@ -12,6 +12,10 @@ reference:
   design_bed: ""
   fasta_2bit: ""
 
+bcprs:
+  container: "docker://python:3.9.7-slim"
+  score_file: ""
+
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
 

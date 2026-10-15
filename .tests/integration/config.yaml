@@ -11,6 +11,10 @@ reference:
   fasta_2bit: "references/HES45.fa.2bit"
   fasta: "references/HES45.fa"
 
+bcprs:
+  container: "docker://python:3.9.7-slim"
+  score_file: "references/bcprs_score_file.csv"
+
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
 

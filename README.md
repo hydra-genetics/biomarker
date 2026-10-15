@@ -131,6 +131,8 @@ The following output files should be targeted via another rule:
 
 | File | Description |
 |---|---|
+| `biomarker/bcprs/{sample}_{type}.detailed_scores.csv` | polygenic risk score genotypes and weighted score per marker |
+| `biomarker/bcprs/{sample}_{type}.total_scores.csv` | total polygenic risk score, missing markers and sensitivity analysis |
 | `biomarker/scarhrd/{sample}_{type}.{tc_method}.scarhrd_cnvkit_score.txt` | calculated HRD score based on cnvkit and scarHRD (experimental) |
 | `biomarker/msisensor_pro/{sample}_{type}` | msi score |
 | `biomarker/tmb/{sample}_{type}.TMB.txt` | tmb score and variants used |

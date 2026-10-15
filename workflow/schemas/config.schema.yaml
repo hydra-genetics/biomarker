@@ -30,6 +30,26 @@ properties:
     - samples
     - units
 
+  bcprs:
+    type: object
+    description: parameters for bcprs
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      container:
+        type: string
+        description: name or path to docker/singularity container
+      extra:
+        type: string
+        description: >
+          extra options forwarded to prs_daniel.py, e.g. '--no-proxy-dedup' or '--r-compat'
+      score_file:
+        type: string
+        description: >
+          PRS score file, a 9-column CSV (Chr, Pos, Ref, Alt, RSID, Effect_Allele, Weight,
+          Effect_allele_frequency, MarkerStatus) with one row per marker
+
   cnvkit2scarhrd:
     type: object
     description: parameters for cnvkit2scarhrd

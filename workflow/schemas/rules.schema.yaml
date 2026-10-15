@@ -2,6 +2,35 @@ $schema: "http://json-schema.org/draft-04/schema#"
 description: snakemake rule input and output files description file
 type: object
 properties:
+  bcprs:
+    type: object
+    description: input and output parameters for bcprs
+    properties:
+      input:
+        type: object
+        description: list of inputs
+        properties:
+          vcf:
+            type: string
+            description: >
+              gVCF for one subject, already subset to the score file positions (the extraction
+              is not part of this rule)
+          score_file:
+            type: string
+            description: PRS score file, a 9-column CSV with one row per marker
+      output:
+        type: object
+        description: list of outputs
+        properties:
+          detailed:
+            type: string
+            description: genotype, number of effect alleles and weighted score for each marker
+          total:
+            type: string
+            description: >
+              total PRS (SumPRS), number of missing markers (CountNA) and the sensitivity analysis
+              (MaxNeg, MaxPos, MaxRange, ExpectedScore, DiffSumVsExpected)
+
   cnvkit2scarhrd:
     type: object
     description: input and output parameters for cnvkit2scarhrd

@@ -1,0 +1,21 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##FILTER=<ID=RefCall,Description="Genotyping model thinks this site is reference.">
+##INFO=<ID=END,Number=1,Type=Integer,Description="End position (for use with symbolic alleles)">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Conditional genotype quality">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth">
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr2,length=242193529>
+##contig=<ID=chr3,length=198295559>
+##contig=<ID=chr4,length=190214555>
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	HD832.HES45_T
+chr1	100	.	A	G,<*>	50	PASS	.	GT:GQ:DP	0/1:50:30
+chr1	200	.	C	T,<*>	50	PASS	.	GT:GQ:DP	1|1:50:30
+chr1	240	.	G	<*>	0	.	END=260	GT:GQ:DP	0/0:50:30
+chr1	390	.	T	<*>	0	.	END=410	GT:GQ:DP	0/0:50:30
+chr1	400	.	T	C,<*>	5	RefCall	.	GT:GQ:DP	.|1:5:30
+chr2	500	.	CAA	CAAA,<*>	50	PASS	.	GT:GQ:DP	0/1:50:30
+chr3	100	.	CA	C,<*>	50	PASS	.	GT:GQ:DP	1/1:50:30
+chr3	200	.	CAA	C,<*>	50	PASS	.	GT:GQ:DP	1/1:50:30
+chr4	200	.	A	G,<*>	50	PASS	.	GT:GQ:DP	1/1:50:30
