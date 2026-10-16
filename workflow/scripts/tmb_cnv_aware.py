@@ -85,8 +85,28 @@ def tmb(
     vcf, artifacts_filename, background_panel_filename, output_tmb, filter_genes_filename, filter_nr_observations,
     filter_regions, dp_limit, ad_limit, af_lower_limit, af_upper_limit, af_germline_lower_limit,
     af_germline_upper_limit, gnomad_limit, db1000g_limit, background_sd_limit, nr_avg_germline_snvs,
-    nssnv_tmb_correction, variant_type_list, cns_filename, cn_baf_tolerance, pmean_limit, nm_limit
+    nssnv_tmb_correction, variant_type_list, cns_filename, cn_baf_tolerance, pmean_limit, nm_limit,
+    synonymous_variant_type_list=None, indel_variant_type_list=None, additional_tmb_corrections=None,
 ):
+    if synonymous_variant_type_list is None:
+        synonymous_variant_type_list = ["synonymous_variant", "stop_retained_variant"]
+    if indel_variant_type_list is None:
+        indel_variant_type_list = [
+            "frameshift_variant", "inframe_insertion", "inframe_deletion", "stop_gained", "stop_lost", "start_lost",
+            "protein_altering_variant",
+        ]
+    # (nr_avg_germline, correction) per additional count. Defaults: no germline correction, same correction factor
+    # as the nonsynonymous SNV TMB, until they are calibrated for each variant definition.
+    corrections = {
+        name: (0.0, nssnv_tmb_correction)
+        for name in ("incl_synonymous", "incl_indels", "incl_synonymous_and_indels")
+    }
+    for name, (nr_avg_germline, correction) in (additional_tmb_corrections or {}).items():
+        default_germline, default_correction = corrections[name]
+        corrections[name] = (
+            default_germline if nr_avg_germline is None else nr_avg_germline,
+            default_correction if correction is None else correction,
+        )
 
     '''Problematic regions'''
     filter_regions_dict = {}
@@ -94,6 +114,7 @@ def tmb(
         filter_regions_dict = read_bedfile(filter_regions_dict, open(filter_bed_file))
 
     FFPE_SNV_artifacts = {}
+    FFPE_INDEL_artifacts = {}
     if artifacts_filename == "":
         filter_nr_observations = 1
     else:
@@ -108,8 +129,6 @@ def tmb(
             pos = columns[1]
             key = chrom + "_" + pos
             type = columns[2]
-            if type != "SNV":
-                continue
             max_observations = 0
             i = 0
             for observation in columns[3:]:
@@ -117,7 +136,10 @@ def tmb(
                     if int(observation) > max_observations:
                         max_observations = int(observation)
                 i += 1
-            FFPE_SNV_artifacts[key] = max_observations
+            if type == "SNV":
+                FFPE_SNV_artifacts[key] = max_observations
+            else:
+                FFPE_INDEL_artifacts[key] = max_observations
 
     '''Background'''
     gvcf_panel_dict = {}
@@ -144,10 +166,14 @@ def tmb(
     cns_dict = read_cns_segments(cns_filename)
 
     nr_SNV_TMB = 0
+    nr_synonymous_SNV = 0
+    nr_INDEL = 0
     header = True
     prev_pos = ""
     prev_chrom = ""
     TMB_SNV = []
+    synonymous_SNV = []
+    TMB_INDEL = []
     vep_dict = {}
     with gzip.open(vcf, 'rt') as vcf_infile:
         file_content = vcf_infile.read().split("\n")
@@ -235,14 +261,17 @@ def tmb(
                 VD = int(DATA[VD_index])
             DP = int(DATA[DP_index])
 
-            # Only SNVs
+            # SNVs are counted for TMB; INDELs only for the additional count
             Observations = 0
-            if not(len(ref) == 1 and len(alt) == 1):
+            is_snv = len(ref) == 1 and len(alt) == 1
+            is_indel = len(ref) != len(alt)
+            if not (is_snv or is_indel):
                 continue
 
             # Artifact observations
-            if key in FFPE_SNV_artifacts:
-                Observations = FFPE_SNV_artifacts[key]
+            artifact_dict = FFPE_SNV_artifacts if is_snv else FFPE_INDEL_artifacts
+            if key in artifact_dict:
+                Observations = artifact_dict[key]
 
             # Gene name
             gene_name = VEP_INFO[vep_dict["SYMBOL"]]
@@ -272,12 +301,13 @@ def tmb(
                 if panel_sd > 0.0:
                     pos_sd = (AF - panel_median) / panel_sd
                 if background_panel_filename == "" or pos_sd > background_sd_limit:
-                    ok_variant_type = False
-                    for vt in Variant_type:
-                        if vt in variant_type_list:
-                            ok_variant_type = True
+                    ok_variant_type = is_snv and any(vt in variant_type_list for vt in Variant_type)
+                    synonymous = is_snv and not ok_variant_type and any(
+                        vt in synonymous_variant_type_list for vt in Variant_type
+                    )
+                    ok_indel = is_indel and any(vt in indel_variant_type_list for vt in Variant_type)
                     print(Variant_type, ok_variant_type, variant_type_list)
-                    if ok_variant_type:
+                    if ok_variant_type or synonymous or ok_indel:
                         filter_region = False
                         if chrom in filter_regions_dict:
                             for region in filter_regions_dict[chrom]:
@@ -285,22 +315,46 @@ def tmb(
                                     filter_region = True
                                     break
                         if not filter_region:
-                            nr_SNV_TMB += 1
-                            TMB_SNV.append([line, panel_median, panel_sd, AF, pos_sd])
+                            variant = [line, panel_median, panel_sd, AF, pos_sd]
+                            if ok_variant_type:
+                                nr_SNV_TMB += 1
+                                TMB_SNV.append(variant)
+                            elif synonymous:
+                                nr_synonymous_SNV += 1
+                                synonymous_SNV.append(variant)
+                            else:
+                                nr_INDEL += 1
+                                TMB_INDEL.append(variant)
 
-    TMB = (nr_SNV_TMB - nr_avg_germline_snvs) * nssnv_tmb_correction
-    if TMB < 0:
-        TMB = 0
-    output_tmb.write("TMB:\t" + str(TMB) + "\n")
+    def corrected_tmb(nr_variants, nr_avg_germline, correction):
+        return max((nr_variants - nr_avg_germline) * correction, 0)
+
+    output_tmb.write("TMB:\t" + str(corrected_tmb(nr_SNV_TMB, nr_avg_germline_snvs, nssnv_tmb_correction)) + "\n")
     output_tmb.write("Number of variants:\t" + str(nr_SNV_TMB) + "\n")
-    for variant in TMB_SNV:
-        if background_panel_filename == "":
-            output_tmb.write(variant[0] + "\n")
-        else:
-            output_tmb.write(
-                variant[0] + "\t" + "{:.4f}".format(variant[1]) + "\t" + "{:.4f}".format(variant[2]) + "\t" +
-                "\t" + "{:.4f}".format(variant[3]) + "\t" + "{:.2f}".format(variant[4]) + "\n"
-            )
+    additional = [
+        ("incl_synonymous", "incl. synonymous SNVs", nr_SNV_TMB + nr_synonymous_SNV),
+        ("incl_indels", "incl. INDELs", nr_SNV_TMB + nr_INDEL),
+        ("incl_synonymous_and_indels", "incl. synonymous SNVs and INDELs", nr_SNV_TMB + nr_synonymous_SNV + nr_INDEL),
+    ]
+    for name, label, nr_variants in additional:
+        output_tmb.write(f"TMB {label}:\t" + str(corrected_tmb(nr_variants, *corrections[name])) + "\n")
+        output_tmb.write(f"Number of variants {label}:\t" + str(nr_variants) + "\n")
+
+    def write_variants(variants):
+        for variant in variants:
+            if background_panel_filename == "":
+                output_tmb.write(variant[0] + "\n")
+            else:
+                output_tmb.write(
+                    variant[0] + "\t" + "{:.4f}".format(variant[1]) + "\t" + "{:.4f}".format(variant[2]) + "\t" +
+                    "\t" + "{:.4f}".format(variant[3]) + "\t" + "{:.2f}".format(variant[4]) + "\n"
+                )
+
+    write_variants(TMB_SNV)
+    output_tmb.write("Synonymous SNVs:\t" + str(nr_synonymous_SNV) + "\n")
+    write_variants(synonymous_SNV)
+    output_tmb.write("INDELs:\t" + str(nr_INDEL) + "\n")
+    write_variants(TMB_INDEL)
 
 
 if __name__ == "__main__":
@@ -330,4 +384,11 @@ if __name__ == "__main__":
         snakemake.params.cn_baf_tolerance,
         snakemake.params.pmean_limit,
         snakemake.params.nm_limit,
+        # Optional, so pipelines that override this rule's params without them keep working
+        synonymous_variant_type_list=snakemake.params.get("synonymous_variant_type_list"),
+        indel_variant_type_list=snakemake.params.get("indel_variant_type_list"),
+        additional_tmb_corrections={
+            name: (snakemake.params.get(f"nr_avg_germline_{name}"), snakemake.params.get(f"tmb_correction_{name}"))
+            for name in ("incl_synonymous", "incl_indels", "incl_synonymous_and_indels")
+        },
     )

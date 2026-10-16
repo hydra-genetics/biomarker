@@ -266,7 +266,7 @@ properties:
       artifacts:
         type: string
         description: file with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
-      background_panel:
+      background:
         type: string
         description: file with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
       background_sd_limit:
@@ -334,7 +334,7 @@ properties:
       artifacts:
         type: string
         description: file with artifact info created by the reference module. Set to empty string to skip, which is the default setting.
-      background_panel:
+      background:
         type: string
         description: file with background noise info created by the reference module. Set to empty string to skip, which is the default setting.
       background_sd_limit:
@@ -367,6 +367,24 @@ properties:
       nm_limit:
         type: number
         description: filter all variants with mean mismatches per read (INFO:NM) > nm_limit
+      indel_variant_type_list:
+        type: array
+        description: list of INDEL variant types
+        items:
+          type: string
+          description: >-
+            INDEL variant types counted in the additional counts that include INDELs (default protein-altering:
+            frameshift_variant, inframe_insertion, inframe_deletion, stop_gained, stop_lost, start_lost,
+            protein_altering_variant). Not used for the TMB value.
+      nr_avg_germline_incl_indels:
+        type: number
+        description: germline correction term for 'TMB incl. INDELs' (nonsynonymous SNVs and INDELs), default 0
+      nr_avg_germline_incl_synonymous:
+        type: number
+        description: germline correction term for 'TMB incl. synonymous SNVs', default 0
+      nr_avg_germline_incl_synonymous_and_indels:
+        type: number
+        description: germline correction term for 'TMB incl. synonymous SNVs and INDELs', default 0
       nr_avg_germline_snvs:
         type: number
         description: design dependent TMB correction term dependent on the average number of variants found in normal samples
@@ -376,6 +394,23 @@ properties:
       pmean_limit:
         type: number
         description: filter all variants with mean read position (INFO:PMEAN) < pmean_limit
+      synonymous_variant_type_list:
+        type: array
+        description: list of synonymous variant types
+        items:
+          type: string
+          description: >-
+            SNV variant types added to variant_type_list for the additional count 'Number of variants incl.
+            synonymous SNVs' (default synonymous_variant, stop_retained_variant). Not used for the TMB value.
+      tmb_correction_incl_indels:
+        type: number
+        description: correction factor for 'TMB incl. INDELs', defaults to nssnv_tmb_correction
+      tmb_correction_incl_synonymous:
+        type: number
+        description: correction factor for 'TMB incl. synonymous SNVs', defaults to nssnv_tmb_correction
+      tmb_correction_incl_synonymous_and_indels:
+        type: number
+        description: correction factor for 'TMB incl. synonymous SNVs and INDELs', defaults to nssnv_tmb_correction
       variant_type_list:
         type: array
         description: list of variant types
