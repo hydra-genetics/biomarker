@@ -68,9 +68,39 @@ rule tmb_cnv_aware:
         filter_regions=config.get("tmb_cnv_aware", {}).get("filter_regions", []),
         gnomad_limit=config.get("tmb_cnv_aware", {}).get("gnomad_limit", 0.0001),
         nm_limit=config.get("tmb_cnv_aware", {}).get("nm_limit", 4),
+        indel_variant_type_list=config.get("tmb_cnv_aware", {}).get(
+            "indel_variant_type_list",
+            [
+                "frameshift_variant",
+                "inframe_insertion",
+                "inframe_deletion",
+                "stop_gained",
+                "stop_lost",
+                "start_lost",
+                "protein_altering_variant",
+            ],
+        ),
+        nr_avg_germline_incl_indels=config.get("tmb_cnv_aware", {}).get("nr_avg_germline_incl_indels", 0.0),
+        nr_avg_germline_incl_synonymous=config.get("tmb_cnv_aware", {}).get("nr_avg_germline_incl_synonymous", 0.0),
+        nr_avg_germline_incl_synonymous_and_indels=config.get("tmb_cnv_aware", {}).get(
+            "nr_avg_germline_incl_synonymous_and_indels", 0.0
+        ),
         nr_avg_germline_snvs=config.get("tmb_cnv_aware", {}).get("nr_avg_germline_snvs", 2.0),
         nssnv_tmb_correction=config.get("tmb_cnv_aware", {}).get("nssnv_tmb_correction", 0.84),
         pmean_limit=config.get("tmb_cnv_aware", {}).get("pmean_limit", 15),
+        synonymous_variant_type_list=config.get("tmb_cnv_aware", {}).get(
+            "synonymous_variant_type_list", ["synonymous_variant", "stop_retained_variant"]
+        ),
+        tmb_correction_incl_indels=config.get("tmb_cnv_aware", {}).get(
+            "tmb_correction_incl_indels", config.get("tmb_cnv_aware", {}).get("nssnv_tmb_correction", 0.84)
+        ),
+        tmb_correction_incl_synonymous=config.get("tmb_cnv_aware", {}).get(
+            "tmb_correction_incl_synonymous", config.get("tmb_cnv_aware", {}).get("nssnv_tmb_correction", 0.84)
+        ),
+        tmb_correction_incl_synonymous_and_indels=config.get("tmb_cnv_aware", {}).get(
+            "tmb_correction_incl_synonymous_and_indels",
+            config.get("tmb_cnv_aware", {}).get("nssnv_tmb_correction", 0.84),
+        ),
         variant_type_list=config.get("tmb_cnv_aware", {}).get(
             "variant_type_list", ["missense_variant", "stop_gained", "stop_lost"]
         ),
