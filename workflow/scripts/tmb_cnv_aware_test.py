@@ -119,6 +119,108 @@ class TestUnitUtils(unittest.TestCase):
         }
         self._test_tmb(test_table, result)
 
+    def _write_small_vcf(self):
+        """
+        Small VCF with one record per counting case. All records pass the depth, AF, population and quality
+        filters unless the case says otherwise.
+        """
+        import gzip
+
+        header = [
+            "##fileformat=VCFv4.2",
+            '##INFO=<ID=CSQ,Number=.,Type=String,Description="VEP. Format: Allele|Consequence|SYMBOL|AF|MAX_AF|FLAGS">',
+            "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tS1",
+        ]
+        both_callers = "CALLERS=vardict,gatk_mutect2"
+        records = [
+            # (pos, ref, alt, consequence, AF, callers)
+            (100, "C", "T", "missense_variant", 0.2, both_callers),  # nonsynonymous SNV: TMB
+            (200, "C", "T", "synonymous_variant", 0.2, both_callers),  # synonymous SNV
+            (300, "C", "T", "stop_retained_variant", 0.2, both_callers),  # synonymous SNV
+            (400, "CA", "C", "frameshift_variant", 0.2, both_callers),  # INDEL
+            (500, "C", "CTT", "intron_variant", 0.2, both_callers),  # INDEL not affecting the protein: not counted
+            (600, "CA", "TG", "missense_variant", 0.2, both_callers),  # MNV: not counted
+            (700, "C", "T", "intron_variant", 0.2, both_callers),  # SNV with other consequence: not counted
+            (800, "CA", "C", "frameshift_variant", 0.5, both_callers),  # germline-like AF: not counted
+            (900, "C", "CA", "frameshift_variant", 0.2, "CALLERS=vardict"),  # one caller: not counted
+        ]
+        vcf = os.path.join(self.tempdir, "small.vcf.gz")
+        with gzip.open(vcf, "wt") as f:
+            f.write("\n".join(header) + "\n")
+            for pos, ref, alt, consequence, af, callers in records:
+                info = f"AF={af};{callers};CSQ={alt}|{consequence}|GENE1|||"
+                f.write(f"chr1\t{pos}\t.\t{ref}\t{alt}\t.\tPASS\t{info}\tGT:DP:AD\t0/1:500:400,100\n")
+        cns = os.path.join(self.tempdir, "empty.loh.cns")
+        with open(cns, "w") as f:
+            f.write("chromosome\tstart\tend\tbaf\n")
+        return vcf, cns
+
+    def _run_small_vcf(self, artifacts="", filter_nr_observations=1, additional_tmb_corrections=None):
+        from tmb_cnv_aware import tmb
+
+        vcf, cns = self._write_small_vcf()
+        out_path = os.path.join(self.tempdir, "small.TMB.txt")
+        with open(out_path, "w") as out_tmb:
+            tmb(
+                vcf, artifacts, "", out_tmb, "", filter_nr_observations, [], self.dp_limit, self.vd_limit,
+                self.af_lower_limit, self.af_upper_limit, self.af_germline_lower_limit, self.af_germline_upper_limit,
+                self.gnomad_limit, self.db1000g_limit, self.background_sd_limit, 0.0, 1.0, self.variant_type_list,
+                cns, self.cn_baf_tolerance, self.pmean_limit, self.nm_limit,
+                additional_tmb_corrections=additional_tmb_corrections,
+            )
+        with open(out_path) as f:
+            lines = f.read().rstrip("\n").split("\n")
+        counts = {line.split("\t")[0]: line.split("\t")[1] for line in lines if not line.startswith("chr")}
+        sections = {}
+        current = "Number of variants:"
+        for line in lines:
+            if line.startswith(("Synonymous SNVs:", "INDELs:")):
+                current = line.split("\t")[0]
+            elif line.startswith("chr"):
+                sections.setdefault(current, []).append(int(line.split("\t")[1]))
+        return counts, sections
+
+    def test_tmb_additional_counts(self):
+        counts, sections = self._run_small_vcf()
+        # The TMB itself still counts nonsynonymous SNVs only
+        self.assertEqual(counts["TMB:"], "1.0")
+        self.assertEqual(counts["Number of variants:"], "1")
+        self.assertEqual(counts["Number of variants incl. synonymous SNVs:"], "3")
+        self.assertEqual(counts["Number of variants incl. INDELs:"], "2")
+        self.assertEqual(counts["Number of variants incl. synonymous SNVs and INDELs:"], "4")
+        self.assertEqual(counts["Synonymous SNVs:"], "2")
+        self.assertEqual(counts["INDELs:"], "1")
+        self.assertEqual(sections["Number of variants:"], [100])
+        self.assertEqual(sections["Synonymous SNVs:"], [200, 300])
+        self.assertEqual(sections["INDELs:"], [400])
+        # Default corrections: no germline offset, same factor as the nonsynonymous SNV TMB (1.0 here)
+        self.assertEqual(counts["TMB incl. synonymous SNVs:"], "3.0")
+        self.assertEqual(counts["TMB incl. INDELs:"], "2.0")
+        self.assertEqual(counts["TMB incl. synonymous SNVs and INDELs:"], "4.0")
+
+    def test_tmb_additional_corrections(self):
+        counts, _ = self._run_small_vcf(additional_tmb_corrections={
+            "incl_synonymous": (1.0, 0.5),
+            "incl_indels": (None, 2.0),  # germline offset falls back to 0
+            "incl_synonymous_and_indels": (10.0, None),  # negative result is reported as 0
+        })
+        self.assertEqual(counts["TMB:"], "1.0")
+        self.assertEqual(counts["TMB incl. synonymous SNVs:"], "1.0")
+        self.assertEqual(counts["TMB incl. INDELs:"], "4.0")
+        self.assertEqual(counts["TMB incl. synonymous SNVs and INDELs:"], "0")
+
+    def test_tmb_indel_artifacts(self):
+        # INDEL rows in the artifact panel now filter INDELs (SNV rows already filtered SNVs)
+        artifacts = os.path.join(self.tempdir, "artifacts.tsv")
+        with open(artifacts, "w") as f:
+            f.write("Chromosome\tPosition\tType\tObs\tMedian\tSD\n")
+            f.write("chr1\t400\tINDEL\t5\t0.1\t0.01\n")
+            f.write("chr1\t200\tSNV\t5\t0.1\t0.01\n")
+        counts, sections = self._run_small_vcf(artifacts=artifacts, filter_nr_observations=3)
+        self.assertEqual(counts["Number of variants:"], "1")
+        self.assertEqual(sections["Synonymous SNVs:"], [300])
+        self.assertEqual(counts["INDELs:"], "0")
+
     def test_read_cns_segments(self):
         from tmb_cnv_aware import read_cns_segments
 

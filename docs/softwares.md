@@ -299,6 +299,8 @@ Python script that calculates the tumor mutational burden. Filters the vcf file 
 ## [tmb_cnv_aware](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/tmb_cnv_aware.py)
 Copy-number/BAF-aware variant of `tmb`. Runs the same nsSNV-based TMB calculation but replaces the fixed germline allele-frequency window with a check against the local CNVkit segment's fitted BAF (falling back to the fixed window where no segment BAF is available), and adds PMEAN/NM read-quality gates. Produced alongside `tmb` as a separate, comparison output.
 
+The TMB value counts nonsynonymous SNVs (`variant_type_list`). The output also gives a TMB and the number of variants for three alternative definitions: including synonymous SNVs (`synonymous_variant_type_list`), including protein-altering INDELs (`indel_variant_type_list`), and including both. Each has its own germline correction term and correction factor (`nr_avg_germline_incl_*` and `tmb_correction_incl_*`, default 0 and `nssnv_tmb_correction`), which should be calibrated per definition. The variants behind the extra counts are listed in the sections `Synonymous SNVs` and `INDELs`. INDELs use the INDEL rows of the artifact panel, SNVs its SNV rows.
+
 ### :snake: Rule
 
 #SNAKEMAKE_RULE_SOURCE__tmb__tmb_cnv_aware#
