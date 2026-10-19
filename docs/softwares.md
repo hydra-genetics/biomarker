@@ -1,6 +1,6 @@
 # Softwares used in the biomarker module
 
-## [bcprs](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/prs_daniel.py)
+## [bcprs](https://github.com/hydra-genetics/biomarker/blob/develop/workflow/scripts/bcprs.py)
 Calculates a polygenic risk score (PRS) for one subject from a gVCF and a score file, using a Python port of
 the PRS313 script prs.Daniel.R (Daniel Eriksson 2022). Each genotype is multiplied by the marker weight and summed into
 a total score. Reference blocks in the gVCF that overlap score positions are counted as reference calls, and

@@ -40,10 +40,16 @@ properties:
       container:
         type: string
         description: name or path to docker/singularity container
-      extra:
-        type: string
+      no_proxy_dedup:
+        type: boolean
         description: >
-          extra options forwarded to prs_daniel.py, e.g. '--no-proxy-dedup' or '--r-compat'
+          keep both the replaced site and its proxy; for detailed studies of proxy concordance only,
+          as it double counts their weights (default false)
+      r_compat:
+        type: boolean
+        description: >
+          reproduce prs.Daniel.R byte for byte, including its misreading of partially called phased
+          genotypes such as '.|1' as homozygotes (default false)
       score_file:
         type: string
         description: >

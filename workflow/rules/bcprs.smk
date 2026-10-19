@@ -6,14 +6,14 @@ __license__ = "GPL-3"
 
 rule bcprs:
     input:
-        vcf="snv_indels/deepvariant/{sample}_{type}.g.fix_af.bcprs.gvcf.gz",
+        vcf="snv_indels/deepvariant/{sample}_{type}.g.fix_af.bcprs.vcf.gz",
         score_file=config.get("bcprs", {}).get("score_file", ""),
     output:
-        detailed="biomarker/bcprs/{sample}_{type}.detailed_scores.csv",
-        total="biomarker/bcprs/{sample}_{type}.total_scores.csv",
+        detailed=temp("biomarker/bcprs/{sample}_{type}.detailed_scores.csv"),
+        total=temp("biomarker/bcprs/{sample}_{type}.total_scores.csv"),
     params:
-        extra=config.get("bcprs", {}).get("extra", ""),
-        script=workflow.source_path("../scripts/prs_daniel.py"),
+        no_proxy_dedup=config.get("bcprs", {}).get("no_proxy_dedup", False),
+        r_compat=config.get("bcprs", {}).get("r_compat", False),
     log:
         "biomarker/bcprs/{sample}_{type}.log",
     benchmark:
@@ -29,10 +29,5 @@ rule bcprs:
         config.get("bcprs", {}).get("container", config["default_container"])
     message:
         "{rule}: calculate polygenic risk score for {input.vcf} using {input.score_file}"
-    shell:
-        "(python3 {params.script} "
-        "-s {input.score_file} "
-        "-v {input.vcf} "
-        "-d {output.detailed} "
-        "-t {output.total} "
-        "{params.extra}) &> {log}"
+    script:
+        "../scripts/bcprs.py"
