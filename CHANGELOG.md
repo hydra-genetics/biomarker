@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0](https://github.com/hydra-genetics/biomarker/compare/v0.10.0...v0.11.0) (2026-10-19)
+
+
+### Features
+
+* add TMB counts including synonymous SNVs and protein-altering … ([c9c7e2c](https://github.com/hydra-genetics/biomarker/commit/c9c7e2c4650251f2cb19004031773846292078e3))
+* add TMB counts including synonymous SNVs and protein-altering INDELs to tmb_cnv_aware ([a3b12fb](https://github.com/hydra-genetics/biomarker/commit/a3b12fb8c53732ae5a64ac4ad7feedb7a085d78b))
+
 ## [0.10.0](https://github.com/hydra-genetics/biomarker/compare/v0.9.0...v0.10.0) (2026-09-17)
 
 
