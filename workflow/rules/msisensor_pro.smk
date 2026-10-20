@@ -6,7 +6,7 @@ __license__ = "GPL-3"
 
 rule msisensor_pro_filter_sites:
     input:
-        PoN=config.get("msisensor_pro_filter_sites", {}).get("PoN", ""),
+        PoN=lambda wildcards: get_config_value("msisensor_pro_filter_sites", "PoN"),
     output:
         PoN=temp("biomarker/msisensor_pro_filter_sites/{sample}_{type}.Msisensor_pro_reference.filtered.list_baseline"),
     params:

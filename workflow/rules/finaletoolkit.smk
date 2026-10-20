@@ -8,7 +8,7 @@ rule finaletoolkit_end_motifs:
     input:
         bam="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam",
         bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
-        reference=config.get("reference", {}).get("fasta_2bit", ""),
+        reference=lambda wildcards: get_config_value("reference", "fasta_2bit"),
     output:
         end_motifs=temp("biomarker/finaletoolkit_end_motifs/{sample}_{type}.end-motifs.tsv"),
     params:
@@ -44,8 +44,8 @@ rule finaletoolkit_interval_end_motifs:
     input:
         bam="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam",
         bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
-        design_bed=config.get("reference", {}).get("design_bed", ""),
-        reference=config.get("reference", {}).get("fasta_2bit", ""),
+        design_bed=lambda wildcards: get_config_value("reference", "design_bed"),
+        reference=lambda wildcards: get_config_value("reference", "fasta_2bit"),
     output:
         interval_end_motifs=temp("biomarker/finaletoolkit_interval_end_motifs/{sample}_{type}.interval-end-motifs.tsv"),
     params:

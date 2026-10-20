@@ -15,7 +15,7 @@ rule fragmentomics_metrics_get_bed_from_bam:
             "canonical_cds_bed", "resources/UCSC_hg19_canonical_cds.bed"
         ),
         min_mapq=config.get("fragmentomics_metrics", {}).get("min_mapq", 30),
-        sort_mem=lambda wildcards, resources: f"{int(resources.mem_mb * 0.8)}M" if getattr(resources, "mem_mb", None) else "8G",
+        sort_mem=lambda wildcards, resources: f"{int(resources.mem_mb*0.8)}M" if getattr(resources, "mem_mb", None) else "8G",
     log:
         "biomarker/fragmentomics_metrics_get_bed_from_bam/{sample}_{type}.log",
     benchmark:
@@ -374,7 +374,7 @@ rule fragmentomics_metrics_get_left_4mer:
     output:
         left_4mers=temp("biomarker/fragmentomics_metrics_get_left_4mer/{sample}_{type}_left_4mers.txt.gz"),
     params:
-        reference=config.get("reference", {}).get("fasta", ""),
+        reference=lambda wildcards: get_config_value("reference", "fasta"),
     log:
         "biomarker/fragmentomics_metrics_get_left_4mer/{sample}_{type}.log",
     benchmark:
@@ -413,7 +413,7 @@ rule fragmentomics_metrics_get_right_4mer:
     output:
         right_4mers=temp("biomarker/fragmentomics_metrics_get_right_4mer/{sample}_{type}_right_4mers.txt.gz"),
     params:
-        reference=config.get("reference", {}).get("fasta", ""),
+        reference=lambda wildcards: get_config_value("reference", "fasta"),
     log:
         "biomarker/fragmentomics_metrics_get_right_4mer/{sample}_{type}.log",
     benchmark:
@@ -484,7 +484,7 @@ rule fragmentomics_metrics_overlap_TFBS:
     output:
         tfbs_frag_count=temp("biomarker/fragmentomics_metrics_overlap_TFBS/{sample}_{type}_TFBS_frag_count.txt.gz"),
     params:
-        tfbs=config.get("fragmentomics_metrics", {}).get("tfbs_midpoints", ""),
+        tfbs=lambda wildcards: get_config_value("fragmentomics_metrics", "tfbs_midpoints"),
     log:
         "biomarker/fragmentomics_metrics_overlap_TFBS/{sample}_{type}.log",
     benchmark:
@@ -556,7 +556,7 @@ rule fragmentomics_metrics_overlap_ATAC:
     output:
         atac_frag_count=temp("biomarker/fragmentomics_metrics_overlap_ATAC/{sample}_{type}_ATAC_frag_count.txt.gz"),
     params:
-        atac=config.get("fragmentomics_metrics", {}).get("atac_peaks", ""),
+        atac=lambda wildcards: get_config_value("fragmentomics_metrics", "atac_peaks"),
     log:
         "biomarker/fragmentomics_metrics_overlap_ATAC/{sample}_{type}.log",
     benchmark:
@@ -717,7 +717,7 @@ rule fragmentomics_metrics_extract_first_exon:
         small_frags_E1="biomarker/fragmentomics_metrics_extract_first_exon/small_frags_E1.rds",
         mds_E1="biomarker/fragmentomics_metrics_extract_first_exon/mds_E1.rds",
     params:
-        strand_mapping=config.get("fragmentomics_metrics", {}).get("exon_strand_mapping", ""),
+        strand_mapping=lambda wildcards: get_config_value("fragmentomics_metrics", "exon_strand_mapping"),
     log:
         "biomarker/fragmentomics_metrics_extract_first_exon/extract_first_exon.log",
     benchmark:
