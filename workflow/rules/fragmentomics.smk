@@ -8,7 +8,7 @@ rule fragmentomics_fragment_length_patient_score:
     input:
         bam="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam",
         bai="alignment/bwa_mem_realign_consensus_reads/{sample}_{type}.umi.bam.bai",
-        reference_set=config.get("fragmentomics_fragment_length_patient_score", {}).get("reference_set", ""),
+        reference_set=lambda wildcards: get_config_value("fragmentomics_fragment_length_patient_score", "reference_set"),
     output:
         patient_score=temp(
             "biomarker/fragmentomics_fragment_length_patient_score/{sample}_{type}.fragment_length_patient_score.txt"

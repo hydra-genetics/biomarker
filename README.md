@@ -6,11 +6,8 @@
 
 Snakemake module containing processing steps used to generate different kind of biomarkers
 
-![Lint](https://github.com/hydra-genetics/biomarker/actions/workflows/lint.yaml/badge.svg?branch=develop)
-![Snakefmt](https://github.com/hydra-genetics/biomarker/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
-![snakemake dry run](https://github.com/hydra-genetics/biomarker/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
-![integration test](https://github.com/hydra-genetics/biomarker/actions/workflows/integration.yaml/badge.svg?branch=develop)
-![pycodestyle](https://github.com/hydra-genetics/biomarker/actions/workflows/pycodestyl.yaml/badge.svg?branch=develop)
+[![CI](https://github.com/hydra-genetics/biomarker/actions/workflows/ci.yaml/badge.svg?branch=develop)](https://github.com/hydra-genetics/biomarker/actions/workflows/ci.yaml)
+[![build mkdocs](https://github.com/hydra-genetics/biomarker/actions/workflows/test-build-mkdocs.yaml/badge.svg?branch=develop)](https://github.com/hydra-genetics/biomarker/actions/workflows/test-build-mkdocs.yaml)
 
 [![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
@@ -27,13 +24,11 @@ The module consists of rules used to generate biomarkers. Currenlty available bi
 
 In order to use this module, the following dependencies are required:
 
-[![hydra-genetics](https://img.shields.io/badge/hydragenetics-0.15.0-blue)](https://github.com/hydra-genetics/)
+[![hydra-genetics](https://img.shields.io/badge/hydragenetics-4.1.1-blue)](https://github.com/hydra-genetics/)
 [![pandas](https://img.shields.io/badge/pandas-1.3.1-blue)](https://pandas.pydata.org/)
-[![python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/)
-[![snakemake](https://img.shields.io/badge/snakemake-7.13.0-blue)](https://snakemake.readthedocs.io/en/stable/)
-[![singularity](https://img.shields.io/badge/singularity-3.0.0-blue)](https://sylabs.io/docs/)
-[![drmaa](https://img.shields.io/badge/drmaa-0.7.9-blue)](https://pypi.org/project/drmaa/)
-[![tabulate](https://img.shields.io/badge/tabulate-0.8.10-blue)](https://pypi.org/project/tabulate/)
+[![python](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/)
+[![snakemake](https://img.shields.io/badge/snakemake-9.0.0-blue)](https://snakemake.readthedocs.io/en/stable/)
+[![apptainer](https://img.shields.io/badge/apptainer-1.4.5-blue)](https://apptainer.org/)
 
 ## :school_satchel: Preparations
 
@@ -76,7 +71,7 @@ The workflow repository contains a small test dataset `.tests/integration` which
 
 ```bash
 $ cd .tests/integration
-$ snakemake -s ../../Snakefile -j1 --configfile config.yaml --use-singularity
+$ snakemake -s ../../workflow/Snakefile -j1 --configfile config.yaml --software-deployment-method apptainer
 ```
 
 ## :rocket: Usage

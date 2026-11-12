@@ -7,10 +7,11 @@ units: "units.tsv"
 default_container: "docker://hydragenetics/common:3.0.0"
 
 reference:
-  artifacts: ""
-  background: ""
-  design_bed: ""
-  fasta_2bit: ""
+  artifacts: "references/artifact_positions_chr1.txt"
+  background: "references/background_panel_small.tsv"
+  design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
+  fasta_2bit: "references/HES45.fa.2bit"
+  fasta: "references/HES45.fa"
 
 finaletoolkit_end_motifs:
   container: "docker://hydragenetics/finaletoolkit:0.10.7"
@@ -23,13 +24,13 @@ finaletoolkit_mds:
 
 fragle:
   container: "docker://hydragenetics/fragle:20260306"
-  design_bed: ""
+  design_bed: "references/twist_DNA_solid.HES45.annotated.bed"
   genome_build: "hg19"
   mode: "T"
 
 fragmentomics_fragment_length_patient_score:
   container: "docker://hydragenetics/fragmentomics:0.1.0"
-  reference_set: ""
+  reference_set: "references/vessies_reference_set.txt"
 
 optitype:
   container: "docker://fred2/optitype:release-v1.3.1"
@@ -40,8 +41,8 @@ msisensor_pro:
   container: "docker://hydragenetics/msisensor_pro:1.2.0"
 
 msisensor_pro_filter_sites:
-  PoN: ""
-  msi_sites_bed: ""
+  PoN: "references/msisensor_pro_reference.list_baseline"
+  msi_sites_bed: "" # "" means no site filtering
 
 scarhrd:
   container: "docker://hydragenetics/scarhrd:20200825"

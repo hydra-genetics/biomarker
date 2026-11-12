@@ -4,16 +4,18 @@ __email__ = "jonas.almlof@scilifelab.se"
 __license__ = "GPL-3"
 
 import os
+import re
 import pandas as pd
 from snakemake.utils import validate
 from snakemake.utils import min_version
 
+from hydra_genetics.utils.config import config_accessor
 from hydra_genetics.utils.resources import load_resources
 from hydra_genetics.utils.samples import *
 from hydra_genetics.utils.units import *
 from hydra_genetics.utils.misc import get_input_aligned_bam
 
-min_version("7.8.0")
+min_version("9.0.0")
 
 ### Set and validate config file
 
@@ -40,8 +42,11 @@ validate(units, schema="../schemas/units.schema.yaml")
 
 
 wildcard_constraints:
-    sample="|".join(samples.index),
-    unit="N|T|R",
+    sample="|".join(re.escape(s) for s in samples.index),
+    type="N|T|R",
+
+
+get_config_value = config_accessor(config, module="biomarker")
 
 
 def get_flowcell(units, wildcards):
